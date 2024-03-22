@@ -1,3 +1,4 @@
 npm run lint-staged
+./vendor/bin/pint
 ./vendor/bin/duster fix --dirty
 yarn test
