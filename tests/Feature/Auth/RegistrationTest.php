@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Organization;
+
 test('registration screen can be rendered', function () {
     $response = $this->get('/register');
 
@@ -7,7 +9,10 @@ test('registration screen can be rendered', function () {
 });
 
 test('new users can register', function () {
+    $organization = Organization::create(['name' => 'Dunder Mifflin']);
+
     $response = $this->post('/register', [
+        'organization_id' => $organization->id,
         'name' => 'Test User',
         'email' => 'test@example.com',
         'password' => 'password',
