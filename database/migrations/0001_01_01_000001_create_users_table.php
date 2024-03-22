@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('organization_id');
+            $table->unsignedBigInteger('organization_id')->nullable();
             $table->string('name');
             $table->string('nickname')->nullable();
             $table->string('email')->unique();
@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
+            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('set null');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
