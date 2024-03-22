@@ -119,6 +119,6 @@ jobs:
 
       # Test
       - name: Run tests
-        run: vendor/bin/phpunit
+        run: vendor/bin/pest
         env:
           DB_CONNECTION: ${{ matrix.connection }}

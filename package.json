@@ -5,7 +5,6 @@
     "dev": "vite",
     "build": "vite build",
     "pretest": "DB_CONNECTION=testing php artisan migrate:fresh",
-    "posttest": "",
     "test": "vendor/bin/pest",
     "prepare": "husky",
     "lint-staged": "lint-staged"
