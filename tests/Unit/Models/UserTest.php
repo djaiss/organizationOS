@@ -2,11 +2,7 @@
 
 namespace Tests\Unit\Models;
 
-use App\Models\Channel;
 use App\Models\Organization;
-use App\Models\Team;
-use App\Models\Topic;
-use App\Models\TopicNotification;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;

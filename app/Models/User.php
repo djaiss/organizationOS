@@ -35,6 +35,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function organization(): BelongsTo
+    {
+        return $this->belongsTo(Organization::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -46,10 +51,5 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    public function organization(): BelongsTo
-    {
-        return $this->belongsTo(Organization::class);
     }
 }
