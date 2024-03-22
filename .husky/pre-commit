@@ -1,0 +1,3 @@
+npm run lint-staged
+./vendor/bin/duster fix --dirty
+yarn test

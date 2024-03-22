@@ -1,0 +1,11 @@
+{
+  "app/*.php": {
+    "alternate": ["tests/Unit/{}Test.php", "tests/Feature/{}Test.php"]
+  },
+  "tests/Feature/*Test.php": {
+    "alternate": "app/{}.php"
+  },
+  "tests/Unit/*Test.php": {
+    "alternate": "app/{}.php"
+  }
+}
