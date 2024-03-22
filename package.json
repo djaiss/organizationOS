@@ -4,8 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "pretest": "DB_CONNECTION=testing php artisan migrate:fresh",
-    "test": "vendor/bin/pest",
+    "pretest": "rm public/build/sqlite_test && touch public/build/sqlite_test && DB_CONNECTION=testing php artisan migrate:fresh",
+    "test": "vendor/bin/pest --parallel && vendor/bin/pest --type-coverage --min=100",
     "prepare": "husky",
     "lint-staged": "lint-staged"
   },
