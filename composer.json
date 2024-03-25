@@ -9,11 +9,14 @@
   "license": "MIT",
   "require": {
     "php": "^8.2",
+    "blade-ui-kit/blade-heroicons": "^2.3",
     "laravel/breeze": "^2.0",
     "laravel/framework": "^11.0",
+    "laravel/sanctum": "^4.0",
     "laravel/tinker": "^2.9"
   },
   "require-dev": {
+    "barryvdh/laravel-debugbar": "^3.12",
     "fakerphp/faker": "^1.23",
     "larastan/larastan": "^2.0",
     "laravel/dusk": "^8.0",

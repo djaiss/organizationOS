@@ -5,6 +5,9 @@
   "tests/Feature/*Test.php": {
     "alternate": "app/{}.php"
   },
+  "tests/Feature/Api/*Test.php": {
+    "alternate": "app/Http/Controllers/Api/{}.php"
+  },
   "tests/Unit/*Test.php": {
     "alternate": "app/{}.php"
   }
