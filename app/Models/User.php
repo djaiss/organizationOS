@@ -35,6 +35,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
+    public function organizations(): BelongsToMany
+    {
+        return $this->belongsToMany(Organization::class, 'organization_user')
+            ->withPivot('permission')
+            ->withTimestamps();
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -46,12 +53,5 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    public function organizations(): BelongsToMany
-    {
-        return $this->belongsToMany(Organization::class, 'organization_user')
-            ->withPivot('permission')
-            ->withTimestamps();
     }
 }
