@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -11,7 +12,7 @@ use Illuminate\Http\Request;
 class MeController extends Controller
 {
     /**
-     * /api/me GET
+     * Get the information about the logged user
      *
      * This endpoint gets the information about the logged user.
      *
@@ -21,7 +22,7 @@ class MeController extends Controller
      *  "email": "jessica.jones@gmail.com"
      * }
      */
-    public function show(Request $request): array
+    public function show(Request $request): JsonResponse
     {
         $response = [
             'id' => $request->user()->id,
@@ -29,6 +30,6 @@ class MeController extends Controller
             'email' => $request->user()->email,
         ];
 
-        return $response;
+        return response()->json($response);
     }
 }

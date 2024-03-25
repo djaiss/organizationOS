@@ -3,11 +3,10 @@
 use App\Models\Organization;
 use App\Models\User;
 
-test('it belongs to an organization', function () {
+test('it has many organizations', function () {
     $organization = Organization::factory()->create();
-    $user = User::factory()->create([
-        'organization_id' => $organization->id,
-    ]);
+    $user = User::factory()->create();
+    $user->organizations()->attach($organization);
 
-    expect($user->organization()->exists())->toBeTrue();
+    expect($user->organizations()->exists())->toBeTrue();
 });

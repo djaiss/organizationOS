@@ -1,4 +1,7 @@
 {
+  "app/Http/Controllers/Api/*.php": {
+    "alternate": "tests/Feature/Api/{}Test.php"
+  },
   "app/*.php": {
     "alternate": ["tests/Unit/{}Test.php", "tests/Feature/{}Test.php"]
   },
