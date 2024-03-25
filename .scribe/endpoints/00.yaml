@@ -10,7 +10,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: '/api/me GET'
+      title: 'Get the information about the logged user'
       description: 'This endpoint gets the information about the logged user.'
       authenticated: false
       custom: []

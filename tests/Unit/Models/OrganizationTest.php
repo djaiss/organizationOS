@@ -5,7 +5,7 @@ use App\Models\User;
 
 test('it has multiple users', function () {
     $organization = Organization::factory()->create();
-    User::factory()->create(['organization_id' => $organization->id]);
+    $organization->users()->attach(User::factory()->create());
 
     expect($organization->users()->exists())->toBeTrue();
 });
