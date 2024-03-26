@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\PopulateAccount;
 use App\Models\Organization;
 
 class CreateOrganization extends BaseService
@@ -17,6 +18,7 @@ class CreateOrganization extends BaseService
     {
         $this->createOrganization();
         $this->associateUser();
+        $this->populate();
 
         return $this->organization;
     }
@@ -31,5 +33,10 @@ class CreateOrganization extends BaseService
     private function associateUser(): void
     {
         $this->organization->users()->syncWithoutDetaching([auth()->user()->id]);
+    }
+
+    private function populate(): void
+    {
+        PopulateAccount::dispatch($this->organization);
     }
 }

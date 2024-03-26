@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "pretest": "rm public/build/sqlite_test && touch public/build/sqlite_test && DB_CONNECTION=testing php artisan migrate:fresh",
+    "pretest": "rm database/database.sqlite_test* && DB_CONNECTION=testing php artisan migrate:fresh",
     "posttest": "composer update && php artisan scribe:generate",
     "test": "./vendor/bin/pint && ./vendor/bin/pest --parallel && ./vendor/bin/pest --type-coverage --min=100 && php artisan dusk",
     "prepare": "husky",
