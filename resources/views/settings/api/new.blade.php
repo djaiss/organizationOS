@@ -34,7 +34,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-          <x-primary-button>{{ __('Create') }}</x-primary-button>
+          <x-primary-button dusk="cta-create">{{ __('Create') }}</x-primary-button>
         </div>
       </form>
     </div>
