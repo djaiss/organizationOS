@@ -2,7 +2,7 @@
   <x-slot name="breadcrumb">
     <ul class="text-sm">
       <li class="inline after:content-['>'] after:text-gray-500 after:text-xs">
-        <x-link href="{{ route('profile.edit') }}">{{ __('Dashboard') }}</x-link>
+        <x-link href="{{ route('dashboard.index') }}">{{ __('Dashboard') }}</x-link>
       </li>
       <li class="inline">{{ __('API Access') }}</li>
     </ul>
@@ -18,7 +18,7 @@
       <!-- right -->
       <div class="p-0 sm:px-0 sm:py-0">
         <div class="max-w-7xl mx-auto sm:px-0 space-y-6">
-          <div class="p-4 sm:p-4 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+          <div class="p-4 sm:p-4 bg-white dark:bg-gray-800 shadow rounded-lg">
             <header class="mb-4">
               <div class="flex items-center justify-between">
                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">

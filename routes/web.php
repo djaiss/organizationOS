@@ -1,18 +1,29 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Organization\OrganizationController;
 use App\Http\Controllers\Profile\ApiAccessController;
 use App\Http\Controllers\Profile\ProfileController;
+use App\Http\Middleware\CheckOrganization;
 use Illuminate\Support\Facades\Route;
+
+// Routes in this project should follow the Rails routing structure
+// (https://guides.rubyonrails.org/routing.html#controller-namespaces-and-routing)
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    // dashboard
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('organizations/new', [OrganizationController::class, 'new'])->name('organization.new');
+    Route::post('organizations', [OrganizationController::class, 'create'])->name('organization.create');
 
-Route::middleware('auth')->group(function () {
+    // organizations
+    Route::middleware(CheckOrganization::class)->group(function () {
+        Route::get('organizations/{organization}', [OrganizationController::class, 'show'])->name('organization.show');
+    });
 
     // profile management
     Route::get('settings/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -22,8 +33,8 @@ Route::middleware('auth')->group(function () {
     // api access
     Route::get('settings/keys', [ApiAccessController::class, 'index'])->name('settings.api.index');
     Route::get('settings/keys/new', [ApiAccessController::class, 'new'])->name('settings.api.new');
-    Route::post('settings/keys', [ApiAccessController::class, 'store'])->name('settings.api.store');
+    Route::post('settings/keys', [ApiAccessController::class, 'create'])->name('settings.api.create');
     Route::delete('settings/keys/{id}', [ApiAccessController::class, 'destroy'])->name('settings.api.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
