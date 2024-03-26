@@ -31,9 +31,9 @@
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
-    <script src="{{ asset("/vendor/scribe/js/tryitout-4.34.0.js") }}"></script>
+    <script src="{{ asset("/vendor/scribe/js/tryitout-4.35.0.js") }}"></script>
 
-    <script src="{{ asset("/vendor/scribe/js/theme-default-4.34.0.js") }}"></script>
+    <script src="{{ asset("/vendor/scribe/js/theme-default-4.35.0.js") }}"></script>
 
 </head>
 

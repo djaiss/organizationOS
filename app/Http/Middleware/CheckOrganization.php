@@ -33,7 +33,7 @@ class CheckOrganization
             }
 
             // this makes the organization available in the request
-            // like $request->organization, in your controllers
+            // like $request->attributes->get('organization'), in your controllers
             $request->attributes->add(['organization' => $organization]);
 
             return $next($request);

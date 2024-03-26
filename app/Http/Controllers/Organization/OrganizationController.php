@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Organization;
 
 use App\Http\Controllers\Controller;
-use App\Http\ViewModels\DashboardViewHelper;
 use App\Services\CreateOrganization;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -31,10 +30,14 @@ class OrganizationController extends Controller
         return redirect()->route('organization.show', $organization);
     }
 
-    public function show(): View
+    public function show(Request $request): View
     {
-        return view('dashboard', [
-            'data' => DashboardViewHelper::index(),
+        return view('organization.show', [
+            'header' => [
+                'organization' => [
+                    'name' => $request->attributes->get('organization')->name,
+                ],
+            ],
         ]);
     }
 }
