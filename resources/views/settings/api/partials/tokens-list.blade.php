@@ -12,6 +12,7 @@
 
       <div>
         <span
+          dusk="cta-revoke-key-{{ $token['id'] }}"
           hx-delete="{{ route('settings.api.destroy', $token['id']) }}"
           hx-confirm="{{ __('Are you sure you want to proceed? This can not be undone.') }}"
           hx-headers='{"X-CSRF-TOKEN": "{{ csrf_token() }}"}'
@@ -20,7 +21,7 @@
     </div>
   </div>
   @empty
-  <x-primary-link href="{{ route('settings.api.new') }}">
+  <x-primary-link href="{{ route('settings.api.new') }}" dusk="blank-cta-add-key">
     <x-heroicon-c-plus class="w-4 h-4 mr-1" />
     <span>{{ __('Add your first key') }}</span>
   </x-primary-link>

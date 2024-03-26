@@ -26,7 +26,7 @@
                 </h2>
 
                 @if (count($data['tokens']))
-                <x-primary-link href="{{ route('settings.api.new') }}" class="text-sm">
+                <x-primary-link dusk="main-cta-add-key" href="{{ route('settings.api.new') }}" class="text-sm">
                   <x-heroicon-c-plus class="w-4 h-4 mr-1" />
                   <span>{{ __('Add key') }}</span>
                 </x-primary-link>
