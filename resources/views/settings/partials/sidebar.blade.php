@@ -1,4 +1,4 @@
-<div class="p-4 sm:p-4 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+<div class="p-4 sm:p-4 bg-white dark:bg-gray-800 shadow rounded-lg">
   <ul class="space-y-3">
     <li class="group">
       <a href="{{ route('profile.edit') }}" class="flex items-center">

@@ -1,5 +1,3 @@
 npm run lint-staged
-./vendor/bin/pint
-./vendor/bin/duster fix --dirty
 ./vendor/bin/phpstan analyse
 yarn test

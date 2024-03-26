@@ -30,7 +30,7 @@ class ApiAccessController extends Controller
         return view('settings.api.new');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function create(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'token_name' => 'required|string|max:255',
