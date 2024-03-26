@@ -18,5 +18,11 @@ test('it gets all the organizations the user is part of', function () {
     expect($array)->toBeArray();
     $this->assertArrayHasKey('organizations', $array);
 
-
+    expect($array['organizations']->toArray()[0])->toBe([
+        'id' => $organization->id,
+        'name' => 'Dunder Mifflin',
+        'url' => [
+            'show' => env('APP_URL').'/organizations/'.$organization->id,
+        ],
+    ]);
 });
