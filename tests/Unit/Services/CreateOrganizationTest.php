@@ -1,14 +1,10 @@
 <?php
 
-use App\Jobs\PopulateAccount;
 use App\Models\Organization;
 use App\Models\User;
 use App\Services\CreateOrganization;
-use Illuminate\Support\Facades\Queue;
 
 test('it creates an organization', function () {
-    Queue::fake();
-
     $user = User::factory()->create();
     $this->be($user);
 
@@ -23,10 +19,14 @@ test('it creates an organization', function () {
         'name' => 'Dunder Mifflin',
     ]);
 
+    $this->assertDatabaseHas('permissions', [
+        'id' => $organization->id,
+        'label_translation_key' => 'Administrator',
+    ]);
+
     $this->assertDatabaseHas('organization_user', [
         'organization_id' => $organization->id,
         'user_id' => $user->id,
-    ]);
 
-    Queue::assertPushed(PopulateAccount::class);
+    ]);
 });

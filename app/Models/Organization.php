@@ -20,7 +20,7 @@ class Organization extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'organization_user')
-            ->withPivot('permission')
+            ->withPivot('permission_id')
             ->withTimestamps();
     }
 

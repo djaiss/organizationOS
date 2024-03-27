@@ -11,10 +11,11 @@ return new class extends Migration
         Schema::create('organization_user', function (Blueprint $table) {
             $table->unsignedBigInteger('organization_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('permission')->nullable();
+            $table->unsignedBigInteger('permission_id')->nullable();
             $table->timestamps();
             $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('set null');
         });
     }
 
