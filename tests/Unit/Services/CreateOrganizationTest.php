@@ -23,7 +23,7 @@ test('it creates an organization', function () {
     ]);
 
     $this->assertDatabaseHas('permissions', [
-        'id' => $organization->id,
+        'organization_id' => $organization->id,
         'label_translation_key' => 'Administrator',
     ]);
 
