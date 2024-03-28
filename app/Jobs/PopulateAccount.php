@@ -31,15 +31,11 @@ class PopulateAccount implements ShouldQueue
 
     private function addActions(): void
     {
-        $permissions = [
-            trans_key('Manage permissions'),
-        ];
-
-        foreach ($permissions as $permission) {
-            DB::table('actions')->insert([
-                'label' => $permission,
-                'created_at' => now(),
-            ]);
-        }
+        DB::table('actions')->insert([
+            'identifier' => 'manage_permissions',
+            'label_translation_key' => 'Manage permissions',
+            'description_translation_key' => 'Manages who can do what.',
+            'created_at' => now(),
+        ]);
     }
 }

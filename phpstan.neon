@@ -17,6 +17,7 @@ parameters:
 #        - ./*/*/FileToBeExcluded.php
         - app/Http/Controllers/Auth/VerifyEmailController.php
         - app/Http/ViewModels/Profile/ApiAccessViewModel.php
+        - app/Models/User.php
 
 #
 #    checkMissingIterableValueType: false

@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('actions', function (Blueprint $table) {
-            $table->id();
-            $table->string('identifier')->unique();
-            $table->string('label_translation_key');
-            $table->text('description_translation_key')->nullable();
-            $table->timestamps();
+        Schema::create('action_permission', function (Blueprint $table) {
+            $table->unsignedBigInteger('permission_id');
+            $table->unsignedBigInteger('action_id');
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('actions');
+        Schema::dropIfExists('action_permission');
     }
 };
