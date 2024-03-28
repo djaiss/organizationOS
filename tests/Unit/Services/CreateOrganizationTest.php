@@ -27,6 +27,5 @@ test('it creates an organization', function () {
     $this->assertDatabaseHas('organization_user', [
         'organization_id' => $organization->id,
         'user_id' => $user->id,
-
     ]);
 });

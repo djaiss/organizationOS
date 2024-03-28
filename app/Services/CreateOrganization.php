@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\PopulateAccount;
 use App\Models\Organization;
 use App\Models\Permission;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,7 @@ class CreateOrganization extends BaseService
         $this->createOrganization();
         $this->createPermissions();
         $this->associateUser();
+        $this->populate();
 
         return $this->organization;
     }
@@ -56,5 +58,10 @@ class CreateOrganization extends BaseService
         $this->organization->users()->syncWithoutDetaching([
             auth()->user()->id => ['permission_id' => $permission->id],
         ]);
+    }
+
+    private function populate(): void
+    {
+        PopulateAccount::dispatch($this->organization);
     }
 }

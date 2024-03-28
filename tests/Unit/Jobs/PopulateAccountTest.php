@@ -19,8 +19,8 @@ class PopulateAccountTest extends TestCase
         PopulateAccount::dispatch($organization);
 
         $this->assertEquals(
-            3,
-            DB::table('permissions')->count()
+            1,
+            DB::table('actions')->count()
         );
     }
 }

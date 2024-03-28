@@ -26,22 +26,18 @@ class PopulateAccount implements ShouldQueue
      */
     public function handle(): void
     {
-        $this->addPermissions();
+        $this->addActions();
     }
 
-    private function addPermissions(): void
+    private function addActions(): void
     {
         $permissions = [
-            trans_key('Administrator'),
-            trans_key('Human Resource'),
-            trans_key('User'),
+            trans_key('Manage permissions'),
         ];
 
         foreach ($permissions as $permission) {
-            DB::table('permissions')->insert([
-                'organization_id' => $this->organization->id,
-                'label' => null,
-                'label_translation_key' => $permission,
+            DB::table('actions')->insert([
+                'label' => $permission,
                 'created_at' => now(),
             ]);
         }
