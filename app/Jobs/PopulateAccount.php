@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Action;
 use App\Models\Organization;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -32,7 +33,7 @@ class PopulateAccount implements ShouldQueue
     private function addActions(): void
     {
         DB::table('actions')->insert([
-            'identifier' => 'manage_permissions',
+            'identifier' => Action::MANAGE_PERMISSIONS,
             'label_translation_key' => 'Manage permissions',
             'description_translation_key' => 'Manages who can do what.',
             'created_at' => now(),

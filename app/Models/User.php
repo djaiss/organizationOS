@@ -58,7 +58,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getPermissionInOrganization(Organization $organization): Permission
     {
-        return Permission::find($this->organizations()->find($organization->id)->pivot->permission_id);
+        return Permission::findOrFail($this->organizations()->findOrFail($organization->id)->pivot->permission_id);
     }
 
     /**

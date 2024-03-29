@@ -12,6 +12,8 @@ class Action extends Model
 
     protected $table = 'actions';
 
+    const MANAGE_PERMISSIONS = 'manage_permissions';
+
     protected $fillable = [
         'identifier',
         'label_translation_key',
