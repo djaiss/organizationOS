@@ -12,7 +12,7 @@ class OrganizationControllerTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_returns_the_information_about_the_logged_user(): void
+    public function it_creates_an_organization(): void
     {
         $user = User::factory()->create();
         Sanctum::actingAs($user);

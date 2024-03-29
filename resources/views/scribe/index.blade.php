@@ -86,6 +86,9 @@
                                                     <li class="tocify-item level-2" data-unique="organization-POSTapi-organizations">
                                 <a href="#organization-POSTapi-organizations">Create an organization</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="organization-POSTapi-organizations--organization--permissions">
+                                <a href="#organization-POSTapi-organizations--organization--permissions">Create a permission</a>
+                            </li>
                                                                         </ul>
                             </ul>
             </div>
@@ -417,6 +420,178 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>The name of the organization. Max 255 characters. Example: <code>Dunder Mifflin</code></p>
+        </div>
+        </form>
+
+                    <h2 id="organization-POSTapi-organizations--organization--permissions">Create a permission</h2>
+
+<p>
+</p>
+
+<p>A permission is a set of actions that a user can perform in an organization.</p>
+<p>By default, an account comes with a set of permissions that can be assigned to users, like 'Administrator'.</p>
+
+<span id="example-requests-POSTapi-organizations--organization--permissions">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://organizationos.test/api/organizations/1/permissions" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"label\": \"Administrator\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://organizationos.test/api/organizations/1/permissions"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "label": "Administrator"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'https://organizationos.test/api/organizations/1/permissions';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'label' =&gt; 'Administrator',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-organizations--organization--permissions">
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+ &quot;id&quot;: 4,
+ &quot;object&quot;: &quot;permission&quot;,
+ &quot;label&quot;: &quot;Administrator&quot;,
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-organizations--organization--permissions" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-organizations--organization--permissions"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-organizations--organization--permissions"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-organizations--organization--permissions" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-organizations--organization--permissions">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-organizations--organization--permissions" data-method="POST"
+      data-path="api/organizations/{organization}/permissions"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-organizations--organization--permissions', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-organizations--organization--permissions"
+                    onclick="tryItOut('POSTapi-organizations--organization--permissions');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-organizations--organization--permissions"
+                    onclick="cancelTryOut('POSTapi-organizations--organization--permissions');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-organizations--organization--permissions"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/organizations/{organization}/permissions</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-organizations--organization--permissions"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-organizations--organization--permissions"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>organization</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="organization"                data-endpoint="POSTapi-organizations--organization--permissions"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the organization. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>label</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="label"                data-endpoint="POSTapi-organizations--organization--permissions"
+               value="Administrator"
+               data-component="body">
+    <br>
+<p>The name of the permission. Max 255 characters. Example: <code>Administrator</code></p>
         </div>
         </form>
 
