@@ -1,37 +1,55 @@
 <?php
 
+namespace Tests\Unit\Services;
+
 use App\Exceptions\NotEnoughPermissionException;
 use App\Models\Action;
 use App\Models\Organization;
 use App\Models\Permission;
 use App\Services\CreatePermission;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-test('a user can create a permission', function () {
-    $organization = Organization::factory()->create();
-    $user = userWithPermission(Action::MANAGE_PERMISSIONS, $organization);
-    $this->be($user);
+class CreatePermissionTest extends TestCase
+{
+    use RefreshDatabase;
 
-    $permission = (new CreatePermission(
-        organization: $organization,
-        label: 'Administrator with less power',
-    ))->execute();
+    /** @test */
+    public function a_user_can_create_a_permission(): void
+    {
+        $organization = Organization::factory()->create();
+        $user = $this->userWithPermission(Action::MANAGE_PERMISSIONS, $organization);
+        $this->be($user);
 
-    expect($permission)->toBeInstanceOf(Permission::class);
+        $permission = (new CreatePermission(
+            organization: $organization,
+            label: 'Administrator with less power',
+        ))->execute();
 
-    $this->assertDatabaseHas('permissions', [
-        'id' => $permission->id,
-        'organization_id' => $organization->id,
-        'label' => 'Administrator with less power',
-    ]);
-});
+        $this->assertInstanceOf(
+            Permission::class,
+            $permission
+        );
 
-test('a user cant create a permission if he doesnt have the right to do so', function () {
-    $organization = Organization::factory()->create();
-    $user = userWithPermission('fake-permission', $organization);
-    $this->be($user);
+        $this->assertDatabaseHas('permissions', [
+            'id' => $permission->id,
+            'organization_id' => $organization->id,
+            'label' => 'Administrator with less power',
+        ]);
+    }
 
-    (new CreatePermission(
-        organization: $organization,
-        label: 'Administrator with less power',
-    ))->execute();
-})->throws(NotEnoughPermissionException::class);
+    /** @test */
+    public function a_user_cant_create_a_permission_if_he_doesnt_have_the_right_to_do_so(): void
+    {
+        $this->expectException(NotEnoughPermissionException::class);
+
+        $organization = Organization::factory()->create();
+        $user = $this->userWithPermission('fake-permission', $organization);
+        $this->be($user);
+
+        (new CreatePermission(
+            organization: $organization,
+            label: 'Administrator with less power',
+        ))->execute();
+    }
+}

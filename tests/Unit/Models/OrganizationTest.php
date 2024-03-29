@@ -1,21 +1,34 @@
 <?php
 
+namespace Tests\Unit\Models;
+
 use App\Models\Organization;
 use App\Models\Permission;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-test('it has multiple users', function () {
-    $organization = Organization::factory()->create();
-    $organization->users()->attach(User::factory()->create());
+class OrganizationTest extends TestCase
+{
+    use RefreshDatabase;
 
-    expect($organization->users()->exists())->toBeTrue();
-});
+    /** @test */
+    public function it_has_multiple_users(): void
+    {
+        $organization = Organization::factory()->create();
+        $organization->users()->attach(User::factory()->create());
 
-test('it has many permissions', function () {
-    $organization = Organization::factory()->create();
-    Permission::factory()->create([
-        'organization_id' => $organization->id,
-    ]);
+        $this->assertTrue($organization->users()->exists());
+    }
 
-    expect($organization->permissions()->exists())->toBeTrue();
-});
+    /** @test */
+    public function it_has_many_persmissions(): void
+    {
+        $organization = Organization::factory()->create();
+        Permission::factory()->create([
+            'organization_id' => $organization->id,
+        ]);
+
+        $this->assertTrue($organization->permissions()->exists());
+    }
+}

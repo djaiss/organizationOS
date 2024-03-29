@@ -1,24 +1,37 @@
 <?php
 
+namespace Tests\Feature\Api\Organization;
+
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
+use Tests\TestCase;
 
-test('it creates an organization', function () {
-    $user = User::factory()->create();
-    Sanctum::actingAs($user);
+class OrganizationControllerTest extends TestCase
+{
+    use RefreshDatabase;
 
-    $response = $this->json('POST', '/api/organizations', [
-        'name' => 'Dunder Mifflin',
-    ]);
+    /** @test */
+    public function it_returns_the_information_about_the_logged_user(): void
+    {
+        $user = User::factory()->create();
+        Sanctum::actingAs($user);
 
-    $response->assertStatus(201);
-
-    $organization = $user->organizations()->first();
-
-    expect($response->json())
-        ->toBe([
-            'id' => $organization->id,
-            'object' => 'organization',
+        $response = $this->json('POST', '/api/organizations', [
             'name' => 'Dunder Mifflin',
         ]);
-});
+
+        $response->assertStatus(201);
+
+        $organization = $user->organizations()->first();
+
+        $this->assertEquals(
+            $response->json(),
+            [
+                'id' => $organization->id,
+                'object' => 'organization',
+                'name' => 'Dunder Mifflin',
+            ]
+        );
+    }
+}

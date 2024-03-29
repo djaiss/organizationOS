@@ -1,18 +1,31 @@
 <?php
 
+namespace Tests\Unit\Models;
+
 use App\Models\Action;
 use App\Models\Permission;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-test('it belongs to one organization', function () {
-    $permission = Permission::factory()->create();
+class PermissionTest extends TestCase
+{
+    use RefreshDatabase;
 
-    expect($permission->organization()->exists())->toBeTrue();
-});
+    /** @test */
+    public function it_has_multiple_users(): void
+    {
+        $permission = Permission::factory()->create();
 
-test('it belongs to many actions', function () {
-    $permission = Permission::factory()->create();
-    $action = Action::factory()->create();
-    $permission->actions()->attach($action);
+        $this->assertTrue($permission->organization()->exists());
+    }
 
-    expect($permission->actions()->exists())->toBeTrue();
-});
+    /** @test */
+    public function it_has_many_persmissions(): void
+    {
+        $permission = Permission::factory()->create();
+        $action = Action::factory()->create();
+        $permission->actions()->attach($action);
+
+        $this->assertTrue($permission->actions()->exists());
+    }
+}

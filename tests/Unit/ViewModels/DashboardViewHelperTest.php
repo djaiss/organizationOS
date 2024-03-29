@@ -1,28 +1,39 @@
 <?php
 
+namespace Tests\Unit\ViewModels;
+
 use App\Http\ViewModels\DashboardViewHelper;
 use App\Models\Organization;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-test('it gets all the organizations the user is part of', function () {
-    $user = User::factory()->create();
-    $this->actingAs($user);
+class DashboardViewHelperTest extends TestCase
+{
+    use RefreshDatabase;
 
-    $organization = Organization::factory()->create([
-        'name' => 'Dunder Mifflin',
-    ]);
-    $organization->users()->attach($user->id);
+    /** @test */
+    public function it_gets_all_the_organizations_the_user_is_part_of(): void
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
-    $array = DashboardViewHelper::index();
+        $organization = Organization::factory()->create([
+            'name' => 'Dunder Mifflin',
+        ]);
+        $organization->users()->attach($user->id);
 
-    expect($array)->toBeArray();
-    $this->assertArrayHasKey('organizations', $array);
+        $array = DashboardViewHelper::index();
 
-    expect($array['organizations']->toArray()[0])->toBe([
-        'id' => $organization->id,
-        'name' => 'Dunder Mifflin',
-        'url' => [
-            'show' => env('APP_URL').'/organizations/'.$organization->id,
-        ],
-    ]);
-});
+        expect($array)->toBeArray();
+        $this->assertArrayHasKey('organizations', $array);
+
+        expect($array['organizations']->toArray()[0])->toBe([
+            'id' => $organization->id,
+            'name' => 'Dunder Mifflin',
+            'url' => [
+                'show' => env('APP_URL').'/organizations/'.$organization->id,
+            ],
+        ]);
+    }
+}
