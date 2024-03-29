@@ -4,11 +4,14 @@ namespace Tests\Browser\Profile;
 
 use App\Models\Team;
 use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseTruncation;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
 class ApiAccessControllerTest extends DuskTestCase
 {
+    use DatabaseTruncation;
+
     /** @test */
     public function we_can_manage_api_tokens(): void
     {
