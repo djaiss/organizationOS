@@ -10,6 +10,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('me', [MeController::class, 'show'])->name('me');
 
     // manage organizations
+    Route::get('organizations', [OrganizationController::class, 'index']);
     Route::post('organizations', [OrganizationController::class, 'store']);
 
     Route::middleware(CheckOrganization::class)->group(function () {

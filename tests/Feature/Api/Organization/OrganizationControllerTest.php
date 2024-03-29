@@ -34,4 +34,37 @@ class OrganizationControllerTest extends TestCase
             ]
         );
     }
+
+    /** @test */
+    public function it_lists_all_the_organizations(): void
+    {
+        $user = User::factory()->create();
+        $organization = $user->organizations()->create([
+            'name' => 'Dunder Mifflin',
+        ]);
+        $secondOrganization = $user->organizations()->create([
+            'name' => 'Wayne Enterprises',
+        ]);
+        Sanctum::actingAs($user);
+
+        $response = $this->json('GET', '/api/organizations');
+
+        $response->assertStatus(200);
+
+        $this->assertEquals(
+            $response->json(),
+            [
+                0 => [
+                    'id' => $organization->id,
+                    'object' => 'organization',
+                    'name' => 'Dunder Mifflin',
+                ],
+                1 => [
+                    'id' => $secondOrganization->id,
+                    'object' => 'organization',
+                    'name' => 'Wayne Enterprises',
+                ],
+            ]
+        );
+    }
 }

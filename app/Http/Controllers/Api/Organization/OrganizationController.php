@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Organization;
 
 use App\Http\Controllers\Controller;
+use App\Models\Organization;
 use App\Services\CreateOrganization;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -39,5 +40,35 @@ class OrganizationController extends Controller
             'object' => 'organization',
             'name' => $organization->name,
         ], 201);
+    }
+
+    /**
+     * Get all the organizations
+     *
+     * This will return a paginated list of organizations the logged user belongs
+     * to, sorted alphabetically.
+     *
+     * @response 200 [{
+     *  "id": 1,
+     *  "object": "organization",
+     *  "name": "Dunder Mifflin",
+     * }, {
+     *  "id": 2,
+     *  "object": "organization",
+     *  "name": "Wayne Enterprises",
+     * }]
+     */
+    public function index(): JsonResponse
+    {
+        $organizations = auth()->user()->organizations()
+            ->orderBy('name')
+            ->get()
+            ->map(fn (Organization $organization) => [
+                'id' => $organization->id,
+                'object' => 'organization',
+                'name' => $organization->name,
+            ]);
+
+        return response()->json($organizations, 200);
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
- * @group Organization
+ * @group Permissions
  */
 class PermissionController extends Controller
 {

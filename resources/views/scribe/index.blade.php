@@ -83,11 +83,21 @@
                     <a href="#organization">Organization</a>
                 </li>
                                     <ul id="tocify-subheader-organization" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="organization-POSTapi-organizations">
+                                                    <li class="tocify-item level-2" data-unique="organization-GETapi-organizations">
+                                <a href="#organization-GETapi-organizations">Get all the organizations</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="organization-POSTapi-organizations">
                                 <a href="#organization-POSTapi-organizations">Create an organization</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="organization-POSTapi-organizations--organization--permissions">
-                                <a href="#organization-POSTapi-organizations--organization--permissions">Create a permission</a>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-permissions" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="permissions">
+                    <a href="#permissions">Permissions</a>
+                </li>
+                                    <ul id="tocify-subheader-permissions" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="permissions-POSTapi-organizations--organization--permissions">
+                                <a href="#permissions-POSTapi-organizations--organization--permissions">Create a permission</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -263,7 +273,147 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     <p>APIs for managing organizations</p>
 
-                                <h2 id="organization-POSTapi-organizations">Create an organization</h2>
+                                <h2 id="organization-GETapi-organizations">Get all the organizations</h2>
+
+<p>
+</p>
+
+<p>This will return a paginated list of organizations the logged user belongs
+to, sorted alphabetically.</p>
+
+<span id="example-requests-GETapi-organizations">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://organizationos.test/api/organizations" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://organizationos.test/api/organizations"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'https://organizationos.test/api/organizations';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-organizations">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">[{
+ &quot;id&quot;: 1,
+ &quot;object&quot;: &quot;organization&quot;,
+ &quot;name&quot;: &quot;Dunder Mifflin&quot;,
+}, {
+ &quot;id&quot;: 2,
+ &quot;object&quot;: &quot;organization&quot;,
+ &quot;name&quot;: &quot;Wayne Enterprises&quot;,
+}]</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-organizations" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-organizations"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-organizations"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-organizations" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-organizations">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-organizations" data-method="GET"
+      data-path="api/organizations"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-organizations', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-organizations"
+                    onclick="tryItOut('GETapi-organizations');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-organizations"
+                    onclick="cancelTryOut('GETapi-organizations');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-organizations"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/organizations</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-organizations"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-organizations"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="organization-POSTapi-organizations">Create an organization</h2>
 
 <p>
 </p>
@@ -423,7 +573,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="organization-POSTapi-organizations--organization--permissions">Create a permission</h2>
+                <h1 id="permissions">Permissions</h1>
+
+    
+
+                                <h2 id="permissions-POSTapi-organizations--organization--permissions">Create a permission</h2>
 
 <p>
 </p>

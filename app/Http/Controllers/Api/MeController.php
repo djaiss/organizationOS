@@ -16,7 +16,7 @@ class MeController extends Controller
      *
      * This endpoint gets the information about the logged user.
      *
-     * @response {
+     * @response 200 {
      *  "id": 4,
      *  "name": "Jessica Jones",
      *  "email": "jessica.jones@gmail.com"
