@@ -44,7 +44,7 @@ class PopulateOrganization implements ShouldQueue
 
         DB::table('action_permission')->insert([
             'action_id' => $id,
-            'permission_id' => $permission,
+            'permission_id' => $permission->id,
         ]);
     }
 }
