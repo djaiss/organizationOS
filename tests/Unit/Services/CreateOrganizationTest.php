@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Services;
 
-use App\Jobs\PopulateAccount;
+use App\Jobs\PopulateOrganization;
 use App\Models\Organization;
 use App\Models\User;
 use App\Services\CreateOrganization;
@@ -45,6 +45,6 @@ class CreateOrganizationTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        Queue::assertPushed(PopulateAccount::class);
+        Queue::assertPushed(PopulateOrganization::class);
     }
 }

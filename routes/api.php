@@ -11,9 +11,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // manage organizations
     Route::get('organizations', [OrganizationController::class, 'index']);
-    Route::post('organizations', [OrganizationController::class, 'store']);
+    Route::post('organizations', [OrganizationController::class, 'create']);
 
-    Route::middleware(CheckOrganization::class)->group(function () {
-        Route::post('organizations/{organization}/permissions', [PermissionController::class, 'store']);
+    Route::middleware(CheckOrganization::class)->prefix('organizations/{organization}')->group(function () {
+        // permissions
+        Route::post('/permissions', [PermissionController::class, 'create']);
+        Route::put('/permissions/{permission}', [PermissionController::class, 'update']);
+        Route::delete('/permissions/{permission}', [PermissionController::class, 'destroy']);
     });
 });

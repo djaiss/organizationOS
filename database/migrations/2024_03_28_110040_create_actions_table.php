@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('actions', function (Blueprint $table) {
             $table->id();
-            $table->string('identifier')->unique();
+            $table->string('identifier');
             $table->string('label_translation_key');
             $table->text('description_translation_key')->nullable();
             $table->timestamps();

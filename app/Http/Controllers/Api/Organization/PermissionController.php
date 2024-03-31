@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api\Organization;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use App\Services\CreatePermission;
+use App\Services\DestroyPermission;
+use App\Services\UpdatePermission;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -29,7 +32,7 @@ class PermissionController extends Controller
      *  "label": "Administrator",
      * }
      */
-    public function store(Request $request): JsonResponse
+    public function create(Request $request): JsonResponse
     {
         $organization = $request->attributes->get('organization');
         $permission = (new CreatePermission(
@@ -42,5 +45,66 @@ class PermissionController extends Controller
             'object' => 'permission',
             'label' => $permission->label,
         ], 201);
+    }
+
+    /**
+     * Update a permission
+     *
+     * @urlParam organization required The id of the organization. Example: 1
+     * @urlParam permission required The id of the permission. Example: 1
+     *
+     * @bodyParam label string required The name of the permission. Max 255 characters. Example: Administrator
+     *
+     * @response 200 {
+     *  "id": 4,
+     *  "object": "permission",
+     *  "label": "Administrator",
+     * }
+     */
+    public function update(Request $request, int $organizationId, int $permissionId): JsonResponse
+    {
+        $organization = $request->attributes->get('organization');
+
+        $permission = Permission::where('organization_id', $organizationId)
+            ->findOrFail($permissionId);
+
+        $permission = (new UpdatePermission(
+            organization: $organization,
+            permission: $permission,
+            label: $request->input('label'),
+        ))->execute();
+
+        return response()->json([
+            'id' => $permission->id,
+            'object' => 'permission',
+            'label' => $permission->label,
+        ], 200);
+    }
+
+    /**
+     * Delete a permission
+     *
+     * @urlParam organization required The id of the organization. Example: 1
+     * @urlParam permission required The id of the permission. Example: 1
+     *
+     * @response 200 {
+     *  "status": "success",
+     * }
+     */
+    public function destroy(Request $request, int $organizationId, int $permissionId): JsonResponse
+    {
+        $organization = $request->attributes->get('organization');
+
+        $permission = Permission::where('organization_id', $organizationId)
+            ->findOrFail($permissionId);
+
+        (new DestroyPermission(
+            organization: $organization,
+            permission: $permission,
+        ))->execute();
+
+        return response()->json([
+            'status' => 'success',
+        ], 200);
     }
 }

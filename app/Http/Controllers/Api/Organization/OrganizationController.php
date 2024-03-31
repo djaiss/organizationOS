@@ -29,7 +29,7 @@ class OrganizationController extends Controller
      *  "name": "Dunder Mifflin",
      * }
      */
-    public function store(Request $request): JsonResponse
+    public function create(Request $request): JsonResponse
     {
         $organization = (new CreateOrganization(
             name: $request->input('name'),

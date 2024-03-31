@@ -99,6 +99,12 @@
                                                     <li class="tocify-item level-2" data-unique="permissions-POSTapi-organizations--organization--permissions">
                                 <a href="#permissions-POSTapi-organizations--organization--permissions">Create a permission</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="permissions-PUTapi-organizations--organization--permissions--permission-">
+                                <a href="#permissions-PUTapi-organizations--organization--permissions--permission-">Update a permission</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="permissions-DELETEapi-organizations--organization--permissions--permission-">
+                                <a href="#permissions-DELETEapi-organizations--organization--permissions--permission-">Delete a permission</a>
+                            </li>
                                                                         </ul>
                             </ul>
             </div>
@@ -110,7 +116,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: March 29, 2024</li>
+        <li>Last updated: March 31, 2024</li>
     </ul>
 </div>
 
@@ -748,6 +754,344 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The name of the permission. Max 255 characters. Example: <code>Administrator</code></p>
         </div>
         </form>
+
+                    <h2 id="permissions-PUTapi-organizations--organization--permissions--permission-">Update a permission</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PUTapi-organizations--organization--permissions--permission-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "https://organizationos.test/api/organizations/1/permissions/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"label\": \"Administrator\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://organizationos.test/api/organizations/1/permissions/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "label": "Administrator"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'https://organizationos.test/api/organizations/1/permissions/1';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'label' =&gt; 'Administrator',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-organizations--organization--permissions--permission-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+ &quot;id&quot;: 4,
+ &quot;object&quot;: &quot;permission&quot;,
+ &quot;label&quot;: &quot;Administrator&quot;,
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-organizations--organization--permissions--permission-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-organizations--organization--permissions--permission-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-organizations--organization--permissions--permission-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-organizations--organization--permissions--permission-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-organizations--organization--permissions--permission-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-organizations--organization--permissions--permission-" data-method="PUT"
+      data-path="api/organizations/{organization}/permissions/{permission}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-organizations--organization--permissions--permission-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-organizations--organization--permissions--permission-"
+                    onclick="tryItOut('PUTapi-organizations--organization--permissions--permission-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-organizations--organization--permissions--permission-"
+                    onclick="cancelTryOut('PUTapi-organizations--organization--permissions--permission-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-organizations--organization--permissions--permission-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/organizations/{organization}/permissions/{permission}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-organizations--organization--permissions--permission-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-organizations--organization--permissions--permission-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>organization</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="organization"                data-endpoint="PUTapi-organizations--organization--permissions--permission-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the organization. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>permission</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="permission"                data-endpoint="PUTapi-organizations--organization--permissions--permission-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the permission. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>label</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="label"                data-endpoint="PUTapi-organizations--organization--permissions--permission-"
+               value="Administrator"
+               data-component="body">
+    <br>
+<p>The name of the permission. Max 255 characters. Example: <code>Administrator</code></p>
+        </div>
+        </form>
+
+                    <h2 id="permissions-DELETEapi-organizations--organization--permissions--permission-">Delete a permission</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-organizations--organization--permissions--permission-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "https://organizationos.test/api/organizations/1/permissions/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://organizationos.test/api/organizations/1/permissions/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'https://organizationos.test/api/organizations/1/permissions/1';
+$response = $client-&gt;delete(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-organizations--organization--permissions--permission-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+ &quot;status&quot;: &quot;success&quot;,
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-organizations--organization--permissions--permission-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-organizations--organization--permissions--permission-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-organizations--organization--permissions--permission-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-organizations--organization--permissions--permission-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-organizations--organization--permissions--permission-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-organizations--organization--permissions--permission-" data-method="DELETE"
+      data-path="api/organizations/{organization}/permissions/{permission}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-organizations--organization--permissions--permission-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-organizations--organization--permissions--permission-"
+                    onclick="tryItOut('DELETEapi-organizations--organization--permissions--permission-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-organizations--organization--permissions--permission-"
+                    onclick="cancelTryOut('DELETEapi-organizations--organization--permissions--permission-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-organizations--organization--permissions--permission-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/organizations/{organization}/permissions/{permission}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-organizations--organization--permissions--permission-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-organizations--organization--permissions--permission-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>organization</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="organization"                data-endpoint="DELETEapi-organizations--organization--permissions--permission-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the organization. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>permission</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="permission"                data-endpoint="DELETEapi-organizations--organization--permissions--permission-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the permission. Example: <code>1</code></p>
+            </div>
+                    </form>
 
             
 

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Jobs\PopulateAccount;
+use App\Jobs\PopulateOrganization;
 use App\Models\Organization;
 use App\Models\Permission;
 use Illuminate\Support\Facades\DB;
@@ -62,6 +62,6 @@ class CreateOrganization extends BaseService
 
     private function populate(): void
     {
-        PopulateAccount::dispatch($this->organization);
+        PopulateOrganization::dispatch($this->organization);
     }
 }

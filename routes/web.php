@@ -21,8 +21,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('organizations', [OrganizationController::class, 'create'])->name('organization.create');
 
     // organizations
-    Route::middleware(CheckOrganization::class)->group(function () {
-        Route::get('organizations/{organization}', [OrganizationController::class, 'show'])->name('organization.show');
+    Route::middleware(CheckOrganization::class)->prefix('organizations/{organization}')->group(function () {
+        Route::get('', [OrganizationController::class, 'show'])->name('organization.show');
+
+        Route::get('/adminland', [OrganizationController::class, 'show'])->name('adminland.index');
     });
 
     // profile management
