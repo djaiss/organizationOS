@@ -16,7 +16,9 @@
       {{ $organizationContext }}
       @endif
 
-      @include('layouts.navigation')
+      @if (isset($navigation))
+      {{ $navigation }}
+      @endif
 
       <!-- Breadcrumb -->
       @if (isset($breadcrumb))

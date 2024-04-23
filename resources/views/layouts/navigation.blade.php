@@ -11,14 +11,16 @@
         </div>
 
         <!-- Navigation Links -->
+        @if (isset($organization))
         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-          <x-nav-link :href="route('dashboard.index')" :active="request()->routeIs('dashboard.index')">
+          <x-nav-link :href="route('organization.show', $organization)" :active="request()->routeIs('dashboard.index')">
             {{ __('Dashboard') }}
           </x-nav-link>
-          <x-nav-link :href="route('dashboard.index')" :active="request()->routeIs('dashboard.index')">
+          <x-nav-link :href="route('adminland.index', $organization)" :active="request()->routeIs('dashboard.index')">
             {{ __('Adminland') }}
           </x-nav-link>
         </div>
+        @endif
       </div>
 
       <!-- Settings Dropdown -->

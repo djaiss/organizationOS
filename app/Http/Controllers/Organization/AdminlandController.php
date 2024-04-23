@@ -10,8 +10,15 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class OrganizationController extends Controller
+class AdminlandController extends Controller
 {
+    public function index(Request $request): View
+    {
+        return view('organization.adminland.index', [
+            'organization' => $request->attributes->get('organization'),
+        ]);
+    }
+
     public function new(): View
     {
         return view('organization.new');
@@ -30,12 +37,5 @@ class OrganizationController extends Controller
         $request->session()->flash('status', __('The organization has been created'));
 
         return redirect()->route('organization.show', $organization);
-    }
-
-    public function show(Request $request): View
-    {
-        return view('organization.show', [
-            'organization' => $request->attributes->get('organization'),
-        ]);
     }
 }

@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\ViewModels;
 
-use App\Http\ViewModels\DashboardViewHelper;
+use App\Http\ViewModels\DashboardViewModel;
 use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class DashboardViewHelperTest extends TestCase
+class DashboardViewModelTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -23,17 +23,20 @@ class DashboardViewHelperTest extends TestCase
         ]);
         $organization->users()->attach($user->id);
 
-        $array = DashboardViewHelper::index();
+        $array = DashboardViewModel::index();
 
-        expect($array)->toBeArray();
+        $this->assertIsArray($array);
         $this->assertArrayHasKey('organizations', $array);
 
-        expect($array['organizations']->toArray()[0])->toBe([
-            'id' => $organization->id,
-            'name' => 'Dunder Mifflin',
-            'url' => [
-                'show' => env('APP_URL').'/organizations/'.$organization->id,
+        $this->assertEquals(
+            [
+                'id' => $organization->id,
+                'name' => 'Dunder Mifflin',
+                'url' => [
+                    'show' => env('APP_URL').'/organizations/'.$organization->id,
+                ],
             ],
-        ]);
+            $array['organizations']->toArray()[0]
+        );
     }
 }

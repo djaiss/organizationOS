@@ -1,4 +1,8 @@
 <x-app-layout>
+  <x-slot name="navigation">
+    @include('layouts.navigation')
+  </x-slot>
+
   <div class="py-12">
     <div class="max-w-5xl mx-auto px-4 sm:px-0">
 
@@ -19,7 +23,7 @@
       </div>
 
       @if (count($data['organizations']) === 0)
-      <x-empty-state>
+      <x-empty-state class="sm:p-10">
         <div class="flex justify-center">
           <x-heroicon-o-building-storefront class="w-8 h-8 text-lime-600 mb-3" />
         </div>

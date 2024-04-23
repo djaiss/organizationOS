@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Organization\AdminlandController;
 use App\Http\Controllers\Organization\OrganizationController;
 use App\Http\Controllers\Profile\ApiAccessController;
 use App\Http\Controllers\Profile\ProfileController;
@@ -24,7 +25,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(CheckOrganization::class)->prefix('organizations/{organization}')->group(function () {
         Route::get('', [OrganizationController::class, 'show'])->name('organization.show');
 
-        Route::get('/adminland', [OrganizationController::class, 'show'])->name('adminland.index');
+        Route::get('/adminland', [AdminlandController::class, 'index'])->name('adminland.index');
     });
 
     // profile management
