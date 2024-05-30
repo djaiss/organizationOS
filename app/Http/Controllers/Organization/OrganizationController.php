@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Organization;
 
 use App\Http\Controllers\Controller;
-use App\Http\ViewModels\ContextViewModel;
-use App\Http\ViewModels\MenuViewModel;
 use App\Services\CreateOrganization;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

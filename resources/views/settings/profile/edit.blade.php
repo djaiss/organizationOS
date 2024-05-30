@@ -16,7 +16,7 @@
       </div>
 
       <!-- right -->
-      <div class="p-0 sm:px-0 sm:py-0">
+      <div class="p-0 sm:px-0 sm:py-0  mb-6">
         <div class="max-w-7xl mx-auto sm:px-0 space-y-6">
           <div class="p-4 sm:p-4 bg-white dark:bg-gray-800 shadow rounded-lg">
             <div class="max-w-xl">

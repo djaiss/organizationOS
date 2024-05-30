@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Organization;
 
 use App\Http\Controllers\Controller;
-use App\Http\ViewModels\ContextViewModel;
-use App\Http\ViewModels\MenuViewModel;
+use App\Http\ViewModels\Organization\AdminlandViewModel;
 use App\Services\CreateOrganization;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,8 +13,11 @@ class AdminlandController extends Controller
 {
     public function index(Request $request): View
     {
+        $organization = $request->attributes->get('organization');
+
         return view('organization.adminland.index', [
-            'organization' => $request->attributes->get('organization'),
+            'organization' => $organization,
+            'data' => AdminlandViewModel::index($organization),
         ]);
     }
 
