@@ -41,6 +41,15 @@ class AdminlandPermissionViewModelTest extends TestCase
         $this->assertIsArray($array);
         $this->assertArrayHasKey('organization', $array);
         $this->assertArrayHasKey('permissions', $array);
+        $this->assertArrayHasKey('url', $array);
+
+        $this->assertEquals(
+            [
+                'id' => $organization->id,
+                'name' => $organization->name,
+            ],
+            $array['organization']
+        );
 
         $this->assertEquals(
             [
@@ -49,6 +58,13 @@ class AdminlandPermissionViewModelTest extends TestCase
                 'description' => 'Test Description',
             ],
             $array['permissions']->toArray()[0]['actions']->toArray()[0]
+        );
+
+        $this->assertEquals(
+            [
+                'sidebar_menu' => config('app.url') . '/organizations/' . $organization->id . '/adminland/permissions',
+            ],
+            $array['url']
         );
     }
 }
