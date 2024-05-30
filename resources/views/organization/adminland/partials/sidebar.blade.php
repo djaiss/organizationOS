@@ -7,7 +7,7 @@
       </a>
     </li>
     <li class="group">
-      <a href="{{ route('settings.api.index') }}" class="group-hover:bg-slate-100 flex items-center px-2 py-1 rounded-lg {{ request()->routeIs('settings.api.*') ? 'bg-slate-100' : ''  }}">
+      <a href="{{ route('adminland.permission.index') }}" class="group-hover:bg-slate-100 flex items-center px-2 py-1 rounded-lg {{ request()->routeIs('settings.api.*') ? 'bg-slate-100' : ''  }}">
         <span><x-heroicon-s-key class="w-4 h-4 mr-2 text-gray-500 group-hover:text-gray-800" /></span>
         <span>{{ __('Permissions') }}</span>
       </a>

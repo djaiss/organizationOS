@@ -1,0 +1,24 @@
+meta {
+  name: Update permission
+  type: http
+  seq: 2
+}
+
+put {
+  url: http://{{URL}}/organizations/{{company_id}}/permissions/4?label=Mifflin
+  body: none
+  auth: bearer
+}
+
+query {
+  label: Mifflin
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\ViewModels\Organization;
+namespace App\Http\ViewModels\Organization\Adminland;
 
 use App\Models\Action;
 use App\Models\Organization;
 use App\Models\Permission;
 
-class AdminlandViewModel
+class AdminlandPermissionViewModel
 {
     public static function index(Organization $organization): array
     {

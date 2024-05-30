@@ -1,0 +1,20 @@
+meta {
+  name: Delete permission
+  type: http
+  seq: 3
+}
+
+delete {
+  url: http://{{URL}}/organizations/{{company_id}}/permissions/4
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

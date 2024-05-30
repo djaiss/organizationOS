@@ -65,4 +65,28 @@ class PermissionControllerTest extends TestCase
             $response->json()
         );
     }
+
+    /** @test */
+    public function it_deletes_a_permission(): void
+    {
+        $organization = Organization::factory()->create();
+        $user = $this->userWithPermission(Action::MANAGE_PERMISSIONS, $organization);
+        Sanctum::actingAs($user);
+
+        $permission = Permission::factory()->create([
+            'organization_id' => $organization->id,
+            'label' => 'Small Administrator',
+        ]);
+
+        $response = $this->json('DELETE', '/api/organizations/' . $organization->id . '/permissions/' . $permission->id);
+
+        $response->assertStatus(200);
+
+        $this->assertEquals(
+            [
+                'status' => 'success',
+            ],
+            $response->json()
+        );
+    }
 }

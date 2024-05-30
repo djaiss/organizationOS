@@ -26,8 +26,7 @@
       <x-empty-state class="sm:p-10">
         <div class="flex justify-center">
           <x-heroicon-o-building-storefront class="w-8 h-8 text-lime-600 mb-3" />
-        </div>
-
+        </div
         <p>{{ __('Create your first organization, or join an existing one.') }}</p>
       </x-empty-state>
       @endif

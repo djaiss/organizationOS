@@ -107,4 +107,37 @@ class PermissionController extends Controller
             'status' => 'success',
         ], 200);
     }
+
+    /**
+     * List all permissions
+     *
+     * This will list all the permissions in the organization, sorted
+     * alphabetically.
+     *
+     * @urlParam organization required The id of the organization. Example: 1
+     *
+     * @response 200 [{
+     *  "id": 4,
+     *  "object": "permission",
+     *  "label": "Administrator",
+     * }, {
+     *  "id": 5,
+     *  "object": "permission",
+     *  "label": "User",
+     * }]
+     */
+    public function index(Request $request): JsonResponse
+    {
+        $organization = $request->attributes->get('organization');
+        $permissions = $organization->permissions()
+            ->orderBy('label')
+            ->get()
+            ->map(fn (Permission $permission) => [
+                'id' => $permission->id,
+                'object' => 'permission',
+                'label' => $permission->label,
+            ]);
+
+        return response()->json($permissions, 200);
+    }
 }
