@@ -3,9 +3,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-0 py-2">
       <ul class="text-sm">
         <li class="inline after:content-['>'] after:text-gray-500 after:text-xs">
-        <li class="inline" dusk="header-organization-name">{{ $data['organization']['name'] }}</li>
           <x-link href="{{ route('dashboard.index') }}">{{ __('Dashboard') }}</x-link>
         </li>
+        <li class="inline" dusk="header-organization-name">{{ $data['organization']['name'] }}</li>
       </ul>
     </div>
   </x-slot>
