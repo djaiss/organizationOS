@@ -33,11 +33,7 @@ class OrganizationController extends Controller
     public function show(Request $request): View
     {
         return view('organization.show', [
-            'header' => [
-                'organization' => [
-                    'name' => $request->attributes->get('organization')->name,
-                ],
-            ],
+            'organization' => $request->attributes->get('organization'),
         ]);
     }
 }

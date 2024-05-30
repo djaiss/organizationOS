@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Organization\Adminland\AdminlandPermissionController;
+use App\Http\Controllers\Organization\AdminlandController;
 use App\Http\Controllers\Organization\OrganizationController;
 use App\Http\Controllers\Profile\ApiAccessController;
 use App\Http\Controllers\Profile\ProfileController;
@@ -21,8 +23,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('organizations', [OrganizationController::class, 'create'])->name('organization.create');
 
     // organizations
-    Route::middleware(CheckOrganization::class)->group(function () {
-        Route::get('organizations/{organization}', [OrganizationController::class, 'show'])->name('organization.show');
+    Route::middleware(CheckOrganization::class)->prefix('organizations/{organization}')->group(function () {
+        Route::get('', [OrganizationController::class, 'show'])->name('organization.show');
+
+        Route::get('/adminland', [AdminlandController::class, 'index'])->name('adminland.index');
+        Route::get('/adminland/permissions', [AdminlandPermissionController::class, 'index'])->name('adminland.permission.index');
     });
 
     // profile management

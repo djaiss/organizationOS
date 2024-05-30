@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Cache\UserPermissionsCache;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -38,7 +39,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function organizations(): BelongsToMany
     {
         return $this->belongsToMany(Organization::class, 'organization_user')
-            ->withPivot('permission')
+            ->withPivot('permission_id')
             ->withTimestamps();
     }
 
@@ -53,5 +54,23 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getPermissionInOrganization(Organization $organization): Permission
+    {
+        return Permission::findOrFail($this->organizations()->findOrFail($organization->id)->pivot->permission_id);
+    }
+
+    /**
+     * Check if the user has the right to perform an action.
+     */
+    public function hasTheRightTo(string $action, Organization $organization): bool
+    {
+        $permissions = UserPermissionsCache::make(
+            user: auth()->user(),
+            organization: $organization,
+        )->value();
+
+        return $permissions->contains(fn (array $permission) => $permission['identifier'] === $action);
     }
 }

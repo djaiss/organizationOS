@@ -1,0 +1,20 @@
+meta {
+  name: List permissions
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://{{URL}}/organizations/{{company_id}}/permissions
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -6,20 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('organization_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('organization_id')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('permission')->nullable();
+        Schema::create('permissions', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('organization_id');
+            $table->string('label')->nullable();
+            $table->string('label_translation_key')->nullable();
             $table->timestamps();
             $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('organization_user');
+        Schema::dropIfExists('permissions');
     }
 };

@@ -4,7 +4,7 @@ namespace App\Http\ViewModels;
 
 use App\Models\Organization;
 
-class DashboardViewHelper
+class DashboardViewModel
 {
     public static function index(): array
     {

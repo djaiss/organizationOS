@@ -27,7 +27,7 @@ jobs:
           extensions: mbstring, dom, fileinfo, mysql
           coverage: none
       - name: Prepare The Environment
-        run: cp .env.dusk.ci .env
+        run: cp .env.dusk.ci .env && rm .env.dusk.local
       - name: Create Database
         run: |
           sudo systemctl start mysql

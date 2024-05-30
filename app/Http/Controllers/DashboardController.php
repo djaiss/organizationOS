@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\ViewModels\DashboardViewHelper;
+use App\Http\ViewModels\DashboardViewModel;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
@@ -10,7 +10,7 @@ class DashboardController extends Controller
     public function index(): View
     {
         return view('dashboard', [
-            'data' => DashboardViewHelper::index(),
+            'data' => DashboardViewModel::index(),
         ]);
     }
 }

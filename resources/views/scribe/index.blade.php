@@ -26,14 +26,8 @@
                     body .content .php-example code { display: none; }
             </style>
 
-    <script>
-        var tryItOutBaseUrl = "https://organizationos.test";
-        var useCsrf = Boolean();
-        var csrfUrl = "/sanctum/csrf-cookie";
-    </script>
-    <script src="{{ asset("/vendor/scribe/js/tryitout-4.35.0.js") }}"></script>
 
-    <script src="{{ asset("/vendor/scribe/js/theme-default-4.35.0.js") }}"></script>
+    <script src="{{ asset("/vendor/scribe/js/theme-default-4.36.0.js") }}"></script>
 
 </head>
 
@@ -83,8 +77,30 @@
                     <a href="#organization">Organization</a>
                 </li>
                                     <ul id="tocify-subheader-organization" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="organization-POSTapi-organizations">
+                                                    <li class="tocify-item level-2" data-unique="organization-GETapi-organizations">
+                                <a href="#organization-GETapi-organizations">Get all the organizations</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="organization-POSTapi-organizations">
                                 <a href="#organization-POSTapi-organizations">Create an organization</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-permissions" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="permissions">
+                    <a href="#permissions">Permissions</a>
+                </li>
+                                    <ul id="tocify-subheader-permissions" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="permissions-GETapi-organizations--organization--permissions">
+                                <a href="#permissions-GETapi-organizations--organization--permissions">List all permissions</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="permissions-POSTapi-organizations--organization--permissions">
+                                <a href="#permissions-POSTapi-organizations--organization--permissions">Create a permission</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="permissions-PUTapi-organizations--organization--permissions--permission-">
+                                <a href="#permissions-PUTapi-organizations--organization--permissions--permission-">Update a permission</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="permissions-DELETEapi-organizations--organization--permissions--permission-">
+                                <a href="#permissions-DELETEapi-organizations--organization--permissions--permission-">Delete a permission</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -97,7 +113,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: March 26, 2024</li>
+        <li>Last updated: May 30, 2024</li>
     </ul>
 </div>
 
@@ -106,7 +122,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>https://organizationos.test</code>
+    <strong>Base URL</strong>: <code>http://127:0.0.1:8000</code>
 </aside>
 <p>This documentation aims to provide all the information you need to work with our API.</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
@@ -134,14 +150,14 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://organizationos.test/api/me" \
+    --get "http://127:0.0.1:8000/api/me" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://organizationos.test/api/me"
+    "http://127:0.0.1:8000/api/me"
 );
 
 const headers = {
@@ -157,7 +173,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'https://organizationos.test/api/me';
+$url = 'http://127:0.0.1:8000/api/me';
 $response = $client-&gt;get(
     $url,
     [
@@ -209,23 +225,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
       onsubmit="event.preventDefault(); executeTryOut('GETapi-me', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-me"
-                    onclick="tryItOut('GETapi-me');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-me"
-                    onclick="cancelTryOut('GETapi-me');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-me"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
@@ -260,7 +259,130 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     <p>APIs for managing organizations</p>
 
-                                <h2 id="organization-POSTapi-organizations">Create an organization</h2>
+                                <h2 id="organization-GETapi-organizations">Get all the organizations</h2>
+
+<p>
+</p>
+
+<p>This will return a paginated list of organizations the logged user belongs
+to, sorted alphabetically.</p>
+
+<span id="example-requests-GETapi-organizations">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127:0.0.1:8000/api/organizations" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127:0.0.1:8000/api/organizations"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://127:0.0.1:8000/api/organizations';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-organizations">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">[{
+ &quot;id&quot;: 1,
+ &quot;object&quot;: &quot;organization&quot;,
+ &quot;name&quot;: &quot;Dunder Mifflin&quot;,
+}, {
+ &quot;id&quot;: 2,
+ &quot;object&quot;: &quot;organization&quot;,
+ &quot;name&quot;: &quot;Wayne Enterprises&quot;,
+}]</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-organizations" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-organizations"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-organizations"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-organizations" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-organizations">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-organizations" data-method="GET"
+      data-path="api/organizations"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-organizations', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/organizations</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-organizations"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-organizations"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="organization-POSTapi-organizations">Create an organization</h2>
 
 <p>
 </p>
@@ -274,7 +396,7 @@ groups users together.</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://organizationos.test/api/organizations" \
+    "http://127:0.0.1:8000/api/organizations" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -285,7 +407,7 @@ groups users together.</p>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://organizationos.test/api/organizations"
+    "http://127:0.0.1:8000/api/organizations"
 );
 
 const headers = {
@@ -306,7 +428,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'https://organizationos.test/api/organizations';
+$url = 'http://127:0.0.1:8000/api/organizations';
 $response = $client-&gt;post(
     $url,
     [
@@ -361,23 +483,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-organizations', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-organizations"
-                    onclick="tryItOut('POSTapi-organizations');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-organizations"
-                    onclick="cancelTryOut('POSTapi-organizations');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-organizations"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
@@ -419,6 +524,604 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The name of the organization. Max 255 characters. Example: <code>Dunder Mifflin</code></p>
         </div>
         </form>
+
+                <h1 id="permissions">Permissions</h1>
+
+    
+
+                                <h2 id="permissions-GETapi-organizations--organization--permissions">List all permissions</h2>
+
+<p>
+</p>
+
+<p>This will list all the permissions in the organization, sorted
+alphabetically.</p>
+
+<span id="example-requests-GETapi-organizations--organization--permissions">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127:0.0.1:8000/api/organizations/1/permissions" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127:0.0.1:8000/api/organizations/1/permissions"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://127:0.0.1:8000/api/organizations/1/permissions';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-organizations--organization--permissions">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">[{
+ &quot;id&quot;: 4,
+ &quot;object&quot;: &quot;permission&quot;,
+ &quot;label&quot;: &quot;Administrator&quot;,
+}, {
+ &quot;id&quot;: 5,
+ &quot;object&quot;: &quot;permission&quot;,
+ &quot;label&quot;: &quot;User&quot;,
+}]</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-organizations--organization--permissions" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-organizations--organization--permissions"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-organizations--organization--permissions"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-organizations--organization--permissions" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-organizations--organization--permissions">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-organizations--organization--permissions" data-method="GET"
+      data-path="api/organizations/{organization}/permissions"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-organizations--organization--permissions', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/organizations/{organization}/permissions</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-organizations--organization--permissions"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-organizations--organization--permissions"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>organization</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="organization"                data-endpoint="GETapi-organizations--organization--permissions"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the organization. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="permissions-POSTapi-organizations--organization--permissions">Create a permission</h2>
+
+<p>
+</p>
+
+<p>A permission is a set of actions that a user can perform in an organization.</p>
+<p>By default, an account comes with a set of permissions that can be assigned to users, like 'Administrator'.</p>
+
+<span id="example-requests-POSTapi-organizations--organization--permissions">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127:0.0.1:8000/api/organizations/1/permissions" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"label\": \"Administrator\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127:0.0.1:8000/api/organizations/1/permissions"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "label": "Administrator"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://127:0.0.1:8000/api/organizations/1/permissions';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'label' =&gt; 'Administrator',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-organizations--organization--permissions">
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+ &quot;id&quot;: 4,
+ &quot;object&quot;: &quot;permission&quot;,
+ &quot;label&quot;: &quot;Administrator&quot;,
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-organizations--organization--permissions" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-organizations--organization--permissions"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-organizations--organization--permissions"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-organizations--organization--permissions" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-organizations--organization--permissions">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-organizations--organization--permissions" data-method="POST"
+      data-path="api/organizations/{organization}/permissions"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-organizations--organization--permissions', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/organizations/{organization}/permissions</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-organizations--organization--permissions"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-organizations--organization--permissions"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>organization</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="organization"                data-endpoint="POSTapi-organizations--organization--permissions"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the organization. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>label</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="label"                data-endpoint="POSTapi-organizations--organization--permissions"
+               value="Administrator"
+               data-component="body">
+    <br>
+<p>The name of the permission. Max 255 characters. Example: <code>Administrator</code></p>
+        </div>
+        </form>
+
+                    <h2 id="permissions-PUTapi-organizations--organization--permissions--permission-">Update a permission</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PUTapi-organizations--organization--permissions--permission-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://127:0.0.1:8000/api/organizations/1/permissions/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"label\": \"Administrator\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127:0.0.1:8000/api/organizations/1/permissions/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "label": "Administrator"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://127:0.0.1:8000/api/organizations/1/permissions/1';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'label' =&gt; 'Administrator',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-organizations--organization--permissions--permission-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+ &quot;id&quot;: 4,
+ &quot;object&quot;: &quot;permission&quot;,
+ &quot;label&quot;: &quot;Administrator&quot;,
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-organizations--organization--permissions--permission-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-organizations--organization--permissions--permission-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-organizations--organization--permissions--permission-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-organizations--organization--permissions--permission-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-organizations--organization--permissions--permission-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-organizations--organization--permissions--permission-" data-method="PUT"
+      data-path="api/organizations/{organization}/permissions/{permission}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-organizations--organization--permissions--permission-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/organizations/{organization}/permissions/{permission}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-organizations--organization--permissions--permission-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-organizations--organization--permissions--permission-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>organization</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="organization"                data-endpoint="PUTapi-organizations--organization--permissions--permission-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the organization. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>permission</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="permission"                data-endpoint="PUTapi-organizations--organization--permissions--permission-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the permission. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>label</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="label"                data-endpoint="PUTapi-organizations--organization--permissions--permission-"
+               value="Administrator"
+               data-component="body">
+    <br>
+<p>The name of the permission. Max 255 characters. Example: <code>Administrator</code></p>
+        </div>
+        </form>
+
+                    <h2 id="permissions-DELETEapi-organizations--organization--permissions--permission-">Delete a permission</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-organizations--organization--permissions--permission-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://127:0.0.1:8000/api/organizations/1/permissions/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127:0.0.1:8000/api/organizations/1/permissions/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://127:0.0.1:8000/api/organizations/1/permissions/1';
+$response = $client-&gt;delete(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-organizations--organization--permissions--permission-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+ &quot;status&quot;: &quot;success&quot;,
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-organizations--organization--permissions--permission-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-organizations--organization--permissions--permission-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-organizations--organization--permissions--permission-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-organizations--organization--permissions--permission-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-organizations--organization--permissions--permission-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-organizations--organization--permissions--permission-" data-method="DELETE"
+      data-path="api/organizations/{organization}/permissions/{permission}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-organizations--organization--permissions--permission-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/organizations/{organization}/permissions/{permission}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-organizations--organization--permissions--permission-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-organizations--organization--permissions--permission-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>organization</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="organization"                data-endpoint="DELETEapi-organizations--organization--permissions--permission-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the organization. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>permission</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="permission"                data-endpoint="DELETEapi-organizations--organization--permissions--permission-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the permission. Example: <code>1</code></p>
+            </div>
+                    </form>
 
             
 

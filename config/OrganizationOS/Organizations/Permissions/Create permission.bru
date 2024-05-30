@@ -1,0 +1,24 @@
+meta {
+  name: Create permission
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://{{URL}}/organizations/{{company_id}}/permissions?label=Dunder
+  body: none
+  auth: bearer
+}
+
+query {
+  label: Dunder
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

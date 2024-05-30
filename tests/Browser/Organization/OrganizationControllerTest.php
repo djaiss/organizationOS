@@ -5,11 +5,14 @@ namespace Tests\Browser\Organization;
 use App\Models\Organization;
 use App\Models\Team;
 use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseTruncation;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
 class OrganizationControllerTest extends DuskTestCase
 {
+    use DatabaseTruncation;
+
     /** @test */
     public function we_can_create_an_organization(): void
     {
