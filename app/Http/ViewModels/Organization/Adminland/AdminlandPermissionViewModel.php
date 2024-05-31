@@ -31,6 +31,7 @@ class AdminlandPermissionViewModel
             'permissions' => $permissions,
             'url' => [
                 'sidebar_menu' => route('adminland.permission.index', $organization),
+                'new_permission' => route('adminland.permission.new', $organization),
             ],
         ];
     }

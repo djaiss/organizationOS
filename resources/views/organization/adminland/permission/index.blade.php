@@ -1,6 +1,6 @@
 <x-app-layout>
   <x-slot name="organizationContext">
-    <div class="max-w-7xl mx-auto px-4 sm:px-0 py-2">
+    <div class="max-w-7xl mx-auto px-4 sm:px-0 py-2 ">
       <ul class="text-sm">
         <li class="inline after:content-['>'] after:text-gray-500 after:text-xs">
           <x-link href="{{ route('dashboard.index') }}">{{ __('Dashboard') }}</x-link>
@@ -33,7 +33,7 @@
                       {{ __('Manage permissions in the organization') }}
                     </h2>
 
-                    <x-primary-link href="{{ route('settings.api.new') }}" class="text-sm">
+                    <x-primary-link href="{{ $data['url']['new_permission'] }}" class="text-sm">
                       <x-heroicon-c-plus class="w-4 h-4 mr-1" />
                       <span>{{ __('Create a permission') }}</span>
                     </x-primary-link>

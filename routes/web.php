@@ -28,6 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/adminland', [AdminlandController::class, 'index'])->name('adminland.index');
         Route::get('/adminland/permissions', [AdminlandPermissionController::class, 'index'])->name('adminland.permission.index');
+        Route::get('/adminland/permissions/new', [AdminlandPermissionController::class, 'new'])->name('adminland.permission.new');
     });
 
     // profile management

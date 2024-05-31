@@ -63,6 +63,7 @@ class AdminlandPermissionViewModelTest extends TestCase
         $this->assertEquals(
             [
                 'sidebar_menu' => config('app.url') . '/organizations/' . $organization->id . '/adminland/permissions',
+                'new_permission' => config('app.url') . '/organizations/' . $organization->id . '/adminland/permissions/new',
             ],
             $array['url']
         );
