@@ -85,5 +85,12 @@ class AdministrationControllerTest extends TestCase
             'last_name' => 'Schrute',
             'email' => 'dwight@schrute.com',
         ]);
+
+        $user->email_verified_at = now();
+        $user->save();
+
+        $this->actingAs($user)
+            ->get('/administration')
+            ->assertSee('Updated their personal profile');
     }
 }
