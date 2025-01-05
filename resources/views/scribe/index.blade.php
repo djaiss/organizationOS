@@ -281,7 +281,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         <p></p>
 
         <p>This lets you update your profile. Only you can change these fields.</p>
-        <p>If you change your email, you will need to verify it again.</p>
+        <p>If you change your email, the system will send a new verification email to verify the new email address.</p>
         <p>Please note that your password can not be changed through the API at the moment.</p>
 
         <span id="example-requests-PUTapi-me">
