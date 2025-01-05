@@ -16,6 +16,11 @@
           {{ __('Security & access') }}
         </h1>
 
+        <h2 class="font-semi-bold mb-1 text-lg">{{ __('Two factor authentication') }}</h2>
+        <p class="mb-4 text-sm text-zinc-500">{{ __('We strongly recommend enabling two factor authentication to enhance the security of your account.') }}</p>
+
+        <livewire:administration.security.manage-two-factor-authentication :user-id="$user['id']" />
+
         <h2 class="font-semi-bold mb-1 text-lg">{{ __('Personal API keys') }}</h2>
         <p class="mb-4 text-sm text-zinc-500">{{ __('Use the API to build your own integration.') }}</p>
 

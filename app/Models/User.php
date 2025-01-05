@@ -131,4 +131,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return isset($_ENV['VAPOR_ARTIFACT_NAME']) ? 's3' : config('jetstream.profile_photo_disk', 'public');
     }
+
+    /**
+     * Determine if two-factor authentication has been enabled.
+     */
+    public function hasEnabledTwoFactorAuthentication(): bool
+    {
+        return ! is_null($this->two_factor_secret) && ! is_null($this->two_factor_confirmed_at);
+    }
 }
