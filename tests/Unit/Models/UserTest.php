@@ -46,4 +46,18 @@ class UserTest extends TestCase
             $user->name
         );
     }
+
+    #[Test]
+    public function it_can_determine_if_two_factor_authentication_is_enabled(): void
+    {
+        $user = User::factory()->create();
+
+        $this->assertFalse($user->hasEnabledTwoFactorAuthentication());
+
+        $user->two_factor_secret = encrypt('secret');
+        $user->two_factor_confirmed_at = now();
+        $user->save();
+
+        $this->assertTrue($user->hasEnabledTwoFactorAuthentication());
+    }
 }
