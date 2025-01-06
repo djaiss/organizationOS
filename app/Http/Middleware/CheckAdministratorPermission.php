@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\Permission;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +17,9 @@ class CheckAdministratorPermission
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $account = Auth::user()->account;
-        $request->attributes->add(['account' => $account]);
+        if (Auth::user()->permission !== Permission::ADMINISTRATOR->value) {
+            abort(403);
+        }
 
         return $next($request);
     }

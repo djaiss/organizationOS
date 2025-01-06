@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Services;
 
+use App\Enums\Permission;
+use App\Exceptions\PermissionException;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
@@ -48,5 +50,20 @@ class UpdateAccountInformationTest extends TestCase
                 && $job->user->id === $user->id
                 && $job->description === 'Updated their organization account';
         });
+    }
+
+    #[Test]
+    public function it_throws_a_permission_exception_if_the_user_is_not_an_administrator(): void
+    {
+        $user = User::factory()->create([
+            'permission' => Permission::MEMBER->value,
+        ]);
+
+        $this->expectException(PermissionException::class);
+
+        (new UpdateAccountInformation(
+            user: $user,
+            name: 'Dunder Mifflin Paper Company',
+        ))->execute();
     }
 }
