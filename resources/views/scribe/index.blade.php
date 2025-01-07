@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>OrganizationOS Documentation</title>
+    <title>Laravel Documentation</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
 
@@ -74,12 +74,17 @@
             <li class="tocify-item level-2" data-unique="administration-PUTapi-me">
               <a href="#administration-PUTapi-me">Update your profile.</a>
             </li>
-            <li class="tocify-item level-2" data-unique="administration-GETapi-account">
-              <a href="#administration-GETapi-account">Get the information about the account the logged user.</a>
+            <li class="tocify-item level-2" data-unique="administration-account-management">
+              <a href="#administration-account-management">Account management</a>
             </li>
-            <li class="tocify-item level-2" data-unique="administration-PUTapi-account">
-              <a href="#administration-PUTapi-account">Update the account information.</a>
-            </li>
+            <ul id="tocify-subheader-administration-account-management" class="tocify-subheader">
+              <li class="tocify-item level-3" data-unique="administration-GETapi-account">
+                <a href="#administration-GETapi-account">Get the information about the account of the logged user.</a>
+              </li>
+              <li class="tocify-item level-3" data-unique="administration-PUTapi-account">
+                <a href="#administration-PUTapi-account">Update the account information.</a>
+              </li>
+            </ul>
           </ul>
         </ul>
       </div>
@@ -102,7 +107,7 @@
         <aside>
           <strong>Base URL</strong>
           :
-          <code>http://organizationos.test</code>
+          <code>http://localhost</code>
         </aside>
         <p>This documentation aims to provide all the information you need to work with our API.</p>
         <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile). You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
@@ -141,14 +146,14 @@
 
           <div class="bash-example">
             <pre><code class="language-bash">curl --request GET \
-    --get "http://organizationos.test/api/me" \
+    --get "http://localhost/api/me" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
           </div>
 
           <div class="javascript-example">
             <pre><code class="language-javascript">const url = new URL(
-    "http://organizationos.test/api/me"
+    "http://localhost/api/me"
 );
 
 const headers = {
@@ -164,7 +169,7 @@ fetch(url, {
 
           <div class="php-example">
             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://organizationos.test/api/me';
+$url = 'http://localhost/api/me';
 $response = $client-&gt;get(
     $url,
     [
@@ -295,7 +300,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
           <div class="bash-example">
             <pre><code class="language-bash">curl --request PUT \
-    "http://organizationos.test/api/me" \
+    "http://localhost/api/me" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -309,7 +314,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
           <div class="javascript-example">
             <pre><code class="language-javascript">const url = new URL(
-    "http://organizationos.test/api/me"
+    "http://localhost/api/me"
 );
 
 const headers = {
@@ -333,7 +338,7 @@ fetch(url, {
 
           <div class="php-example">
             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://organizationos.test/api/me';
+$url = 'http://localhost/api/me';
 $response = $client-&gt;put(
     $url,
     [
@@ -508,7 +513,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
           <br />
           <p>The nickname of the user.</p>
         </div>
-        <h2 id="administration-GETapi-account">Get the information about the account the logged user.</h2>
+        <h2 id="administration-account-management">Account management</h2>
+        <h2 id="administration-GETapi-account">Get the information about the account of the logged user.</h2>
 
         <p></p>
 
@@ -517,14 +523,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
           <div class="bash-example">
             <pre><code class="language-bash">curl --request GET \
-    --get "http://organizationos.test/api/account" \
+    --get "http://localhost/api/account" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
           </div>
 
           <div class="javascript-example">
             <pre><code class="language-javascript">const url = new URL(
-    "http://organizationos.test/api/account"
+    "http://localhost/api/account"
 );
 
 const headers = {
@@ -540,7 +546,7 @@ fetch(url, {
 
           <div class="php-example">
             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://organizationos.test/api/account';
+$url = 'http://localhost/api/account';
 $response = $client-&gt;get(
     $url,
     [
@@ -651,7 +657,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
           <div class="bash-example">
             <pre><code class="language-bash">curl --request PUT \
-    "http://organizationos.test/api/account" \
+    "http://localhost/api/account" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -662,7 +668,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
           <div class="javascript-example">
             <pre><code class="language-javascript">const url = new URL(
-    "http://organizationos.test/api/account"
+    "http://localhost/api/account"
 );
 
 const headers = {
@@ -683,7 +689,7 @@ fetch(url, {
 
           <div class="php-example">
             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://organizationos.test/api/account';
+$url = 'http://localhost/api/account';
 $response = $client-&gt;put(
     $url,
     [
