@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Api\Administration;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\InviteUser;
-use App\Services\UpdateAccountInformation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

@@ -102,7 +102,7 @@ class AdministrationUserControllerTest extends TestCase
         $response->assertJsonValidationErrors(['email']);
 
         $response = $this->json('POST', '/api/administration/users', [
-            'email' => str_repeat('a', 256) . '@test.com',
+            'email' => str_repeat('a', 256).'@test.com',
         ]);
 
         $response->assertStatus(422);
