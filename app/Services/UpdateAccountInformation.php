@@ -9,7 +9,6 @@ use App\Exceptions\PermissionException;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 
 class UpdateAccountInformation
 {

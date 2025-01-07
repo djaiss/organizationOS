@@ -6,10 +6,9 @@ namespace App\Http\Controllers\Api\Administration;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Services\UpdateUserInformation;
+use App\Services\UpdateAccountInformation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 /**
  * @group Administration
@@ -45,56 +44,36 @@ class AccountController extends Controller
     /**
      * Update the account information.
      *
-     * This lets you update your profile. Only you can change these fields.
+     * This lets you update the account information. Only administrators can
+     * change these fields.
      *
-     * If you change your email, the system will send a new verification email to
-     * verify the new email address.
-     *
-     * Please note that your password can not be changed through the API at
-     * the moment.
-     *
-     * @bodyParam first_name string required The first name of the user. Max 255 characters. Example: Dwight
-     * @bodyParam last_name string required The last name of the user. Max 255 characters. Example: Schrute
-     * @bodyParam email string required The email of the user. Max 255 characters. Example: dwight.schrute@dundermifflin.com
-     * @bodyParam nickname string The nickname of the user. Max 255 characters. Example: Dwight
+     * @bodyParam name string required The name of the account. Max 255 characters. Example: Dunder Mifflin Paper Company
      *
      * @response 200 {
      *  "id": 4,
-     *  "first_name": "Dwight",
-     *  "last_name": "Schrute",
-     *  "nickname": "Dwight",
-     *  "email": "dwight.schrute@dundermifflin.com"
+     *  "object": "account",
+     *  "name": "Dunder Mifflin Paper Company"
      * }
      *
      * @responseField id The ID of the user.
-     * @responseField first_name The first name of the user.
-     * @responseField last_name The last name of the user.
-     * @responseField email The email of the user.
-     * @responseField nickname The nickname of the user.
+     * @responseField object The type of the object. Always "account".
+     * @responseField name The name of the account.
      */
     public function update(Request $request)
     {
         $validated = $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($request->user()->id)],
-            'nickname' => ['nullable', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
         ]);
 
-        (new UpdateUserInformation(
+        (new UpdateAccountInformation(
             user: $request->user(),
-            email: $validated['email'],
-            firstName: $validated['first_name'],
-            lastName: $validated['last_name'],
-            nickname: $validated['nickname'],
+            name: $validated['name'],
         ))->execute();
 
         $response = [
             'id' => $request->user()->id,
-            'first_name' => $request->user()->first_name,
-            'last_name' => $request->user()->last_name,
-            'email' => $request->user()->email,
-            'nickname' => $request->user()->nickname,
+            'object' => 'account',
+            'name' => $request->user()->account->name,
         ];
 
         return response()->json($response);
