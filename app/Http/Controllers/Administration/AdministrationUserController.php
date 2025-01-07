@@ -20,7 +20,7 @@ class AdministrationUserController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
                 'status' => $user->status,
-                'last_activity_at' => $user->last_activity_at->format('Y-m-d H:i:s'),
+                'last_activity_at' => $user->last_activity_at?->format('Y-m-d H:i:s'),
             ]);
 
         return view('administration.users.index', [
