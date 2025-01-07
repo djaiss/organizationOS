@@ -15,7 +15,7 @@ class AdministrationUserController extends Controller
     {
         $users = User::where('account_id', Auth::user()->account_id)
             ->get()
-            ->map(fn (User $user) => [
+            ->map(fn (User $user): array => [
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
