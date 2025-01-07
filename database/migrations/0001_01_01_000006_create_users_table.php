@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Enums\Permission;
+use App\Enums\UserStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -32,6 +33,7 @@ return new class extends Migration
             $table->timestamp('two_factor_confirmed_at')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->datetime('last_activity_at')->nullable();
+            $table->string('status')->nullable();
             $table->datetime('invited_at')->nullable();
             $table->datetime('invitation_accepted_at')->nullable();
             $table->rememberToken();
