@@ -36,7 +36,7 @@
       <form wire:submit="store" class="space-y-5 p-4 hover:bg-blue-50">
         <div class="relative">
           <x-input-label for="name" :value="__('Name of the office')" />
-          <x-text-input wire:model="name" wire:keydown.escape="toggleAddMode" class="mt-1 block w-full" id="name" name="name" type="text" required autofocus />
+          <x-text-input wire:model="name" wire:keydown.escape="toggleAddMode" class="mt-1 block w-full" id="name" name="name" type="text" required autofocus data-1p-ignore />
           <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
