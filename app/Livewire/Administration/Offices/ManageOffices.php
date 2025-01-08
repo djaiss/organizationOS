@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Administration\Offices;
 
 use App\Models\Office;
@@ -26,7 +28,7 @@ class ManageOffices extends Component
         $this->offices = collect(Office::where('account_id', Auth::user()->account_id)
             ->orderBy('name')
             ->get()
-            ->map(fn(Office $office): array => [
+            ->map(fn (Office $office): array => [
                 'id' => $office->id,
                 'name' => $office->name,
             ]));
