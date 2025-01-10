@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Exceptions\PermissionException;
 use App\Exceptions\UserNotPartOfTheTeamException;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
@@ -35,7 +34,7 @@ class UpdateTeam
 
     private function validate(): void
     {
-        if (!$this->user->teams()->where('id', $this->team->id)->exists()) {
+        if (! $this->user->teams()->where('id', $this->team->id)->exists()) {
             throw new UserNotPartOfTheTeamException();
         }
     }

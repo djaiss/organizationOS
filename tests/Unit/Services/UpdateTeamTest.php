@@ -10,7 +10,6 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Team;
 use App\Models\User;
-use App\Services\CreateTeam;
 use App\Services\UpdateTeam;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Queue;
@@ -97,7 +96,7 @@ class UpdateTeamTest extends TestCase
             'permission' => Permission::MEMBER->value,
         ]);
 
-            $team = Team::factory()->create([
+        $team = Team::factory()->create([
             'account_id' => $user->account_id,
         ]);
 
