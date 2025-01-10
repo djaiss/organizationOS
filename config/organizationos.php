@@ -28,6 +28,7 @@ return [
         'team_creation' => 'Team creation',
         'team_update' => 'Team update',
         'team_deletion' => 'Team deletion',
+        'team_update' => 'Team update',
     ],
 
 ];
