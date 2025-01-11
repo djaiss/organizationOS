@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use App\Enums\Permission;
+use App\Models\Team;
 use Closure;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,13 @@ class CheckTeamApi
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $team = $request->route()->parameter('team');
+        $team = (int) $request->route()->parameter('team');
+
+        try {
+            $team = Team::findOrFail($team);
+        } catch (ModelNotFoundException) {
+            abort(404);
+        }
 
         if (! Auth::user()->teams()->where('id', $team->id)->exists()) {
             abort(403);

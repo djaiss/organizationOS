@@ -6,11 +6,11 @@ namespace App\Http\Controllers\Api\Teams;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TeamResource;
+use App\Models\Team;
 use App\Services\CreateTeam;
 use App\Services\UpdateTeam;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\Team;
 
 /**
  * @group Teams
@@ -75,8 +75,10 @@ class TeamController extends Controller
      * @responseField name The name of the team.
      * @responseField created_at Time at which the object was created. Measured in seconds since the Unix epoch.
      */
-    public function update(Request $request, Team $team): JsonResource
+    public function update(Request $request): JsonResource
     {
+        $team = $request->attributes->get('team');
+
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
         ]);
