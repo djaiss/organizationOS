@@ -1,17 +1,6 @@
 <div class="border-r border-gray-300 bg-gray-100">
   <div class="flex flex-col px-6 pt-8">
     <!-- back to dashboard -->
-    <a wire:navigate href="{{ route('dashboard') }}" class="mb-4">
-      <div class="flex h-8 items-center justify-between gap-3 rounded-lg px-2 text-sm leading-5 text-zinc-600 hover:bg-zinc-950/5 hover:text-zinc-800 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white">
-        <div class="flex items-center gap-2">
-          <x-lucide-chevron-left class="size-3 min-w-3" />
-          <span>
-            {{ __('Back to dashboard') }}
-          </span>
-        </div>
-      </div>
-    </a>
-
     <div class="flex flex-col gap-4">
       <!-- your account -->
       <div class="flex flex-col gap-0.5">
@@ -44,7 +33,7 @@
       @if ($user['permission'] === 'administrator' || $user['permission'] === 'human_resource_representative')
         <div class="flex flex-col gap-0.5">
           <span class="tpx-2 py-1.5 text-xs font-semibold text-zinc-950/40 dark:text-white/40">
-            {{ __('Administration') }}
+            {{ __('Teams and projects') }}
           </span>
           @if ($user['permission'] === 'administrator')
             <a wire:navigate href="{{ route('administration.account.index') }}">

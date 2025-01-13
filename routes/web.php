@@ -7,6 +7,7 @@ use App\Http\Controllers\Administration\AdministrationController;
 use App\Http\Controllers\Administration\AdministrationOfficeController;
 use App\Http\Controllers\Administration\AdministrationSecurityController;
 use App\Http\Controllers\Administration\AdministrationUserController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,9 +17,7 @@ Route::get('/', function () {
 Route::get('/invitations/{user}/accept', [AdministrationController::class, 'accept'])->name('invitations.accept');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function (): void {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('administration', [AdministrationController::class, 'index'])->name('administration.index');
     Route::put('administration', [AdministrationController::class, 'update'])->name('administration.update');
