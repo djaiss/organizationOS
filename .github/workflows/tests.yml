@@ -1,51 +1,133 @@
-name: tests
+name: Unit tests
+permissions:
+  contents: read
+  pull-requests: write
 
 on:
   push:
-    branches:
-      - develop
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - develop
-      - main
+    types: [opened, synchronize, reopened]
+  release:
+    types: [created]
+
+env:
+  default-php-version: '8.4'
+  coverage-with: sqlite
+
+concurrency:
+  group: Build ${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  ci:
+  #############
+  # Run tests
+  #############
+  tests:
     runs-on: ubuntu-latest
-    environment: Testing
+    name: PHP ${{ matrix.php-version }} + ${{ matrix.connection }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ['8.4']
+        connection: [sqlite, mysql, pgsql]
+        testsuite: [Unit]
+        coverage: [true] # run test with coverage, if 'coverage-with' match with the connection
 
     steps:
-      - name: Checkout
+      - name: Checkout sources
         uses: actions/checkout@v4
 
-      - name: Setup PHP
+      - name: Setup PHP ${{ matrix.php-version }} without coverage
+        if: matrix.connection != env.coverage-with || matrix.php-version != env.default-php-version || ! matrix.coverage
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.4
-          tools: composer:v2
-          coverage: xdebug
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, dom, fileinfo, ${{ matrix.connection }}
+          coverage: none
+      - name: Setup PHP ${{ matrix.php-version }}
+        if: matrix.connection == env.coverage-with && matrix.php-version == env.default-php-version && matrix.coverage
+        uses: shivammathur/setup-php@v2
         with:
-          node-version: '22'
-          cache: 'npm'
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, dom, fileinfo, ${{ matrix.connection }}
+          coverage: pcov
+          ini-values: pcov.directory=., pcov.exclude="~vendor~"
+      - name: Check PHP Version
+        run: php -v
+      - name: Check Composer Version
+        run: composer -V
+      - name: Check PHP Extensions
+        run: php -m
 
-      - name: Install Node Dependencies
-        run: npm i
+      # Composer
+      - name: Validate composer.json and composer.lock
+        run: composer validate
 
-      - name: Install Dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+      - name: Cache composer files
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+            ${{ runner.os }}-composer-${{ matrix.php-version }}
+            ${{ runner.os }}-composer-
 
-      - name: Copy Environment File
-        run: cp .env.example .env
+      - name: Install composer dependencies
+        run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
 
-      - name: Generate Application Key
+      # Prepare
+      - name: Prepare environment
+        run: |
+          cp tests/.env.ci.${{ matrix.connection }} .env
+          mkdir -p public/build/assets
+          {\
+            echo "{"; \
+            for f in app.js app.css; do \
+              [[ $first == 1 ]] && echo -n "," || first=1; \
+              k=${f##*.}/$f; \
+              echo "\"resources/$k\": {\"file\": \"assets/$f\", \"src\": \"resources/$k\"}"; \
+              echo '' > public/build/assets/$f; \
+            done; \
+            echo "}"; \
+          } | tee public/build/manifest.json
+      - name: Create sqlite database
+        if: matrix.connection == 'sqlite'
+        run: touch database/database.sqlite
+      - name: Create mysql database
+        if: matrix.connection == 'mysql'
+        run: |
+          sudo systemctl start mysql.service
+          mysql --protocol=tcp -u root -proot -e "CREATE DATABASE IF NOT EXISTS peopleos CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+      - name: Create pgsql database
+        if: matrix.connection == 'pgsql'
+        run: |
+          sudo systemctl start postgresql.service
+          sudo -u postgres psql --command="CREATE USER peopleos PASSWORD 'secret'" --command="\du"
+          sudo -u postgres createdb --owner=peopleos peopleos
+          PGPASSWORD=secret psql --username=peopleos --host=localhost --list peopleos
+
+      - name: Generate key
         run: php artisan key:generate
 
-      - name: Build Assets
-        run: npm run build
+      - name: Run migrations
+        run: php artisan migrate --no-interaction -vvv
 
-      - name: Run Tests
-        run: ./vendor/bin/phpunit
+      # Test
+      - name: Run tests
+        if: matrix.connection == 'sqlite'
+        run: vendor/bin/phpunit --coverage-clover=coverage.xml
+        continue-on-error: true
+        env:
+          DB_CONNECTION: ${{ matrix.connection }}
+
+      - name: Run tests
+        if: matrix.connection != 'sqlite'
+        run: vendor/bin/phpunit
+        env:
+          DB_CONNECTION: ${{ matrix.connection }}

@@ -6,20 +6,14 @@ use Illuminate\View\Component;
 
 class Error extends Component
 {
-    public $id;
+    public string $id;
 
-    public $for;
+    public string $for;
 
-    public $value;
-
-    public $bag;
-
-    public function __construct($for, $value = null, $bag = 'default')
+    public function __construct(string $for, public $value = null, public $bag = 'default')
     {
         $this->id = $for.'_error';
         $this->for = FormControl::sessionPath($for);
-        $this->value = $value;
-        $this->bag = $bag;
     }
 
     public function render()

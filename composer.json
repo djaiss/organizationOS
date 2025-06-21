@@ -10,19 +10,22 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.4",
         "codeat3/blade-phosphor-icons": "^2.3",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1"
     },
     "require-dev": {
+        "brianium/paratest": "^7.7",
         "fakerphp/faker": "^1.23",
+        "larastan/larastan": "^3.3",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.18",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "phpunit/phpunit": "^11.5.3"
+        "phpunit/phpunit": "^11.5.3",
+        "rector/rector": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -56,7 +59,23 @@
             "Composer\\Config::disableProcessTimeout",
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
         ],
-        "organizationos:prettier": "npx prettier --write resources/"
+        "test": [
+          "@organizationos:unit"
+        ],
+        "precommit": [
+          "@organizationos:rector",
+          "@test",
+          "@organizationos:static",
+          "@organizationos:lint",
+          "@organizationos:prettier",
+          "@organizationos:update"
+        ],
+        "organizationos:lint": "./vendor/bin/pint",
+        "organizationos:prettier": "npx prettier --write resources/",
+        "organizationos:rector": "./vendor/bin/rector",
+        "organizationos:static": "./vendor/bin/phpstan analyse --memory-limit=256M",
+        "organizationos:update": "composer update && npm update && npm upgrade",
+        "organizationos:unit": "rm -f database/test.sqlite_test* && php artisan migrate:fresh --database=testing && php artisan test --parallel --processes=12 --recreate-databases"
     },
     "extra": {
         "laravel": {

@@ -4,9 +4,9 @@ namespace App\View\Components;
 
 class Checkbox extends FormControl
 {
-    public $checked;
+    public bool $checked;
 
-    public function __construct($name, $id = null, $value = '1', $label = '', $bag = 'default')
+    public function __construct(string $name, string $id = null, string $value = '1', string $label = '', string $bag = 'default')
     {
         parent::__construct($name, $id, $value, $label, $bag);
         $this->value = $value;

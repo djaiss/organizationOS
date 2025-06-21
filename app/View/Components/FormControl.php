@@ -13,20 +13,17 @@ abstract class FormControl extends Component
 
     public $value;
 
-    public $label;
-
     public $formControlAttributes;
 
-    public function __construct($name, $id = null, $value = '', $label = '', $bag = 'default')
+    public function __construct($name, $id = null, $value = '', public $label = '', $bag = 'default')
     {
         $sessionPath = self::sessionPath($name);
         $this->value = old($sessionPath, $value);
-        $this->label = $label;
         $this->id = $id ?? $name;
         $this->formControlAttributes = $this->newAttributeBag([
             'name' => $name,
             'id' => $this->id,
-        ])->when($this->errorBag($bag)->has($sessionPath), function ($attributes) use ($name) {
+        ])->when($this->errorBag($bag)->has($sessionPath), function ($attributes) use ($name): void {
             $attributes->offsetSet('aria-invalid', 'true');
             $attributes->offsetSet('aria-describedby', $attributes->prepends($name.'_error'));
         });
