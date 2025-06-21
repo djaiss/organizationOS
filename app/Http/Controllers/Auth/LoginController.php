@@ -76,6 +76,6 @@ class LoginController extends Controller
 
     public function throttleKey(Request $request): string
     {
-        return Str::transliterate(Str::lower($request->string('email')) . '|' . $request->ip());
+        return Str::transliterate(Str::lower((string) $request->string('email')) . '|' . $request->ip());
     }
 }
