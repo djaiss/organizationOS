@@ -1,8 +1,8 @@
-name: CI
+name: End to end tests
 on: [push]
 jobs:
 
-  dusk-php:
+  dusk:
     runs-on: ubuntu-latest
     env:
       APP_URL: "http://127.0.0.1:8000"
