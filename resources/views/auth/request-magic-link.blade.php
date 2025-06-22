@@ -32,7 +32,7 @@
             <x-input type="email" id="email" value="{{ old('email') }}" :label="__('Email address')" required placeholder="john@doe.com" :error="$errors->get('email')" :passManagerDisabled="false" autocomplete="username" autofocus />
 
             <div class="flex items-center justify-between">
-              <x-button class="">{{ __('Email me a link to login') }}</x-button>
+              <x-button dusk="magic-link-button">{{ __('Email me a link to login') }}</x-button>
             </div>
           </x-form>
         </x-box>

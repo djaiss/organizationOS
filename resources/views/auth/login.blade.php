@@ -48,7 +48,7 @@
               {{--
                 <div class="mt-4 mb-0">
                 <x-turnstile data-size="flexible" />
-                
+
                 <x-input-error :messages="$errors->get('cf-turnstile-response')" class="mt-2" />
                 </div>
               --}}
@@ -59,7 +59,7 @@
                 {{ __('Forgot your password?') }}
               </x-link>
 
-              <x-button class="">{{ __('Continue') }}</x-button>
+              <x-button dusk="login-button">{{ __('Continue') }}</x-button>
             </div>
           </x-form>
         </x-box>
@@ -67,7 +67,7 @@
         <!-- magic link -->
         <x-box class="mb-8 text-center text-sm">
           {{ __('Wanna skip the password?') }}
-          <x-link :href="route('magic.link')" class="ml-1">
+          <x-link :href="route('magic.link')" dusk="magic-link-link" class="ml-1">
             {{ __('Send me a link instead') }}
           </x-link>
         </x-box>

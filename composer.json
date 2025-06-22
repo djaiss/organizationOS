@@ -21,6 +21,7 @@
         "brianium/paratest": "^7.7",
         "fakerphp/faker": "^1.23",
         "larastan/larastan": "^3.3",
+        "laravel/dusk": "^8.3",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.18",
         "laravel/sail": "^1.41",
@@ -67,12 +68,14 @@
         "precommit": [
           "@organizationos:rector",
           "@test",
+          "@organizationos:dusk",
           "@organizationos:static",
           "@organizationos:lint",
           "@organizationos:update-blacklist-domains",
           "@organizationos:prettier",
           "@organizationos:update"
         ],
+        "organizationos:dusk": "php artisan migrate:fresh && php artisan dusk",
         "organizationos:lint": "./vendor/bin/pint",
         "organizationos:prettier": "npx prettier --write resources/",
         "organizationos:rector": "./vendor/bin/rector",
