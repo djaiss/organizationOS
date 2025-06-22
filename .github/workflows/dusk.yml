@@ -16,11 +16,11 @@ jobs:
         with:
           php-version: '8.4'
       - name: Prepare The Environment
-        run: cp .env.example .env
+        run: cp tests/.env.ci.mysql .env
       - name: Create Database
         run: |
           sudo systemctl start mysql
-          mysql --user="root" --password="root" -e "CREATE DATABASE \`my-database\` character set UTF8mb4 collate utf8mb4_bin;"
+          mysql --user="root" --password="root" -e "CREATE DATABASE \`organizationos\` character set UTF8mb4 collate utf8mb4_bin;"
       - name: Install Composer Dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
       - name: Generate Application Key
