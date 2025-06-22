@@ -1,5 +1,15 @@
 @props([
   'size' => 'base',
+  'type' => 'text',
+  'passManagerDisabled' => true,
+  'required' => false,
+  'id' => null,
+  'label' => null,
+  'autocomplete' => null,
+  'error' => null,
+  'placeholder' => null,
+  'value' => null,
+  'help' => null,
 ])
 
 @php
@@ -19,16 +29,19 @@
   ];
 @endphp
 
-<?php if ($label): ?>
+@if ($label)
+  <div class="space-y-2">
+    <x-label :for="$id" :value="$label" />
+    <input id="{{ $id }}" name="{{ $id }}" type="{{ $type }}" {{ $attributes->class($classes) }} value="{{ $value }}" {{ $autocomplete ? 'autocomplete="' . $autocomplete . '"' : '' }} {{ $placeholder ? 'placeholder=' . $placeholder : '' }} @if($passManagerDisabled) data-1p-ignore @endif />
+    @if ($help)
+      <p class="mt-1 block text-xs text-gray-700 dark:text-gray-300">{{ $help }}</p>
+    @endif
 
-<x-field>
-  <x-label :for="$id" :value="$label" />
-  <input {{ $formControlAttributes }} {{ $attributes->class($classes) }} value="{{ $value }}" />
-  <x-error :for="$id" />
-</x-field>
-
-<?php else: ?>
-
-<input {{ $formControlAttributes }} {{ $attributes->class($classes) }} value="{{ $value }}" />
-
-<?php endif; ?>
+    <x-error :messages="$error" />
+  </div>
+@else
+  <div class="space-y-2">
+    <input id="{{ $id }}" name="{{ $id }}" type="{{ $type }}" {{ $attributes->class($classes) }} value="{{ $value }}" {{ $autocomplete ? 'autocomplete="' . $autocomplete . '"' : '' }} {{ $placeholder ? 'placeholder=' . $placeholder : '' }} @if($passManagerDisabled) data-1p-ignore @endif />
+    <x-error :messages="$error" />
+  </div>
+@endif

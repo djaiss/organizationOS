@@ -1,9 +1,11 @@
-@error($for, $bag)
-  <div id="{{ $id }}" {{ $attributes->class(['text-sm font-medium text-red-600 dark:text-red-400']) }}>
-    @if ($slot->isEmpty())
-      {{ $value ?? $message }}
-    @else
-      {{ $slot }}
-    @endif
-  </div>
-@enderror
+@props([
+  'messages',
+])
+
+@if ($messages)
+  <ul {{ $attributes->merge(['class' => 'text-sm text-red-600 dark:text-red-400 space-y-1']) }}>
+    @foreach ((array) $messages as $message)
+      <li>{{ $message }}</li>
+    @endforeach
+  </ul>
+@endif

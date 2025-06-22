@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Marketing\MarketingController;
 use App\Http\Controllers\Settings;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [MarketingController::class, 'index'])->name('marketing.index');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
