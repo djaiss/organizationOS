@@ -26,10 +26,10 @@
         </div>
 
         <!-- Login form -->
-        <x-box class="mb-12">
+        <x-box class="mb-8">
           <x-form method="post" :action="route('login')" class="space-y-4">
             <!-- Email address -->
-            <x-input type="email" id="email" value="{{ old('email') }}" :label="__('Email address')" required placeholder="john@doe.com" :error="$errors->get('email')" :passManagerDisabled="false" autocomplete="username" />
+            <x-input type="email" id="email" value="{{ old('email') }}" :label="__('Email address')" required placeholder="john@doe.com" :error="$errors->get('email')" :passManagerDisabled="false" autocomplete="username" autofocus />
 
             <!-- Password -->
             <x-input type="password" id="password" :label="__('Password')" required :error="$errors->get('password')" :passManagerDisabled="false" autocomplete="current-password" />
@@ -64,9 +64,17 @@
           </x-form>
         </x-box>
 
+        <!-- magic link -->
+        <x-box class="mb-8 text-center text-sm">
+          {{ __('Wanna skip the password?') }}
+          <x-link :href="route('magic.link')" class="ml-1">
+            {{ __('Send me a link instead') }}
+          </x-link>
+        </x-box>
+
         <!-- Register link -->
         <x-box class="mb-8 text-center text-sm">
-          {{ __('New to PeopleOS?') }}
+          {{ __('New to :organization?', ['organization' => config('app.name')]) }}
           <x-link :href="route('register')" class="ml-1">
             {{ __('Create an account') }}
           </x-link>

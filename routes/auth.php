@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegistrationController;
+use App\Http\Controllers\Auth\SendMagicLinkController;
 use App\Http\Controllers\Auth\VerificationController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,14 @@ Route::middleware('guest')->group(function (): void {
 
     Route::get('login', [LoginController::class, 'create'])->name('login');
     Route::post('login', [LoginController::class, 'store']);
+
+    Route::get('send-magic-link', [SendMagicLinkController::class, 'create'])
+        ->middleware(['throttle:6,1'])
+        ->name('magic.link');
+
+    Route::post('send-magic-link', [SendMagicLinkController::class, 'store'])
+        ->middleware(['throttle:6,1'])
+        ->name('magic.link.store');
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
