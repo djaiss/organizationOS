@@ -17,6 +17,19 @@ jobs:
           php-version: '8.4'
       - name: Prepare The Environment
         run: cp tests/.env.ci.mysql .env
+      - name: Prepare the assets
+        run: |
+          mkdir -p public/build/assets
+          {\
+            echo "{"; \
+            for f in app.js app.css; do \
+              [[ $first == 1 ]] && echo -n "," || first=1; \
+              k=${f##*.}/$f; \
+              echo "\"resources/$k\": {\"file\": \"assets/$f\", \"src\": \"resources/$k\"}"; \
+              echo '' > public/build/assets/$f; \
+            done; \
+            echo "}"; \
+          } | tee public/build/manifest.json
       - name: Create Database
         run: |
           sudo systemctl start mysql
