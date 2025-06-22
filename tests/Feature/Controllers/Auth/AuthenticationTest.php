@@ -26,7 +26,7 @@ class AuthenticationTest extends TestCase
     {
         $user = User::factory()->create([
             'email' => 'michael.scott@dundermifflin.com',
-            'password' => '5UTHSmdj',
+            'password' => \Illuminate\Support\Facades\Hash::make('5UTHSmdj'),
         ]);
 
         $response = $this->post('/login', [
