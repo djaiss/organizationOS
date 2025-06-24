@@ -3,7 +3,5 @@
     {{ __('Dashboard') }}
   </x-slot>
 
-  <x-skeleton>
-    sdfasdf sadfs
-  </x-skeleton>
+  <x-skeleton>sdfasdf sadfs</x-skeleton>
 </x-app-layout>
