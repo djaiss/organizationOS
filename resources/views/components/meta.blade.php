@@ -1,3 +1,9 @@
+@isset($title)
+  <title>{{ $title }} | {{ config('app.name') }}</title>
+@else
+  <title>{{ config('app.name') }}</title>
+@endisset
+
 <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}" />
 
 <!-- Android -->
@@ -7,5 +13,4 @@
 <meta name="apple-mobile-web-app-title" content="{{ config('app.name') }}" />
 <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}" />
 
-<title>{{ config('app.name') }}</title>
 <meta name="description" content="{{ config('organizationos.description') }}" />
