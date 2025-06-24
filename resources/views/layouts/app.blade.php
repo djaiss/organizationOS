@@ -6,7 +6,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
   </head>
-  <body class="font-sans text-sm text-gray-900 antialiased">
+  <body class="font-sans text-sm text-gray-900 antialiased flex flex-col min-h-screen">
     <x-header />
 
     <main class="bg-gray-50 flex flex-1 flex-col px-2 py-px">
@@ -14,5 +14,7 @@
         {{ $slot }}
       </div>
     </main>
+
+    <x-footer />
   </body>
 </html>

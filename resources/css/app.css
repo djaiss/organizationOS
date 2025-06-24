@@ -23,3 +23,14 @@
     --color-accent-foreground: var(--color-gray-800);
   }
 }
+
+@layer utilities {
+  [x-cloak] {
+    display: none !important;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
