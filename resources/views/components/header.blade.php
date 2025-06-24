@@ -18,7 +18,7 @@
       </a>
 
       <div x-data="{ menuOpen: false }" @click.away="menuOpen = false" class="relative">
-        <button @click="menuOpen = !menuOpen" :class="{ 'bg-gray-100' : menuOpen }" class="flex items-center cursor-pointer gap-1 rounded-md px-3 py-1 font-medium hover:bg-gray-100">
+        <button @click="menuOpen = !menuOpen" :class="{ 'bg-gray-100' : menuOpen }" class="flex cursor-pointer items-center gap-1 rounded-md px-3 py-1 font-medium hover:bg-gray-100">
           {{ __('Menu') }}
           <x-phosphor-caret-down class="size-4 text-gray-600 transition-transform duration-150" x-bind:class="{ 'rotate-180' : menuOpen }" />
         </button>

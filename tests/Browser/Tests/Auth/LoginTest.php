@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Browser\Tests\Auth;
 
 use App\Models\User;
@@ -19,7 +21,7 @@ class LoginTest extends DuskTestCase
             'email' => 'michael.scott@dundermifflin.com',
         ]);
 
-        $this->browse(function (Browser $browser) use ($user) {
+        $this->browse(function (Browser $browser) use ($user): void {
             $browser->visit('/login')
                 ->type('email', $user->email)
                 ->type('password', 'password')
