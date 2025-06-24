@@ -1,8 +1,8 @@
-@isset($title)
-  <title>{{ $title }} | {{ config('app.name') }}</title>
-@else
-  <title>{{ config('app.name') }}</title>
-@endisset
+<title>{{ $title ?? config('app.name') }}</title>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 
 <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}" />
 

@@ -9,12 +9,12 @@ use Illuminate\View\View;
 
 class AppLayout extends Component
 {
-    public ?string $title = null;
+    public function __construct(
+        public string $title = '',
+    ) {}
 
     public function render(): View
     {
-        return view('layouts.app', [
-            'title' => $this->title,
-        ]);
+        return view('layouts.app');
     }
 }
