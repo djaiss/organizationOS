@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Models\Account;
-use App\Models\Organization;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -35,10 +33,10 @@ class CreateAccount
 
     private function createOrganization(): void
     {
-        (new CreateOrganization(
+        new CreateOrganization(
             userId: $this->user->id,
             organizationName: $this->organizationName,
-        ))->execute();
+        )->execute();
     }
 
     private function addFirstUser(): void

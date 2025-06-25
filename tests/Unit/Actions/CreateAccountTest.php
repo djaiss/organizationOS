@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\CreateAccount;
-use App\Models\Account;
 use App\Models\Organization;
 use App\Models\User;
 use Carbon\Carbon;
