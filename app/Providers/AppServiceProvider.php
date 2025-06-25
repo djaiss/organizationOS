@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Laravel\Telescope\TelescopeServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,8 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        if ($this->app->environment('local') && class_exists(\Laravel\Telescope\TelescopeServiceProvider::class)) {
-            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+        if ($this->app->environment('local') && class_exists(TelescopeServiceProvider::class)) {
+            $this->app->register(TelescopeServiceProvider::class);
             $this->app->register(TelescopeServiceProvider::class);
         }
     }
@@ -25,6 +27,24 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Enable strict mode for Eloquent models in non-production environments
+        Model::shouldBeStrict(! app()->isProduction());
+
+        // Enable prohibition of destructive commands in production environments
+        DB::prohibitDestructiveCommands(
+            app()->isProduction(),
+        );
+
+        // Enable lazy loading prevention in non-production environments
+        // This will throw an exception if a lazy loading query is attempted
+        Model::preventLazyLoading(! app()->isProduction());
+
+        // Enable prevention of silently discarding attributes
+        // This will throw an exception if an attribute is silently discarded
+        Model::preventSilentlyDiscardingAttributes();
+
+        // Enable prevention of accessing missing attributes
+        // This will throw an exception if an attribute is accessed that does not exist
+        Model::preventAccessingMissingAttributes();
     }
 }
