@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Actions\CreateAccount;
 use App\Http\Controllers\Controller;
-use App\Models\Account;
+use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -33,7 +33,7 @@ class RegistrationController extends Controller
                 'confirmed',
                 Password::min(8)->uncompromised(),
             ],
-            'organization_name' => ['required', 'string', 'max:255', 'unique:' . Account::class . ',name'],
+            'organization_name' => ['required', 'string', 'max:255', 'unique:' . Organization::class . ',name'],
         ]);
 
         $user = new CreateAccount(

@@ -6,7 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Carbon\Carbon;
 
 /**
@@ -52,10 +52,12 @@ class Organization extends Model
     /**
      * Get the users associated with the organization.
      *
-     * @return HasMany<User, $this>
+     * @return BelongsToMany<User, $this>
      */
-    public function users(): HasMany
+    public function users(): BelongsToMany
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class)
+            ->withPivot(['joined_at'])
+            ->withTimestamps();
     }
 }

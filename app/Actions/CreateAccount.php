@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Hash;
  */
 class CreateAccount
 {
-    private Organization $organization;
-
     private User $user;
 
     public function __construct(
@@ -29,18 +27,18 @@ class CreateAccount
 
     public function execute(): User
     {
-        $this->create();
         $this->addFirstUser();
+        $this->createOrganization();
 
         return $this->user;
     }
 
-    private function create(): void
+    private function createOrganization(): void
     {
-        $this->organization = Organization::create([
-            'name' => $this->organizationName,
-            'slug' => Str::slug($this->organizationName),
-        ]);
+        (new CreateOrganization(
+            userId: $this->user->id,
+            organizationName: $this->organizationName,
+        ))->execute();
     }
 
     private function addFirstUser(): void

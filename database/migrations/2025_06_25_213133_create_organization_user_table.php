@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('organization_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('permission');
             $table->timestamp('joined_at');
             $table->timestamps();
             $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');

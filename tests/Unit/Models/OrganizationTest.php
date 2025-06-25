@@ -15,13 +15,21 @@ class OrganizationTest extends TestCase
     use DatabaseTransactions;
 
     #[Test]
-    public function it_has_many_users(): void
+    public function it_belongs_to_many_users(): void
     {
         $organization = Organization::factory()->create();
-        User::factory()->count(2)->create([
-            'organization_id' => $organization->id,
+        $user1 = User::factory()->create();
+        $user2 = User::factory()->create();
+
+        $organization->users()->attach($user1->id, [
+            'joined_at' => now(),
+        ]);
+        $organization->users()->attach($user2->id, [
+            'joined_at' => now(),
         ]);
 
-        $this->assertTrue($organization->users()->exists());
+        $this->assertCount(2, $organization->users);
+        $this->assertTrue($organization->users->contains($user1));
+        $this->assertTrue($organization->users->contains($user2));
     }
 }

@@ -6,7 +6,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -16,7 +16,6 @@ use Carbon\Carbon;
  * Class User
  *
  * @property int $id
- * @property int $account_id
  * @property string $first_name
  * @property string $last_name
  * @property string $email
@@ -36,7 +35,6 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var list<string>
      */
     protected $fillable = [
-        'account_id',
         'first_name',
         'last_name',
         'email',
@@ -68,13 +66,15 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Get the account record associated with the user.
+     * Get the organizations associated with the user.
      *
-     * @return BelongsTo<Account, $this>
+     * @return BelongsToMany<Organization, $this>
      */
-    public function account(): BelongsTo
+    public function organizations(): BelongsToMany
     {
-        return $this->belongsTo(Account::class);
+        return $this->belongsToMany(Organization::class)
+            ->withPivot(['joined_at'])
+            ->withTimestamps();
     }
 
     /**
