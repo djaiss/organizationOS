@@ -72,7 +72,7 @@
             @endif
 
             <div class="flex items-center justify-between">
-              <x-button class="w-full">{{ __('Next step: validate your email address') }}</x-button>
+              <x-button class="w-full" dusk="register-button">{{ __('Next step: validate your email address') }}</x-button>
             </div>
           </x-form>
         </x-box>
