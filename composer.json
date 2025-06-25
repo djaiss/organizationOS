@@ -74,12 +74,14 @@
           "@organizationos:lint",
           "@organizationos:update-blacklist-domains",
           "@organizationos:prettier",
-          "@organizationos:update"
+          "@organizationos:update",
+          "@organizationos:setup"
         ],
         "organizationos:dusk": "rm -f database/database.sqlite && touch database/database.sqlite && php artisan migrate:fresh && php artisan dusk",
         "organizationos:lint": "./vendor/bin/pint",
         "organizationos:prettier": "npx prettier --write resources/",
         "organizationos:rector": "./vendor/bin/rector",
+        "organizationos:setup": "php artisan migrate:fresh && php artisan db:seed",
         "organizationos:static": "./vendor/bin/phpstan analyse --memory-limit=256M",
         "organizationos:update": "composer update && npm update && npm upgrade",
         "organizationos:update-blacklist-domains": "php artisan erag:sync-disposable-email-list",
