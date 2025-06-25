@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Carbon\Carbon;
 
 /**
- * Class Account
+ * Class Organization
  *
  * @property int $id
  * @property string $name
@@ -18,7 +18,7 @@ use Carbon\Carbon;
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
-class Account extends Model
+class Organization extends Model
 {
     use HasFactory;
 
@@ -27,7 +27,7 @@ class Account extends Model
      *
      * @var string
      */
-    protected $table = 'accounts';
+    protected $table = 'organizations';
 
     /**
      * The attributes that are mass assignable.
@@ -50,7 +50,7 @@ class Account extends Model
     }
 
     /**
-     * Get the users associated with the account.
+     * Get the users associated with the organization.
      *
      * @return HasMany<User, $this>
      */

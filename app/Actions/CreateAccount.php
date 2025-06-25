@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Models\Account;
+use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
  */
 class CreateAccount
 {
-    private Account $account;
+    private Organization $organization;
 
     private User $user;
 
@@ -36,7 +37,7 @@ class CreateAccount
 
     private function create(): void
     {
-        $this->account = Account::create([
+        $this->organization = Organization::create([
             'name' => $this->organizationName,
             'slug' => Str::slug($this->organizationName),
         ]);
@@ -45,7 +46,6 @@ class CreateAccount
     private function addFirstUser(): void
     {
         $this->user = User::create([
-            'account_id' => $this->account->id,
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'email' => $this->email,
