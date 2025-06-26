@@ -48,7 +48,7 @@
               {{--
                 <div class="mt-4 mb-0">
                 <x-turnstile data-size="flexible" />
-                
+
                 <x-input-error :messages="$errors->get('cf-turnstile-response')" class="mt-2" />
                 </div>
               --}}
@@ -63,6 +63,13 @@
             </div>
           </x-form>
         </x-box>
+
+        <!-- local login link -->
+        @env('local')
+        <x-box class="mb-8 text-center text-sm">
+          <x-login-link label="Michael Scott" email="michael.scott@dundermifflin.com" redirect-url="{{ route('organizations.index') }}" />
+        </x-box>
+        @endenv
 
         <!-- magic link -->
         <x-box class="mb-8 text-center text-sm">
