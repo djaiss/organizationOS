@@ -26,7 +26,7 @@ class LoginTest extends DuskTestCase
                 ->type('email', $user->email)
                 ->type('password', 'password')
                 ->press('@login-button')
-                ->assertPathIs('/dashboard');
+                ->assertPathIs('/organizations');
         });
     }
 }

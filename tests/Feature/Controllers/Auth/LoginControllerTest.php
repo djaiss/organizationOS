@@ -9,12 +9,12 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class AuthenticationTest extends TestCase
+class LoginControllerTest extends TestCase
 {
     use RefreshDatabase;
 
     #[Test]
-    public function login_screen_can_be_rendered(): void
+    public function it_renders_the_login_screen(): void
     {
         $response = $this->get('/login');
 
@@ -22,16 +22,13 @@ class AuthenticationTest extends TestCase
     }
 
     #[Test]
-    public function users_can_authenticate_using_the_login_screen(): void
+    public function it_authenticates_a_user(): void
     {
-        $user = User::factory()->create([
-            'email' => 'michael.scott@dundermifflin.com',
-            'password' => \Illuminate\Support\Facades\Hash::make('5UTHSmdj'),
-        ]);
+        $user = User::factory()->create();
 
         $response = $this->post('/login', [
-            'email' => 'michael.scott@dundermifflin.com',
-            'password' => '5UTHSmdj',
+            'email' => $user->email,
+            'password' => 'password',
         ]);
 
         $this->assertAuthenticated();
@@ -39,7 +36,7 @@ class AuthenticationTest extends TestCase
     }
 
     #[Test]
-    public function users_can_not_authenticate_with_invalid_password(): void
+    public function it_does_not_authenticate_a_user_with_invalid_password(): void
     {
         $user = User::factory()->create();
 
@@ -52,7 +49,7 @@ class AuthenticationTest extends TestCase
     }
 
     #[Test]
-    public function users_can_logout(): void
+    public function it_logs_out_a_user(): void
     {
         $user = User::factory()->create();
 

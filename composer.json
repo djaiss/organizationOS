@@ -65,7 +65,8 @@
         ],
         "test": [
           "@organizationos:unit",
-          "@organizationos:dusk"
+          "@organizationos:dusk",
+          "@organizationos:setup"
         ],
         "precommit": [
           "@organizationos:rector",
