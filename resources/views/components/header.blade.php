@@ -4,21 +4,21 @@
       <img src="{{ asset('logo.png') }}" alt="Logo" class="focus-visible:shadow-xs-selected h-5 w-5 rounded-md focus:outline-hidden" />
     </a>
 
-    <a class="rounded-md px-3 py-1 font-medium hover:bg-gray-100" href="/">{{ __('Dashboard') }}</a>
+    <a class="rounded-md px-2 py-1 font-medium border border-transparent hover:border-gray-200 hover:bg-gray-100" href="/">{{ __('Dashboard') }}</a>
     <div class="-ml-4 flex-1"></div>
     <div class="flex items-center gap-1">
-      <a class="flex items-center gap-2 rounded-md px-3 py-1 font-medium hover:bg-gray-100" href="/">
+      <a class="flex items-center gap-2 rounded-md px-2 py-1 font-medium border border-transparent hover:border-gray-200 hover:bg-gray-100" href="/">
         <x-phosphor-magnifying-glass class="size-4 text-gray-600 transition-transform duration-150" />
         {{ __('Search') }}
       </a>
 
-      <a class="flex items-center gap-2 rounded-md px-3 py-1 font-medium hover:bg-gray-100" href="/">
+      <a class="flex items-center gap-2 rounded-md px-2 py-1 font-medium border border-transparent hover:border-gray-200 hover:bg-gray-100" href="/">
         <x-phosphor-lifebuoy class="size-4 text-gray-600 transition-transform duration-150" />
         {{ __('Docs') }}
       </a>
 
       <div x-data="{ menuOpen: false }" @click.away="menuOpen = false" class="relative">
-        <button @click="menuOpen = !menuOpen" :class="{ 'bg-gray-100' : menuOpen }" class="flex cursor-pointer items-center gap-1 rounded-md px-3 py-1 font-medium hover:bg-gray-100">
+        <button @click="menuOpen = !menuOpen" :class="{ 'bg-gray-100' : menuOpen }" class="flex cursor-pointer items-center gap-1 rounded-md px-2 py-1 border border-transparent hover:border-gray-200 font-medium hover:bg-gray-100">
           {{ __('Menu') }}
           <x-phosphor-caret-down class="size-4 text-gray-600 transition-transform duration-150" x-bind:class="{ 'rotate-180' : menuOpen }" />
         </button>

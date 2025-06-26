@@ -6,12 +6,11 @@
   <div class="px-6 pt-6 pb-20">
     <div class="mx-auto w-full max-w-4xl items-start justify-center">
       <div class="mb-4 flex items-center justify-between">
-        <h2 class="text-lg font-medium text-gray-900">Your organizations</h2>
+        <h2 class="text-lg font-medium text-gray-900">{{ __('Your organizations') }}</h2>
 
-        <x-button variant="secondary" class="flex items-center gap-1">
-          <x-phosphor-plus-circle class="size-4 text-gray-600 transition-transform duration-150" />
-          {{ __('Create organization') }}
-        </x-button>
+        <x-button.secondary href="{{ route('organizations.create') }}">
+          {{ __('New organization') }}
+        </x-button.secondary>
       </div>
 
       <x-box>

@@ -10,6 +10,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Validation\ValidationException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -31,6 +32,36 @@ class CreateOrganizationTest extends TestCase
         (new CreateOrganization(
             userId: 999,
             organizationName: 'Dunder Mifflin',
+        ))->execute();
+    }
+
+    #[Test]
+    public function it_throws_an_exception_if_organization_name_is_already_taken(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+
+        Organization::factory()->create([
+            'name' => 'Dunder Mifflin',
+        ]);
+
+        (new CreateOrganization(
+            userId: $user->id,
+            organizationName: 'Dunder Mifflin',
+        ))->execute();
+    }
+
+    #[Test]
+    public function it_throws_an_exception_if_organization_name_contains_special_characters(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+
+        (new CreateOrganization(
+            userId: $user->id,
+            organizationName: 'Dunder@ / Mifflin!',
         ))->execute();
     }
 

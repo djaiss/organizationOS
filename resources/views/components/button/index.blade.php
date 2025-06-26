@@ -15,9 +15,9 @@
     match (
       $size // Size...
     ) {
-      'base' => 'h-10 rounded-lg text-sm [:where(&)]:px-4',
+      'base' => 'h-8 rounded-lg text-sm [:where(&)]:px-3',
       'sm' => 'h-8 rounded-md text-sm [:where(&)]:px-3',
-      'xs' => 'h-6 rounded-md text-xs [:where(&)]:px-2',
+      'xs' => 'h-8 rounded-md text-xs [:where(&)]:px-2',
     },
     match (
       $variant // Background color...
@@ -40,7 +40,7 @@
       $variant // Border color...
     ) {
       'primary' => 'border border-black/10 dark:border-0',
-      'secondary' => 'border border-gray-200 border-b-gray-300/80 hover:border-gray-200 aria-pressed:border-black/10 dark:border-gray-600 dark:hover:border-gray-600 dark:aria-pressed:border-0',
+      'secondary' => 'border border-gray-300 border-b-gray-300/80 hover:border-gray-400 aria-pressed:border-black/10 dark:border-gray-600 dark:hover:border-gray-600 dark:aria-pressed:border-0',
       default => '',
     },
     match (

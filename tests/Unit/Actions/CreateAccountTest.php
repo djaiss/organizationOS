@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\CreateAccount;
-use App\Models\Organization;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\UniqueConstraintViolationException;
@@ -31,24 +30,6 @@ class CreateAccountTest extends TestCase
 
         User::factory()->create([
             'email' => 'michael.scott@dundermifflin.com',
-        ]);
-
-        (new CreateAccount(
-            email: 'michael.scott@dundermifflin.com',
-            password: 'password',
-            firstName: 'Michael',
-            lastName: 'Scott',
-            organizationName: 'Dunder Mifflin',
-        ))->execute();
-    }
-
-    #[Test]
-    public function it_cant_create_an_organization_with_the_same_name(): void
-    {
-        $this->expectException(UniqueConstraintViolationException::class);
-
-        Organization::factory()->create([
-            'name' => 'Dunder Mifflin',
         ]);
 
         (new CreateAccount(
