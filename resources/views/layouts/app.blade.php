@@ -16,5 +16,7 @@
     </main>
 
     <x-footer />
+
+    <x-toaster />
   </body>
 </html>
