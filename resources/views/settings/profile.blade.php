@@ -1,4 +1,55 @@
-<x-layouts.app :title="__('Profile | Settings')">
+<x-app-layout>
+  <x-slot:title>
+    {{ __('Profile') }}
+  </x-slot>
+
+  <x-breadcrumb :items="[
+    ['label' => __('Dashboard'), 'route' => route('organizations.index')],
+    ['label' => __('Settings')]
+  ]" />
+
+  <!-- settings layout -->
+  <div class="grid grid-cols-[220px_1fr] flex-grow">
+    <!-- Sidebar -->
+    @include('settings.partials.sidebar')
+
+    <!-- Main content -->
+    <section class="p-8">
+      <div class="mx-auto max-w-4xl px-2 py-2 sm:px-0">
+
+        <x-box :title="__('Details')">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <p class="text-sm text-gray-500">{{ __('These are the details that will be displayed on your profile. Everyone within organizations you belong to will have the opportunity to view them.') }}</p>
+              <p class="text-sm text-gray-500">{{ __('If you change your email address, you will need to verify it again. In this case, you will receive a new verification link.') }}</p>
+            </div>
+
+            <x-form method="put" :action="route('settings.profile.update')" class="space-y-4">
+              <!-- First name -->
+              <x-input id="first_name" value="{{ old('first_name', $user->first_name) }}" :label="__('First name')" required placeholder="John" :error="$errors->get('first_name')" autofocus />
+
+              <!-- Last name -->
+              <x-input id="last_name" value="{{ old('last_name', $user->last_name) }}" :label="__('Last name')" required placeholder="Doe" :error="$errors->get('last_name')" />
+
+              <!-- nickname -->
+              <x-input id="nickname" value="{{ old('nickname', $user?->nickname) }}" :label="__('Nickname')" :error="$errors->get('nickname')" />
+
+              <!-- email -->
+              <x-input id="email" value="{{ old('email', $user->email) }}" :label="__('Email')" required placeholder="john@doe.com" :error="$errors->get('email')" />
+
+              <div class="flex items-center justify-start">
+                <x-button dusk="save-profile-button">{{ __('Save') }}</x-button>
+              </div>
+            </x-form>
+          </div>
+        </x-box>
+      </div>
+    </section>
+  </div>
+</x-app-layout>
+
+
+{{-- <x-layouts.app :title="__('Profile | Settings')">
   <section class="w-full">
     @include('partials.settings-heading')
 
@@ -69,4 +120,4 @@
       </section>
     </x-settings.layout>
   </section>
-</x-layouts.app>
+</x-layouts.app> --}}

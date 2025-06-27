@@ -3,7 +3,7 @@
     {{ __('Dashboard') }}
   </x-slot>
 
-  <div class="px-6 pt-6 pb-20">
+  <div class="px-6 pt-6">
     <div class="mx-auto w-full max-w-4xl items-start justify-center">
       <div class="mb-4 flex items-center justify-between">
         <h2 class="text-lg font-medium text-gray-900">{{ __('Your organizations') }}</h2>

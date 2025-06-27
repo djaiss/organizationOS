@@ -1,5 +1,5 @@
 <header {{ $attributes->class(['flex w-full max-w-[1920px] items-center pr-4 pl-9']) }}>
-  <nav class="flex flex-1 items-center gap-3 pt-3 pb-2">
+  <nav class="flex flex-1 items-center gap-3 pt-2 pb-2">
     <a href="/" class="flex items-center">
       <img src="{{ asset('logo.png') }}" alt="Logo" class="focus-visible:shadow-xs-selected h-5 w-5 rounded-md focus:outline-hidden" />
     </a>
@@ -24,7 +24,7 @@
         </button>
 
         <div x-cloak x-show="menuOpen" x-transition:enter="transition duration-50 ease-linear" x-transition:enter-start="-translate-y-1 opacity-90" x-transition:enter-end="translate-y-0 opacity-100" class="absolute top-0 right-0 z-50 mt-10 w-48 min-w-[8rem] rounded-md border border-gray-200/70 bg-white p-1 text-sm text-gray-800 shadow-md" x-cloak>
-          <a @click="menuOpen = false" href="/" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900">
+          <a @click="menuOpen = false" href="{{ route('settings.profile.edit') }}" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900">
             <x-phosphor-user class="mr-2 size-4 text-gray-600" />
             {{ __('Profile') }}
           </a>

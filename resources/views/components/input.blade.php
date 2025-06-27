@@ -32,7 +32,12 @@
 
 @if ($label)
   <div class="space-y-2">
-    <x-label :for="$id" :value="$label" />
+    <div class="flex space-x-2 items-center">
+      <x-label :for="$id" :value="$label" />
+      @if (! $required)
+        <span class="text-gray-500 text-sm">({{ __('optional') }})</span>
+      @endif
+    </div>
     <input id="{{ $id }}" name="{{ $id }}" type="{{ $type }}" {{ $attributes->class($classes) }} value="{{ $value }}" {{ $autocomplete ? 'autocomplete="' . $autocomplete . '"' : '' }} {{ $placeholder ? 'placeholder=' . $placeholder : '' }} @if($passManagerDisabled) data-1p-ignore @endif {{ $autofocus ? 'autofocus' : '' }} />
     @if ($help)
       <p class="mt-1 block text-xs text-gray-700 dark:text-gray-300">{{ $help }}</p>
@@ -43,6 +48,10 @@
 @else
   <div class="space-y-2">
     <input id="{{ $id }}" name="{{ $id }}" type="{{ $type }}" {{ $attributes->class($classes) }} value="{{ $value }}" {{ $autocomplete ? 'autocomplete="' . $autocomplete . '"' : '' }} {{ $placeholder ? 'placeholder=' . $placeholder : '' }} @if($passManagerDisabled) data-1p-ignore @endif {{ $autofocus ? 'autofocus' : '' }} />
+    @if ($help)
+      <p class="mt-1 block text-xs text-gray-700 dark:text-gray-300">{{ $help }}</p>
+    @endif
+
     <x-error :messages="$error" />
   </div>
 @endif
