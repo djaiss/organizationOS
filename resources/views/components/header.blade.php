@@ -1,7 +1,9 @@
-<header {{ $attributes->class(['flex w-full max-w-[1920px] items-center pr-4 pl-9']) }}>
-  <nav class="flex flex-1 items-center gap-3 pt-2 pb-2">
+<header {{ $attributes->class(['flex w-full max-w-[1920px] items-center sm:pr-4 px-2 sm:pl-9']) }}>
+
+  <!-- normal desktop header -->
+  <nav class="hidden sm:flex flex-1 items-center gap-3 pt-2 pb-2">
     <a href="/" class="flex items-center">
-      <img src="{{ asset('logo.png') }}" alt="Logo" class="focus-visible:shadow-xs-selected h-5 w-5 rounded-md focus:outline-hidden" />
+      <img src="{{ asset('images/marketing/auth/logo.webp') }}" alt="{{ config('app.name') }} logo" width="20" height="20" srcset="{{ asset('images/marketing/auth/logo.webp') }} 1x, {{ asset('images/marketing/auth/logo@2x.webp') }} 2x" />
     </a>
 
     <a class="rounded-md px-2 py-1 font-medium border border-transparent hover:border-gray-200 hover:bg-gray-100" href="/">{{ __('Dashboard') }}</a>
@@ -41,5 +43,16 @@
         </div>
       </div>
     </div>
+  </nav>
+
+  <!-- mobile header -->
+  <nav class="flex sm:hidden items-center justify-between gap-3 pt-2 pb-2 w-full">
+    <a href="/" class="">
+      <img src="{{ asset('images/marketing/auth/logo.webp') }}" alt="{{ config('app.name') }} logo" width="20" height="20" srcset="{{ asset('images/marketing/auth/logo.webp') }} 1x, {{ asset('images/marketing/auth/logo@2x.webp') }} 2x" />
+    </a>
+
+    <button class="flex items-center gap-2 rounded-md py-1 font-medium border border-transparent hover:border-gray-200 hover:bg-gray-100">
+      <x-phosphor-list class="size-5 text-gray-600 transition-transform duration-150" />
+    </button>
   </nav>
 </header>
