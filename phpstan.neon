@@ -1,11 +1,17 @@
 includes:
     - ./vendor/larastan/larastan/extension.neon
+    - ./vendor/nesbot/carbon/extension.neon
+    - phpstan-baseline.neon
 
 parameters:
     paths:
         - app/
-    # Level 9 is the highest level
+        - routes/
+        - tests/
+        - database/
+
     level: 5
+
     ignoreErrors:
 
     excludePaths:
