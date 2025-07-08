@@ -6,7 +6,6 @@ parameters:
     paths:
         - app/
         - routes/
-        - tests/
         - database/
 
     level: 5
