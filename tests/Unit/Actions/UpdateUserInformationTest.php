@@ -5,15 +5,12 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Jobs\LogUserAction;
-use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use App\Actions\UpdateUserInformation;
-use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
-use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 

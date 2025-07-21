@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\CreateAccount;
+use App\Jobs\LogUserAction;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\UniqueConstraintViolationException;
@@ -69,6 +70,14 @@ class CreateAccountTest extends TestCase
         $this->assertInstanceOf(
             User::class,
             $user,
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: LogUserAction::class,
+            callback: function (LogUserAction $job) use ($user): bool {
+                return $job->action === 'account_created' && $job->user->id === $user->id;
+            },
         );
     }
 }
