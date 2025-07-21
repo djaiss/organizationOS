@@ -21,9 +21,9 @@
         <x-box class="mb-12">
           <x-form method="post" :action="route('verification.store')" class="space-y-6">
             @if (session('status') == 'verification-link-sent')
-              <x-text class="!dark:text-green-400 text-center font-medium !text-green-600">
+              <p class="!dark:text-green-400 text-center font-medium !text-green-600">
                 {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-              </x-text>
+              </p>
             @endif
 
             <div class="flex flex-col items-center justify-between space-y-3">
