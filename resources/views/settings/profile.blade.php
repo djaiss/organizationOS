@@ -20,6 +20,7 @@
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div class="space-y-2">
               <p class="text-sm text-gray-500">{{ __('These are the details that will be displayed on your profile. Everyone within organizations you belong to will have the opportunity to view them.') }}</p>
+              <p class="text-sm text-gray-500">{{ __('If you provide a nickname, it will be displayed to others instead of your real name.') }}</p>
               <p class="text-sm text-gray-500">{{ __('If you change your email address, you will need to verify it again. In this case, you will receive a new verification link.') }}</p>
             </div>
 
