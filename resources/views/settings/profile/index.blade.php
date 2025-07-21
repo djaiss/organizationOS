@@ -1,7 +1,7 @@
 <?php
 /*
- * @var app\Models\User $user
- * @var app\Http\ViewModels\ProfileShowViewModel $viewModel
+ * @var \App\Models\User $user
+ * @var \App\Http\ViewModels\ProfileShowViewModel $viewModel
  */
 ?>
 
