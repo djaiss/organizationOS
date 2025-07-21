@@ -20,6 +20,7 @@
         "spatie/laravel-login-link": "^1.6"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.16",
         "brianium/paratest": "^7.7",
         "fakerphp/faker": "^1.23",
         "larastan/larastan": "^3.3",
