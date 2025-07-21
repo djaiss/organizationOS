@@ -22,7 +22,7 @@ class ProfileController extends Controller
             user: $request->user(),
         );
 
-        return view('settings.profile', [
+        return view('settings.profile.index', [
             'user' => $request->user(),
             'viewModel' => $viewModel,
         ]);

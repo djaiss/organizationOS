@@ -18,7 +18,7 @@ class LogController extends Controller
             ->orderBy('created_at', 'desc')
             ->cursorPaginate(10);
 
-        return view('administration.logs.index', [
+        return view('settings.logs.index', [
             'logs' => $logs,
         ]);
     }
