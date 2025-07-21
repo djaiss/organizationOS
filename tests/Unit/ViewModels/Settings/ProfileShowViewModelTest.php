@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Services;
+namespace Tests\Unit\ViewModels\Settings;
 
 use App\Http\ViewModels\Settings\ProfileShowViewModel;
 use App\Models\Log;

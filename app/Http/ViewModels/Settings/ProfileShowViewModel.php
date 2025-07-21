@@ -23,7 +23,7 @@ class ProfileShowViewModel
 
     public function logs(): Collection
     {
-        $this->logs = Log::where('user_id', $this->user->id)
+        return Log::where('user_id', $this->user->id)
             ->with('user')
             ->with('organization')
             ->take(5)
@@ -36,7 +36,5 @@ class ProfileShowViewModel
                 'created_at' => $log->created_at->format('Y-m-d H:i:s'),
                 'created_at_diff_for_humans' => $log->created_at->diffForHumans(),
             ]);
-
-        return $this->logs;
     }
 }
