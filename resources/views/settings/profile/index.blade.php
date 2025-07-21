@@ -1,7 +1,7 @@
 <?php
 /*
- * @var User $user
- * @var ProfileShowViewModel $viewModel
+ * @var app\Models\User $user
+ * @var app\Http\ViewModels\ProfileShowViewModel $viewModel
  */
 ?>
 
@@ -57,23 +57,7 @@
         <x-box :title="__('Logs')" padding="p-0">
           <!-- last actions -->
           @foreach ($viewModel->logs() as $log)
-            <div class="flex items-center justify-between border-b border-gray-200 p-3 text-sm first:rounded-t-lg last:rounded-b-lg last:border-b-0 hover:bg-blue-50">
-              <div class="flex items-center gap-3">
-                <x-phosphor-pulse class="size-3 min-w-3 text-zinc-600 dark:text-zinc-400" />
-                <div class="">
-                  <p class="flex items-center gap-1">
-                    <span class="">{{ $log->username }}</span>
-                    |
-                    <span class="font-mono text-xs">{{ $log->action }}</span>
-                  </p>
-                  <p>{{ $log->description }}</p>
-                </div>
-              </div>
-
-              <x-tooltip text="{{ $log->created_at }}">
-                <p class="font-mono text-xs">{{ $log->created_at_diff_for_humans }}</p>
-              </x-tooltip>
-            </div>
+            @include('settings.logs.partials.log', ['log' => $log])
           @endforeach
 
           @if ($viewModel->hasMoreLogs())
