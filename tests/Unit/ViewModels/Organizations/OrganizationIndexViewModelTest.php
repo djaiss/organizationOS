@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\ViewModels;
+namespace Tests\Unit\ViewModels\Organizations;
 
 use App\Http\ViewModels\Organizations\OrganizationIndexViewModel;
 use App\Models\User;

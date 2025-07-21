@@ -17,6 +17,8 @@ class OrganizationController extends Controller
             user: Auth::user(),
         );
 
-        return view('organizations.index', ['viewModel' => $viewModel]);
+        return view('organizations.index', [
+            'viewModel' => $viewModel,
+        ]);
     }
 }

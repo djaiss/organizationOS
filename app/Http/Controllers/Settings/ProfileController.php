@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Settings;
 
 use App\Actions\UpdateUserInformation;
 use App\Http\Controllers\Controller;
+use App\Http\ViewModels\Settings\ProfileShowViewModel;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,8 +18,13 @@ class ProfileController extends Controller
 {
     public function edit(Request $request): View
     {
-        return view('settings.profile', [
+        $viewModel = new ProfileShowViewModel(
+            user: $request->user(),
+        );
+
+        return view('settings.profile.index', [
             'user' => $request->user(),
+            'viewModel' => $viewModel,
         ]);
     }
 

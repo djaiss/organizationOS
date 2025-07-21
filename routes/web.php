@@ -27,6 +27,9 @@ Route::middleware(['auth', 'verified', 'set.locale'])->group(function (): void {
     Route::put('settings/profile', [Settings\ProfileController::class, 'update'])->name('settings.profile.update');
     Route::delete('settings/profile', [Settings\ProfileController::class, 'destroy'])->name('settings.profile.destroy');
 
+    // logs
+    Route::get('settings/profile/logs', [Settings\LogController::class, 'index'])->name('settings.logs.index');
+
     // password
     Route::get('settings/password', [Settings\PasswordController::class, 'edit'])->name('settings.password.edit');
     Route::put('settings/password', [Settings\PasswordController::class, 'update'])->name('settings.password.update');
