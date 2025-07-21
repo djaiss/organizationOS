@@ -21,7 +21,7 @@ class LogFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'organization_id' => Organization::factory(),
