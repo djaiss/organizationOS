@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 class OrganizationIndexViewModel
 {
     public function __construct(
-        public User $user,
+        private readonly User $user,
     ) {}
 
     public function organizations(): Collection

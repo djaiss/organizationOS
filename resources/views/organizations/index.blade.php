@@ -1,3 +1,9 @@
+<?php
+/*
+ * @var OrganizationIndexViewModel $viewModel
+ */
+?>
+
 <x-app-layout>
   <x-slot:title>
     {{ __('Dashboard') }}

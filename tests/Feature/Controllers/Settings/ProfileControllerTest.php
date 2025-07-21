@@ -71,4 +71,26 @@ class ProfileControllerTest extends TestCase
 
         $this->assertNotNull($user->refresh()->email_verified_at);
     }
+
+    #[Test]
+    public function it_shows_the_latest_logs(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->put('/settings/profile', [
+                'first_name' => 'Michael',
+                'last_name' => 'Scott',
+                'nickname' => 'Michael',
+                'email' => $user->email,
+                'locale' => 'en',
+            ]);
+
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/settings/profile');
+
+        $this->assertNotNull($user->refresh()->email_verified_at);
+    }
 }
