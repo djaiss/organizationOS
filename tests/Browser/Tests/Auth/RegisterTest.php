@@ -25,6 +25,7 @@ class RegisterTest extends DuskTestCase
                 ->type('password_confirmation', 'v@pfzY*9s')
                 ->type('organization_name', 'Dunder Mifflin')
                 ->press('@register-button')
+                ->waitForLocation('/verify-email')
                 ->assertPathIs('/verify-email');
         });
     }
