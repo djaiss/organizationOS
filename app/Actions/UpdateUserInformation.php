@@ -5,13 +5,8 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Jobs\LogUserAction;
-use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
-use Carbon\Carbon;
-use Carbon\Exceptions\InvalidDateException;
-use Carbon\Exceptions\InvalidFormatException;
 use Illuminate\Auth\Events\Registered;
-use InvalidArgumentException;
 
 class UpdateUserInformation
 {
