@@ -34,6 +34,28 @@ class UserTest extends TestCase
     }
 
     #[Test]
+    public function it_gets_the_name(): void
+    {
+        $user = User::factory()->create([
+            'first_name' => 'Dwight',
+            'last_name' => 'Schrute',
+            'nickname' => null,
+        ]);
+
+        $this->assertEquals(
+            'Dwight Schrute',
+            $user->name,
+        );
+
+        $user->nickname = 'The Beet Farmer';
+        $user->save();
+        $this->assertEquals(
+            'The Beet Farmer',
+            $user->name,
+        );
+    }
+
+    #[Test]
     public function it_has_initials(): void
     {
         $dwight = User::factory()->create([

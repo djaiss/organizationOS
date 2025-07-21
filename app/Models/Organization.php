@@ -20,6 +20,7 @@ use Carbon\Carbon;
  */
 class Organization extends Model
 {
+    /** @use HasFactory<\Database\Factories\OrganizationFactory> */
     use HasFactory;
 
     /**

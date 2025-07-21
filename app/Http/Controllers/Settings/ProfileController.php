@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Settings;
 
+use App\Actions\UpdateUserInformation;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -23,8 +24,6 @@ class ProfileController extends Controller
 
     public function update(Request $request): RedirectResponse
     {
-        $user = $request->user();
-
         $validated = $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
@@ -35,18 +34,19 @@ class ProfileController extends Controller
                 'lowercase',
                 'email',
                 'max:255',
-                Rule::unique(User::class)->ignore($user->id),
+                Rule::unique(User::class)->ignore(Auth::user()->id),
             ],
             'locale' => ['required', 'string', Rule::in(['en', 'fr'])],
         ]);
 
-        $user->fill($validated);
-
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-        }
-
-        $user->save();
+        new UpdateUserInformation(
+            user: Auth::user(),
+            email: $validated['email'],
+            firstName: $validated['first_name'],
+            lastName: $validated['last_name'],
+            nickname: $validated['nickname'],
+            locale: $validated['locale'],
+        )->execute();
 
         return redirect()->route('settings.profile.edit')
             ->with('status', __('Changes saved'));

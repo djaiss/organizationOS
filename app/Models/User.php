@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 /**
  * Class User
@@ -20,7 +21,7 @@ use Carbon\Carbon;
  * @property string $last_name
  * @property string $nickname
  * @property string $email
- * @property Carbon $email_verified_at
+ * @property Carbon|null $email_verified_at
  * @property Carbon $created_at
  * @property string $password
  * @property string $locale
@@ -91,5 +92,28 @@ class User extends Authenticatable implements MustVerifyEmail
             ->explode(' ')
             ->map(fn(string $name) => Str::of($name)->substr(0, 1))
             ->implode('');
+    }
+
+    /**
+     * Get the user's full name by combining first and last name.
+     * If a nickname is set, it will be used instead of the full name.
+     *
+     * @return Attribute<string, string>
+     */
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: function (mixed $value, array $attributes): string {
+                if ($attributes['nickname']) {
+                    return $attributes['nickname'];
+                }
+
+                $firstName = $attributes['first_name'];
+                $lastName = $attributes['last_name'];
+                $separator = $firstName && $lastName ? ' ' : '';
+
+                return $firstName . $separator . $lastName;
+            },
+        );
     }
 }
