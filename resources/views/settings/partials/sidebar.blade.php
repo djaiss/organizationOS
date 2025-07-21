@@ -1,4 +1,4 @@
-<aside class="border-r border-gray-200 bg-white rounded-bl-lg flex flex-col py-4 px-4">
+<aside class="sm:border-r border-b border-gray-200 bg-white sm:border-b-0 sm:rounded-bl-lg sm:flex flex-col py-4 px-4">
   <nav class="flex flex-col gap-1">
     <p class="mb-1 uppercase text-xs font-medium text-gray-500">{{ __('Account') }}</p>
     <a href="#" class="flex items-center gap-3 px-2 py-1 rounded-lg text-gray-900 font-medium bg-gray-100">

@@ -46,13 +46,60 @@
   </nav>
 
   <!-- mobile header -->
-  <nav class="flex sm:hidden items-center justify-between gap-3 pt-2 pb-2 w-full">
-    <a href="/" class="">
+  <nav class="flex sm:hidden items-center justify-between gap-3 pt-2 pb-2 w-full" x-data="{ mobileMenuOpen: false }">
+    <a href="/">
       <img src="{{ asset('images/marketing/auth/logo.webp') }}" alt="{{ config('app.name') }} logo" width="20" height="20" srcset="{{ asset('images/marketing/auth/logo.webp') }} 1x, {{ asset('images/marketing/auth/logo@2x.webp') }} 2x" />
     </a>
 
-    <button class="flex items-center gap-2 rounded-md py-1 font-medium border border-transparent hover:border-gray-200 hover:bg-gray-100">
+    <button @click="mobileMenuOpen = true" class="flex items-center gap-2 rounded-md py-1 font-medium border border-transparent hover:border-gray-200 hover:bg-gray-100">
       <x-phosphor-list class="size-5 text-gray-600 transition-transform duration-150" />
     </button>
+
+    <!-- Mobile Menu Overlay -->
+    <div x-cloak x-show="mobileMenuOpen" x-transition:enter="transition duration-50 ease-out" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition duration-50 ease-in" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-50 bg-white dark:bg-gray-900">
+      <div class="flex flex-col h-full">
+        <!-- Mobile Menu Header -->
+        <div class="flex items-center justify-between py-1 px-2 border-b border-gray-200 dark:border-gray-700">
+          <img src="{{ asset('images/marketing/auth/logo.webp') }}" alt="{{ config('app.name') }} logo" width="20" height="20" srcset="{{ asset('images/marketing/auth/logo.webp') }} 1x, {{ asset('images/marketing/auth/logo@2x.webp') }} 2x" />
+
+          <button @click="mobileMenuOpen = false" class="flex items-center gap-2 rounded-md py-2 font-medium border border-transparent hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-600 dark:hover:bg-gray-800">
+            <x-phosphor-x class="size-5 text-gray-600 dark:text-gray-400" />
+          </button>
+        </div>
+
+        <!-- Mobile Menu Content -->
+        <div class="flex-1 p-4 space-y-4">
+          <a @click="mobileMenuOpen = false" href="/" class="flex items-center gap-3 p-3 rounded-md text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            {{ __('Dashboard') }}
+          </a>
+
+          <a @click="mobileMenuOpen = false" href="/" class="flex items-center gap-3 p-3 rounded-md text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <x-phosphor-magnifying-glass class="size-5 text-gray-600 dark:text-gray-400" />
+            {{ __('Search') }}
+          </a>
+
+          <a @click="mobileMenuOpen = false" href="/" class="flex items-center gap-3 p-3 rounded-md text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <x-phosphor-lifebuoy class="size-5 text-gray-600 dark:text-gray-400" />
+            {{ __('Docs') }}
+          </a>
+
+          <a @click="mobileMenuOpen = false" href="{{ route('settings.profile.edit') }}" class="flex items-center gap-3 p-3 rounded-md text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <x-phosphor-user class="size-5 text-gray-600 dark:text-gray-400" />
+            {{ __('Profile') }}
+          </a>
+        </div>
+
+        <!-- Mobile Menu Footer -->
+        <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+          <form method="POST" action="{{ route('logout') }}" class="w-full">
+            @csrf
+            <button @click="mobileMenuOpen = false" type="submit" class="flex items-center gap-3 w-full p-3 rounded-md text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <x-phosphor-sign-out class="size-5 text-gray-600 dark:text-gray-400" />
+              {{ __('Logout') }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   </nav>
 </header>
