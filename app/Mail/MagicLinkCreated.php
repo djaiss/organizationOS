@@ -29,8 +29,8 @@ class MagicLinkCreated extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.auth.magic-link-created',
             text: 'mail.auth.magic-link-created-text',
+            markdown: 'mail.auth.magic-link-created',
             with: [
                 'link' => $this->link,
             ],

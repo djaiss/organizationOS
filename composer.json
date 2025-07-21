@@ -1,6 +1,6 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "imacrayon/blade-starter-kit",
+    "name": "djaiss/organizationos",
     "type": "project",
     "description": "The unofficial Laravel starter kit for Blade.",
     "keywords": [
@@ -11,6 +11,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
+        "amirami/localizator": "^0.14.0@alpha",
         "cesargb/laravel-magiclink": "^2.24",
         "codeat3/blade-phosphor-icons": "^2.3",
         "erag/laravel-disposable-email": "^3.5",
@@ -81,6 +82,7 @@
         ],
         "organizationos:dusk": "rm -f database/database.sqlite && touch database/database.sqlite && php artisan migrate:fresh && php artisan dusk",
         "organizationos:lint": "./vendor/bin/pint",
+        "organizationos:locale": "php artisan localize en,fr --remove-missing",
         "organizationos:prettier": "npx prettier --write resources/",
         "organizationos:rector": "./vendor/bin/rector",
         "organizationos:setup": "php artisan migrate:fresh && php artisan db:seed",
@@ -105,6 +107,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }

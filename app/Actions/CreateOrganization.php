@@ -48,7 +48,7 @@ class CreateOrganization
         }
 
         // make sure the organization name doesn't contain any special characters
-        if (! preg_match('/^[a-zA-Z0-9\s\-_]+$/', $this->organizationName)) {
+        if (in_array(preg_match('/^[a-zA-Z0-9\s\-_]+$/', $this->organizationName), [0, false], true)) {
             throw ValidationException::withMessages([
                 'organization_name' => 'Organization name can only contain letters, numbers, spaces, hyphens and underscores',
             ]);

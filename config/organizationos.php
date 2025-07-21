@@ -26,4 +26,15 @@ return [
     */
 
     'show_marketing_site' => env('SHOW_MARKETING_SITE', true),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Supported locales
+    |--------------------------------------------------------------------------
+    |
+    | This value enables the supported locales of the application.
+    |
+    */
+
+    'supported_locales' => ['en', 'fr'],
 ];

@@ -22,6 +22,8 @@ use Carbon\Carbon;
  * @property string $email
  * @property Carbon $email_verified_at
  * @property Carbon $created_at
+ * @property string $password
+ * @property string $locale
  * @property Carbon|null $updated_at
  */
 class User extends Authenticatable implements MustVerifyEmail
@@ -41,6 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'nickname',
         'email',
         'password',
+        'locale',
         'email_verified_at',
     ];
 

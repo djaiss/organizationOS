@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\Marketing\MarketingController;
 use App\Http\Controllers\Organizations\OrganizationController;
 use App\Http\Controllers\Settings;
@@ -9,7 +10,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MarketingController::class, 'index'])->name('marketing.index');
 
-Route::middleware(['auth', 'verified'])->group(function (): void {
+Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update');
+
+Route::middleware(['auth', 'verified', 'set.locale'])->group(function (): void {
     Route::get('organizations', [OrganizationController::class, 'index'])->name('organizations.index');
     Route::get('organizations/{organization}', [OrganizationController::class, 'show'])->name('organizations.show');
     Route::get('organizations', [OrganizationController::class, 'index'])->name('organizations.index');
