@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Jobs;
 
+use App\Enums\EmailType;
 use App\Jobs\SendFailedLoginEmail;
 use App\Mail\LoginFailed;
+use App\Models\EmailSent;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Mail;
@@ -19,6 +21,7 @@ class SendFailedLoginEmailTest extends TestCase
     #[Test]
     public function it_sends_an_email_to_the_user_if_there_is_a_failed_login(): void
     {
+        config('app.name', 'OrganizationOS');
         Mail::fake();
 
         User::factory()->create([
@@ -31,6 +34,11 @@ class SendFailedLoginEmailTest extends TestCase
             return $mail->hasTo('michael.scott@dundermifflin.com') &&
                 $mail->queue === 'high';
         });
+
+        $emailSent = EmailSent::latest()->first();
+        $this->assertEquals(EmailType::LOGIN_FAILED->value, $emailSent->email_type);
+        $this->assertEquals('michael.scott@dundermifflin.com', $emailSent->email_address);
+        $this->assertEquals('Login attempt on OrganizationOS', $emailSent->subject);
     }
 
     #[Test]

@@ -7,7 +7,6 @@ namespace Tests\Feature\Controllers\Auth;
 use App\Jobs\SendFailedLoginEmail;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Event;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Queue;

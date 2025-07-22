@@ -12,22 +12,23 @@ use Illuminate\Queue\SerializesModels;
 
 class LoginFailed extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public function __construct() {}
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Login attempt on '.config('app.name'),
+            subject: 'Login attempt on ' . config('app.name'),
         );
     }
 
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.auth.login-failed',
             text: 'mail.auth.login-failed-text',
+            markdown: 'mail.auth.login-failed',
         );
     }
 }

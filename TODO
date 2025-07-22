@@ -5,7 +5,10 @@
 - [x] Organization creation after user signs up
 - [x] Change password
 - [x] List logs
-- [ ] Send email to user when failed attempt to login
+- [x] Send email to user when failed attempt to login
+- [x] Record sent emails in the database
+- [ ] Display sent emails
+- [ ] Test email templates
 - [ ] Manage API tokens
 - [ ] Basic docs microsite
 - [ ] API to check health

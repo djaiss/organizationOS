@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Organization
@@ -60,5 +61,15 @@ class Organization extends Model
         return $this->belongsToMany(User::class)
             ->withPivot(['joined_at'])
             ->withTimestamps();
+    }
+
+    /**
+     * Get the emails sent by the organization.
+     *
+     * @return HasMany<EmailSent, $this>
+     */
+    public function emailsSent(): HasMany
+    {
+        return $this->hasMany(EmailSent::class, 'organization_id');
     }
 }

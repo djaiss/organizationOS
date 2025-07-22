@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class User
@@ -84,6 +85,14 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Get the emailsSent associated with the user.
+     */
+    public function emailsSent(): HasMany
+    {
+        return $this->hasMany(EmailSent::class);
+    }
+
+    /**
      * Get the user's initials
      */
     public function initials(): string
@@ -115,5 +124,15 @@ class User extends Authenticatable implements MustVerifyEmail
                 return $firstName . $separator . $lastName;
             },
         );
+    }
+
+    /**
+     * Check if the user is part of a specific organization.
+     *
+     * @return bool
+     */
+    public function isPartOfOrganization(Organization $organization): bool
+    {
+        return $this->organizations()->where('organization_id', $organization->id)->exists();
     }
 }
