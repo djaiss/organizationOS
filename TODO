@@ -4,7 +4,7 @@
 - [x] User registration & login
 - [x] Organization creation after user signs up
 - [x] Change password
-- [ ] List logs
+- [x] List logs
 - [ ] Send email to user when failed attempt to login
 - [ ] Manage API tokens
 - [ ] Basic docs microsite
