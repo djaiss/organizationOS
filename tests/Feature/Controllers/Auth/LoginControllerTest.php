@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Controllers\Auth;
 
+use App\Jobs\SendFailedLoginEmail;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Queue;
 
 class LoginControllerTest extends TestCase
 {
@@ -46,6 +49,23 @@ class LoginControllerTest extends TestCase
         ]);
 
         $this->assertGuest();
+    }
+
+    #[Test]
+    public function it_sends_an_email_on_failed_login(): void
+    {
+        Queue::fake();
+
+        $user = User::factory()->create();
+
+        $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'wrong-password',
+        ]);
+
+        Queue::assertPushed(SendFailedLoginEmail::class, function (SendFailedLoginEmail $job) use ($user): bool {
+            return $job->email === $user->email;
+        });
     }
 
     #[Test]
