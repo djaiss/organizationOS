@@ -25,7 +25,7 @@
         </button>
 
         <div x-cloak x-show="menuOpen" x-transition:enter="transition duration-50 ease-linear" x-transition:enter-start="-translate-y-1 opacity-90" x-transition:enter-end="translate-y-0 opacity-100" class="absolute top-0 right-0 z-50 mt-10 w-48 min-w-[8rem] rounded-md border border-gray-200/70 bg-white p-1 text-sm text-gray-800 shadow-md" x-cloak>
-          <a @click="menuOpen = false" href="{{ route('settings.profile.edit') }}" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900">
+          <a @click="menuOpen = false" href="{{ route('settings.profile.index') }}" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900">
             <x-phosphor-user class="mr-2 size-4 text-gray-600" />
             {{ __('Profile') }}
           </a>
@@ -82,7 +82,7 @@
             {{ __('Docs') }}
           </a>
 
-          <a @click="mobileMenuOpen = false" href="{{ route('settings.profile.edit') }}" class="flex items-center gap-3 rounded-md p-3 text-lg font-medium text-gray-800 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">
+          <a @click="mobileMenuOpen = false" href="{{ route('settings.profile.index') }}" class="flex items-center gap-3 rounded-md p-3 text-lg font-medium text-gray-800 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">
             <x-phosphor-user class="size-5 text-gray-600 dark:text-gray-400" />
             {{ __('Profile') }}
           </a>
