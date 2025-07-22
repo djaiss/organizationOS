@@ -10,6 +10,7 @@ use App\Mail\LoginFailed;
 use App\Models\EmailSent;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -21,7 +22,7 @@ class SendFailedLoginEmailTest extends TestCase
     #[Test]
     public function it_sends_an_email_to_the_user_if_there_is_a_failed_login(): void
     {
-        env('APP_NAME', 'OrganizationOS');
+        Config::set('app.name', 'OrganizationOS');
         Mail::fake();
 
         User::factory()->create([
