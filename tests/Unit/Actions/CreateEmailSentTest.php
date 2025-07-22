@@ -54,6 +54,28 @@ class CreateEmailSentTest extends TestCase
     }
 
     #[Test]
+    public function it_sanitizes_the_body_and_strips_any_links(): void
+    {
+        Queue::fake();
+
+        $user = User::factory()->create();
+
+        $emailSent = (new CreateEmailSent(
+            user: $user,
+            organization: null,
+            emailType: 'birthday_wishes',
+            emailAddress: 'dwight.schrute@dundermifflin.com',
+            subject: 'Happy Birthday!',
+            body: 'Hope you <a href="https://example.com">have a great day!</a>',
+        ))->execute();
+
+        $this->assertDatabaseHas('emails_sent', [
+            'id' => $emailSent->id,
+            'body' => 'Hope you have a great day!',
+        ]);
+    }
+
+    #[Test]
     public function it_fails_if_user_doesnt_belong_to_organization(): void
     {
         $this->expectException(ModelNotFoundException::class);

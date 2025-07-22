@@ -9,6 +9,7 @@ use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
+use Stevebauman\Purify\Facades\Purify;
 
 class CreateEmailSent
 {
@@ -26,6 +27,7 @@ class CreateEmailSent
     public function execute(): EmailSent
     {
         $this->validate();
+        $this->sanitize();
         $this->create();
 
         return $this->emailSent;
@@ -36,6 +38,18 @@ class CreateEmailSent
         if ($this->organization && $this->user->isPartOfOrganization($this->organization) === false) {
             throw new ModelNotFoundException('User is not part of the organization.');
         }
+    }
+
+    /**
+     * This will remove any link to the body of the email, since they
+     * could contain links that are not valid anymore.
+     *
+     * @return void
+     */
+    private function sanitize(): void
+    {
+        $config = ['HTML.ForbiddenElements' => 'a'];
+        $this->body = Purify::config($config)->clean($this->body);
     }
 
     private function create(): void
