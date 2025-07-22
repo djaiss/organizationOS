@@ -54,7 +54,7 @@
           </div>
         </x-box>
 
-        <x-box :title="__('Logs')" padding="p-0">
+        <x-box :title="__('Logs')" padding="p-0" dusk="logs-box">
           <!-- last actions -->
           @foreach ($viewModel->logs() as $log)
             @include('settings.logs.partials.log', ['log' => $log])

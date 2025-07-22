@@ -7,6 +7,7 @@ namespace Tests\Browser\Tests\Settings\Security;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
+use Tests\Browser\Pages\Settings\ProfilePage;
 use Tests\DuskTestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -29,6 +30,9 @@ class ChangePasswordTest extends DuskTestCase
                 ->type('new_password_confirmation', 'MSw&w%@qt')
                 ->press('@change-password-button')
                 ->assertPathIs('/settings/security');
+
+            $browser->visit(new ProfilePage)
+                ->assertLogContains('update_user_password');
         });
     }
 }
