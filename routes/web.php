@@ -30,8 +30,8 @@ Route::middleware(['auth', 'verified', 'set.locale'])->group(function (): void {
     // logs
     Route::get('settings/profile/logs', [Settings\LogController::class, 'index'])->name('settings.logs.index');
 
-    // password
-    Route::get('settings/password', [Settings\PasswordController::class, 'edit'])->name('settings.password.edit');
+    // security
+    Route::get('settings/security', [Settings\SecurityController::class, 'index'])->name('settings.security.index');
     Route::put('settings/password', [Settings\PasswordController::class, 'update'])->name('settings.password.update');
     Route::get('settings/appearance', [Settings\AppearanceController::class, 'edit'])->name('settings.appearance.edit');
 });

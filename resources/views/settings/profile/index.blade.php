@@ -24,7 +24,7 @@
     <section class="p-4 sm:p-8">
       <div class="mx-auto max-w-4xl sm:px-0">
         <x-box :title="__('Details')" class="mb-6">
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
             <div class="space-y-2">
               <p class="text-sm text-gray-500">{{ __('These are the details that will be displayed on your profile. Everyone within organizations you belong to will have the opportunity to view them.') }}</p>
               <p class="text-sm text-gray-500">{{ __('If you provide a nickname, it will be displayed to others instead of your real name.') }}</p>

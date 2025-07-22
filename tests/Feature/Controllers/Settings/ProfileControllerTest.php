@@ -69,6 +69,8 @@ class ProfileControllerTest extends TestCase
             ->assertSessionHasNoErrors()
             ->assertRedirect('/settings/profile');
 
+        $response->assertSessionHas('status', 'Changes saved');
+
         $this->assertNotNull($user->refresh()->email_verified_at);
     }
 

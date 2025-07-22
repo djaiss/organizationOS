@@ -4,33 +4,36 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Settings;
 
+use App\Actions\UpdateUserPassword;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Auth;
 
 class PasswordController extends Controller
 {
-    public function edit(Request $request): View
-    {
-        return view('settings.password', [
-            'user' => $request->user(),
-        ]);
-    }
-
-    public function update(Request $request): RedirectResponse
+   public function update(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'current_password' => ['required', 'current_password'],
-            'password' => ['required', Rules\Password::defaults(), 'confirmed'],
+            'current_password' => 'required|string',
+            'new_password' => [
+                'required',
+                'confirmed',
+                Password::min(8)->uncompromised(),
+            ],
         ]);
 
-        $request->user()->update([
-            'password' => Hash::make($validated['password']),
-        ]);
+        (new UpdateUserPassword(
+            user: Auth::user(),
+            currentPassword: $validated['current_password'],
+            newPassword: $validated['new_password'],
+        ))->execute();
 
-        return back()->with('status', 'password-updated');
+        return redirect()->route('settings.security.index')
+            ->with('status', __('Changes saved'));
     }
 }

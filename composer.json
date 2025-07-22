@@ -69,7 +69,8 @@
         "test": [
           "@organizationos:unit",
           "@organizationos:dusk",
-          "@organizationos:setup"
+          "@organizationos:setup",
+          "@organizationos:locale"
         ],
         "precommit": [
           "@organizationos:rector",
@@ -79,6 +80,7 @@
           "@organizationos:update-blacklist-domains",
           "@organizationos:prettier",
           "@organizationos:update",
+          "@organizationos:locale",
           "@organizationos:setup"
         ],
         "organizationos:dusk": "rm -f database/database.sqlite && touch database/database.sqlite && php artisan migrate:fresh && php artisan dusk",
