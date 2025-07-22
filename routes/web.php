@@ -30,6 +30,9 @@ Route::middleware(['auth', 'verified', 'set.locale'])->group(function (): void {
     // logs
     Route::get('settings/profile/logs', [Settings\LogController::class, 'index'])->name('settings.logs.index');
 
+    // emails
+    Route::get('settings/profile/emails', [Settings\EmailController::class, 'index'])->name('settings.emails.index');
+
     // security
     Route::get('settings/security', [Settings\SecurityController::class, 'index'])->name('settings.security.index');
     Route::put('settings/password', [Settings\PasswordController::class, 'update'])->name('settings.password.update');
