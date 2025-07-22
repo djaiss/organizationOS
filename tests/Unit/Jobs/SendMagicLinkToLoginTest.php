@@ -10,6 +10,7 @@ use App\Mail\MagicLinkCreated;
 use App\Models\EmailSent;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -21,7 +22,7 @@ class SendMagicLinkToLoginTest extends TestCase
     #[Test]
     public function it_sends_a_link_to_login(): void
     {
-        config('app.name', 'OrganizationOS');
+        Config::set('app.name', 'OrganizationOS');
         Mail::fake();
 
         User::factory()->create([
