@@ -8,15 +8,12 @@ use App\Actions\UpdateUserPassword;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\View\View;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Auth;
 
 class PasswordController extends Controller
 {
-   public function update(Request $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'current_password' => 'required|string',
@@ -27,11 +24,11 @@ class PasswordController extends Controller
             ],
         ]);
 
-        (new UpdateUserPassword(
+        new UpdateUserPassword(
             user: Auth::user(),
             currentPassword: $validated['current_password'],
             newPassword: $validated['new_password'],
-        ))->execute();
+        )->execute();
 
         return redirect()->route('settings.security.index')
             ->with('status', __('Changes saved'));

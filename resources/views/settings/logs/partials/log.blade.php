@@ -11,7 +11,7 @@
       <p class="flex items-center gap-2">
         <span class="">{{ $log->username }}</span>
         |
-        <span class="font-mono ">{{ $log->action }}</span>
+        <span class="font-mono">{{ $log->action }}</span>
       </p>
       <p class="">{{ $log->description }}</p>
     </div>

@@ -5,11 +5,8 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Jobs\LogUserAction;
-use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use App\Actions\UpdateUserPassword;
-use Carbon\Carbon;
-use Exception;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Queue;

@@ -30,7 +30,7 @@ class ProfilePage extends Page
      */
     public function assertLogContains(Browser $browser, string $action): self
     {
-        $browser->with('@logs-box', function (Browser $logsSection) use ($action) {
+        $browser->with('@logs-box', function (Browser $logsSection) use ($action): void {
             $logsSection->assertSee($action);
         });
 
