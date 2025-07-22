@@ -31,6 +31,8 @@ class ChangePasswordTest extends DuskTestCase
                 ->press('@change-password-button')
                 ->assertPathIs('/settings/security');
 
+            $browser->pause(500);
+
             $browser->visit(new ProfilePage)
                 ->assertLogContains('update_user_password');
         });
