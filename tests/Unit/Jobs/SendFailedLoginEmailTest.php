@@ -21,7 +21,7 @@ class SendFailedLoginEmailTest extends TestCase
     #[Test]
     public function it_sends_an_email_to_the_user_if_there_is_a_failed_login(): void
     {
-        config('app.name', 'OrganizationOS');
+        env('APP_NAME', 'OrganizationOS');
         Mail::fake();
 
         User::factory()->create([

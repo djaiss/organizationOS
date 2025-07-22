@@ -23,7 +23,6 @@ class LogUserAction implements ShouldQueue
 
     /**
      * Log the user action in the logs table.
-     * The action is the key in the peopleos.php config file.
      */
     public function handle(): void
     {
