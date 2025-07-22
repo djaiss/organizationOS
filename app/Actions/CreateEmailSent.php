@@ -41,7 +41,7 @@ class CreateEmailSent
     }
 
     /**
-     * This will remove any link to the body of the email, since they
+     * This will remove any links from the body of the email, since they
      * could contain links that are not valid anymore.
      *
      * @return void
