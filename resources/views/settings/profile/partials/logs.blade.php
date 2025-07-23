@@ -1,6 +1,6 @@
 <?php
 /*
- * @var \App\Http\ViewModels\ProfileShowViewModel $viewModel
+ * @var \App\Http\ViewModels\Settings\ProfileShowViewModel $viewModel
  */
 ?>
 
