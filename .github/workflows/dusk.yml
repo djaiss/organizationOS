@@ -26,10 +26,10 @@ jobs:
         run: cp tests/.env.ci.mysql .env
 
       - name: Install NPM Dependencies
-        run: npm ci
+        run: bun ci
 
       - name: Build Assets
-        run: npm run build
+        run: bun run build
 
       - name: Create Database
         run: |
