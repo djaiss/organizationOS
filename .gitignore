@@ -28,3 +28,5 @@ public/vendor/telescope/app.js
 public/vendor/telescope/favicon.ico
 public/vendor/telescope/mix-manifest.json
 phpstan-baseline.neon
+/.github/copilot-instructions.md
+/.github/prompts
