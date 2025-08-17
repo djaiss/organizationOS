@@ -63,7 +63,7 @@
       <div class="mb-1 rounded-full bg-gray-100 p-4">
         <x-phosphor-building-office class="size-6 text-gray-600" />
       </div>
-      {{ __('No emails sent yet') }}
+      {{ __('No emails have been sent yet.') }}
     </div>
   @endforelse
 
