@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
             password: 'password',
             firstName: 'Michael',
             lastName: 'Scott',
-            organizationName: 'Dunder Mifflin',
         )->execute();
     }
 

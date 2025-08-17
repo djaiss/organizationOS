@@ -38,7 +38,6 @@ class CreateAccountTest extends TestCase
             password: 'password',
             firstName: 'Michael',
             lastName: 'Scott',
-            organizationName: 'Dunder Mifflin',
         ))->execute();
     }
 
@@ -52,13 +51,7 @@ class CreateAccountTest extends TestCase
             password: 'password',
             firstName: 'Michael',
             lastName: 'Scott',
-            organizationName: 'Dunder Mifflin',
         ))->execute();
-
-        $this->assertDatabaseHas('organizations', [
-            'name' => 'Dunder Mifflin',
-            'slug' => 'dunder-mifflin',
-        ]);
 
         $this->assertDatabaseHas('users', [
             'id' => $user->id,

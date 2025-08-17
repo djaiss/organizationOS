@@ -21,27 +21,17 @@ class CreateAccount
         public string $password,
         public string $firstName,
         public string $lastName,
-        public string $organizationName,
     ) {}
 
     public function execute(): User
     {
-        $this->addFirstUser();
-        $this->createOrganization();
+        $this->create();
         $this->log();
 
         return $this->user;
     }
 
-    private function createOrganization(): void
-    {
-        new CreateOrganization(
-            userId: $this->user->id,
-            organizationName: $this->organizationName,
-        )->execute();
-    }
-
-    private function addFirstUser(): void
+    private function create(): void
     {
         $this->user = User::create([
             'first_name' => $this->firstName,

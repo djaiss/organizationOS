@@ -33,13 +33,6 @@ class RegistrationController extends Controller
                 'confirmed',
                 Password::min(8)->uncompromised(),
             ],
-            'organization_name' => [
-                'required',
-                'string',
-                'max:255',
-                'unique:' . Organization::class . ',name',
-                'regex:/^[a-zA-Z0-9\s\-_]+$/',
-            ],
         ]);
 
         $user = new CreateAccount(
@@ -47,7 +40,6 @@ class RegistrationController extends Controller
             password: $request->input('password'),
             firstName: $request->input('first_name'),
             lastName: $request->input('last_name'),
-            organizationName: $request->input('organization_name'),
         )->execute();
 
         event(new Registered($user));

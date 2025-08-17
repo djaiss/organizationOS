@@ -11,12 +11,15 @@
                 <img src="{{ asset('images/marketing/auth/logo.webp') }}" alt="{{ config('app.name') }} logo" width="25" height="25" srcset="{{ asset('images/marketing/auth/logo.webp') }} 1x, {{ asset('images/marketing/auth/logo@2x.webp') }} 2x" />
               </div>
             </a>
-            <h1 class="mb-2 text-2xl font-semibold text-gray-900">
+            <h1 class="text-2xl font-semibold text-gray-900">
               {{ __('Thanks for signing up!') }}
             </h1>
           </div>
-          <p class="text-sm text-gray-500">{{ __('Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}</p>
         </div>
+
+        <x-box class="mb-12">
+          <p class=" text-gray-500">{{ __('Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}</p>
+        </x-box>
 
         <x-box class="mb-12">
           <x-form method="post" :action="route('verification.store')" class="space-y-6">
@@ -26,11 +29,12 @@
               </p>
             @endif
 
-            <div class="flex flex-col items-center justify-between space-y-3">
+            <div class="flex items-center justify-between">
               <x-form method="post" action="{{ route('verification.store') }}">
-                <x-button class="w-full">
+                <x-button.secondary>
+                  <x-phosphor-paper-plane-tilt class="h-4 w-4 transition-transform duration-150 group-hover:-translate-x-1" />
                   {{ __('Resend verification email') }}
-                </x-button>
+                </x-button.secondary>
               </x-form>
               <x-form method="post" action="{{ route('logout') }}">
                 <x-button variant="link">{{ __('Log out') }}</x-button>

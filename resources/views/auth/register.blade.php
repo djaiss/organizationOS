@@ -30,14 +30,14 @@
 
         <!-- Registration form -->
         <x-box class="mb-12">
-          <x-form method="post" :action="route('register')" class="space-y-6">
+          <x-form method="post" :action="route('register')" class="space-y-4">
             <!-- Name -->
-            <div class="mb-2 flex flex-col gap-2 sm:mb-0 sm:flex-row sm:gap-4">
-              <div class="mb-0 w-full sm:mb-4">
+            <div class="flex flex-col gap-2 sm:flex-row sm:gap-4">
+              <div class="w-full">
                 <x-input type="text" id="first_name" value="{{ old('first_name') }}" :label="__('First name')" required placeholder="John" :error="$errors->get('first_name')" autocomplete="first_name" />
               </div>
 
-              <div class="mb-0 w-full sm:mb-4">
+              <div class="w-full">
                 <x-input type="text" id="last_name" value="{{ old('last_name') }}" :label="__('Last name')" required placeholder="Doe" :error="$errors->get('last_name')" autocomplete="last_name" />
               </div>
             </div>
@@ -56,16 +56,13 @@
               </div>
             </div>
 
-            <!-- Organization name -->
-            <x-input type="text" id="organization_name" value="{{ old('organization_name') }}" :label="__('Organization name')" required placeholder="Acme Inc." :error="$errors->get('organization_name')" autocomplete="organization_name" />
-
             <!-- Terms and conditions -->
 
             @if (config('peopleos.enable_anti_spam'))
               {{--
                 <div class="mt-4 mb-0">
                 <x-turnstile data-size="flexible" />
-                
+
                 <x-input-error :messages="$errors->get('cf-turnstile-response')" class="mt-2" />
                 </div>
               --}}
