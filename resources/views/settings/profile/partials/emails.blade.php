@@ -59,7 +59,10 @@
       </div>
     </div>
   @empty
-    <div class="flex items-center justify-center p-3 text-sm">
+    <div class="flex flex-col items-center gap-2 text-center text-gray-500 p-3">
+      <div class="mb-1 rounded-full bg-gray-100 p-4">
+        <x-phosphor-building-office class="size-6 text-gray-600" />
+      </div>
       {{ __('No emails sent yet') }}
     </div>
   @endforelse
