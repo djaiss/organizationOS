@@ -22,6 +22,7 @@
               </div>
 
               <div class="mt-3" x-data="{
+                copied: false,
                 copyToClipboard() {
                   const el = document.createElement('textarea')
                   el.value = '{{ session('apiKey') }}'
@@ -29,13 +30,19 @@
                   el.select()
                   document.execCommand('copy')
                   document.body.removeChild(el)
+
+                  this.copied = true
+                  setTimeout(() => {
+                    this.copied = false
+                  }, 2000)
                 },
               }">
                 <div class="flex items-center gap-x-2">
                   <code class="flex-1 rounded border-gray-50 bg-white px-3 py-2 text-center font-mono text-sm text-gray-800">{{ session('apiKey') }}</code>
                   <button @click="copyToClipboard()" class="inline-flex items-center rounded-md border border-green-200 bg-white px-3 py-2 text-sm font-semibold text-green-600 shadow-sm hover:bg-green-50 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:outline-none">
-                    <x-phosphor-copy class="mr-1 h-4 w-4" />
-                    {{ __('Copy') }}
+                    <x-phosphor-check x-show="copied" class="mr-1 h-4 w-4" />
+                    <x-phosphor-copy x-show="!copied" class="mr-1 h-4 w-4" />
+                    <span x-text="copied ? '{{ __('Copied') }}' : '{{ __('Copy') }}'"></span>
                   </button>
                 </div>
               </div>
