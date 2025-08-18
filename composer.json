@@ -16,6 +16,7 @@
         "codeat3/blade-phosphor-icons": "^2.3",
         "erag/laravel-disposable-email": "^3.5",
         "laravel/framework": "^12.0",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "spatie/laravel-login-link": "^1.6",
         "stevebauman/purify": "^6.3"

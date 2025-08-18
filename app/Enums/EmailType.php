@@ -8,4 +8,5 @@ enum EmailType: string
 {
     case LOGIN_FAILED = 'login_failed';
     case MAGIC_LINK_CREATED = 'magic_link_created';
+    case API_CREATED = 'api_created';
 }

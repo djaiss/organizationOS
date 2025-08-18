@@ -6,7 +6,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Actions\CreateAccount;
 use App\Http\Controllers\Controller;
-use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;

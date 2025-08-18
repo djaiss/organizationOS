@@ -23,7 +23,7 @@ class LoginFailedTest extends TestCase
 
         $this->assertEquals(
             'Login attempt on OrganizationOS',
-            $mailable->envelope()->subject
+            $mailable->envelope()->subject,
         );
 
         $rendered = $mailable->render();

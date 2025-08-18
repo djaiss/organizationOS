@@ -11,7 +11,7 @@
       <div class="flex items-center gap-3">
         <x-phosphor-pulse class="size-3 min-w-3 text-zinc-600 dark:text-zinc-400" />
         <div class="flex flex-col gap-y-2">
-          <p class="sm:flex items-center gap-2">
+          <p class="items-center gap-2 sm:flex">
             <span class="">{{ $log->username }}</span>
             |
             <span class="font-mono">{{ $log->action }}</span>

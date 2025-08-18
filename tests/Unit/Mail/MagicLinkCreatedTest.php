@@ -23,7 +23,7 @@ class MagicLinkCreatedTest extends TestCase
 
         $this->assertEquals(
             'Login to OrganizationOS',
-            $mailable->envelope()->subject
+            $mailable->envelope()->subject,
         );
     }
 

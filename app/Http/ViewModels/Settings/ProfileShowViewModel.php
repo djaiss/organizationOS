@@ -11,8 +11,6 @@ use Illuminate\Support\Collection;
 
 class ProfileShowViewModel
 {
-    public Collection $logs;
-
     public function __construct(
         private readonly User $user,
     ) {}
