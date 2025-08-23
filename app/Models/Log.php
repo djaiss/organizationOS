@@ -23,7 +23,7 @@ use Carbon\Carbon;
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
-class Log extends Model
+final class Log extends Model
 {
     /** @use HasFactory<\Database\Factories\LogFactory> */
     use HasFactory;

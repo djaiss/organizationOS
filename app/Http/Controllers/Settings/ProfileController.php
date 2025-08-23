@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
-class ProfileController extends Controller
+final class ProfileController extends Controller
 {
     public function edit(Request $request): View
     {

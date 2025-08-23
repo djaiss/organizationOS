@@ -8,7 +8,7 @@ use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Support\Collection;
 
-class OrganizationIndexViewModel
+final class OrganizationIndexViewModel
 {
     public function __construct(
         private readonly User $user,

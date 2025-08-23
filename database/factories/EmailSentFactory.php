@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\EmailSent>
  */
-class EmailSentFactory extends Factory
+final class EmailSentFactory extends Factory
 {
     protected $model = EmailSent::class;
 

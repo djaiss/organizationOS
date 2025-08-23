@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
-class ConfirmationController extends Controller
+final class ConfirmationController extends Controller
 {
     public function create(): View
     {

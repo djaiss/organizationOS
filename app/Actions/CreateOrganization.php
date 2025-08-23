@@ -14,7 +14,7 @@ use Illuminate\Validation\ValidationException;
  * Create an organization for a user.
  * The user will be added to the organization as the first user.
  */
-class CreateOrganization
+final class CreateOrganization
 {
     private Organization $organization;
 

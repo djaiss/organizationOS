@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 /**
  * Create an account for a user.
  */
-class CreateAccount
+final class CreateAccount
 {
     private User $user;
 

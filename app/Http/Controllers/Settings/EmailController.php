@@ -9,7 +9,7 @@ use App\Models\EmailSent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
-class EmailController extends Controller
+final class EmailController extends Controller
 {
     public function index(): View
     {

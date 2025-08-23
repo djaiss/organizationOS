@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 
-class LogUserAction implements ShouldQueue
+final class LogUserAction implements ShouldQueue
 {
     use Queueable;
 

@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Mail;
 
-class SendFailedLoginEmail implements ShouldQueue
+final class SendFailedLoginEmail implements ShouldQueue
 {
     use Queueable;
 

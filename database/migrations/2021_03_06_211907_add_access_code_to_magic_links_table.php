@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddAccessCodeToMagicLinksTable extends Migration
+final class AddAccessCodeToMagicLinksTable extends Migration
 {
     /**
      * Run the migrations.

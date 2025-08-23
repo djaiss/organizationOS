@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class LocaleController extends Controller
+final class LocaleController extends Controller
 {
     public function update(Request $request): RedirectResponse
     {

@@ -12,7 +12,7 @@ use MagicLink\MagicLink;
  * Create a magic link so the user can log in.
  * This link is valid for 5 minutes.
  */
-class CreateMagicLink
+final class CreateMagicLink
 {
     private User $user;
 

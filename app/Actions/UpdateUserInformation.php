@@ -8,7 +8,7 @@ use App\Jobs\LogUserAction;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 
-class UpdateUserInformation
+final class UpdateUserInformation
 {
     public function __construct(
         private readonly User $user,

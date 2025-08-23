@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Mail;
 
-class SendMagicLinkToLogin implements ShouldQueue
+final class SendMagicLinkToLogin implements ShouldQueue
 {
     use Queueable;
 

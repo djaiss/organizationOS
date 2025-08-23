@@ -9,7 +9,7 @@ use App\Models\Log;
 use App\Models\User;
 use Illuminate\Support\Collection;
 
-class ProfileShowViewModel
+final class ProfileShowViewModel
 {
     public Collection $logs;
 
