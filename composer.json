@@ -71,7 +71,8 @@
         "test": [
           "@organizationos:unit",
           "@organizationos:setup",
-          "@organizationos:locale"
+          "@organizationos:locale",
+          "@organizationos:lint"
         ],
         "precommit": [
           "@organizationos:rector",
@@ -94,7 +95,7 @@
         "organizationos:type-coverage": "./vendor/bin/pest --type-coverage --min=100",
         "organizationos:update": "composer update && bun update",
         "organizationos:update-blacklist-domains": "php artisan erag:sync-disposable-email-list",
-        "organizationos:unit": "rm -f database/test.sqlite_test* && php artisan migrate:fresh --database=testing && ./vendor/bin/pest --parallel"
+        "organizationos:unit": "rm -f database/test.sqlite_test* && php artisan migrate:fresh --database=testing && ./vendor/bin/pest --parallel --processes=10"
     },
     "extra": {
         "laravel": {
