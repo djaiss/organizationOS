@@ -65,7 +65,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: 'npm'
 
       # Composer
       - name: Validate composer.json and composer.lock
