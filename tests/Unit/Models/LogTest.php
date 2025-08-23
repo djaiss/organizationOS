@@ -2,59 +2,36 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Models;
-
 use App\Models\Log;
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use PHPUnit\Framework\Attributes\Test;
-use Tests\TestCase;
 
-class LogTest extends TestCase
-{
-    use DatabaseTransactions;
+it('belongs to an organization', function (): void {
+    $log = Log::factory()->create();
 
-    #[Test]
-    public function it_belongs_to_an_organization(): void
-    {
-        $log = Log::factory()->create();
+    expect($log->organization()->exists())->toBeTrue();
+});
 
-        $this->assertTrue($log->organization()->exists());
-    }
+it('belongs to a user', function (): void {
+    $log = Log::factory()->create();
 
-    #[Test]
-    public function it_belongs_to_a_user(): void
-    {
-        $log = Log::factory()->create();
+    expect($log->user()->exists())->toBeTrue();
+});
 
-        $this->assertTrue($log->user()->exists());
-    }
+it('gets the name of the user', function (): void {
+    $user = User::factory()->create([
+        'first_name' => 'Dwight',
+        'last_name' => 'Schrute',
+        'nickname' => null,
+    ]);
+    $log = Log::factory()->create([
+        'user_id' => $user->id,
+        'user_name' => 'Jim Halpert',
+    ]);
 
-    #[Test]
-    public function it_gets_the_name_of_the_user(): void
-    {
-        $user = User::factory()->create([
-            'first_name' => 'Dwight',
-            'last_name' => 'Schrute',
-            'nickname' => null,
-        ]);
-        $log = Log::factory()->create([
-            'user_id' => $user->id,
-            'user_name' => 'Jim Halpert',
-        ]);
+    expect($log->getUserName())->toEqual('Dwight Schrute');
 
+    $log->user_id = null;
+    $log->save();
 
-        $this->assertEquals(
-            'Dwight Schrute',
-            $log->getUserName(),
-        );
-
-        $log->user_id = null;
-        $log->save();
-
-        $this->assertEquals(
-            'Jim Halpert',
-            $log->refresh()->getUserName(),
-        );
-    }
-}
+    expect($log->refresh()->getUserName())->toEqual('Jim Halpert');
+});

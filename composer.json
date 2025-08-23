@@ -22,7 +22,6 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.16",
-        "brianium/paratest": "^7.7",
         "fakerphp/faker": "^1.23",
         "larastan/larastan": "^3.3",
         "laravel/boost": "^1.0",
@@ -33,7 +32,7 @@
         "laravel/telescope": "^5.9",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "phpunit/phpunit": "^11.5.3",
+        "pestphp/pest": "^4.0",
         "rector/rector": "^2.0"
     },
     "autoload": {
@@ -70,7 +69,6 @@
         ],
         "test": [
           "@organizationos:unit",
-          "@organizationos:dusk",
           "@organizationos:setup",
           "@organizationos:locale"
         ],
@@ -85,7 +83,6 @@
           "@organizationos:locale",
           "@organizationos:setup"
         ],
-        "organizationos:dusk": "rm -f database/database.sqlite && touch database/database.sqlite && php artisan migrate:fresh && php artisan dusk",
         "organizationos:lint": "./vendor/bin/pint",
         "organizationos:locale": "php artisan localize en,fr --remove-missing",
         "organizationos:prettier": "npx prettier --write resources/",

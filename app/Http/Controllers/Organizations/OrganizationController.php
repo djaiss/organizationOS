@@ -10,7 +10,6 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Organization;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 

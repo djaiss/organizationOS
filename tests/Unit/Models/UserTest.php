@@ -2,93 +2,67 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Models;
-
 use App\Models\EmailSent;
 use App\Models\User;
 use App\Models\Organization;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use PHPUnit\Framework\Attributes\Test;
-use Tests\TestCase;
 
-class UserTest extends TestCase
-{
-    use DatabaseTransactions;
+it('belongs to many organizations', function (): void {
+    $user = User::factory()->create();
+    $organization1 = Organization::factory()->create();
+    $organization2 = Organization::factory()->create();
 
-    #[Test]
-    public function it_belongs_to_many_organizations(): void
-    {
-        $user = User::factory()->create();
-        $organization1 = Organization::factory()->create();
-        $organization2 = Organization::factory()->create();
+    $user->organizations()->attach($organization1->id, [
+        'joined_at' => now(),
+    ]);
+    $user->organizations()->attach($organization2->id, [
+        'joined_at' => now(),
+    ]);
 
-        $user->organizations()->attach($organization1->id, [
-            'joined_at' => now(),
-        ]);
-        $user->organizations()->attach($organization2->id, [
-            'joined_at' => now(),
-        ]);
+    expect($user->organizations)->toHaveCount(2);
+    expect($user->organizations->contains($organization1))->toBeTrue();
+    expect($user->organizations->contains($organization2))->toBeTrue();
+});
 
-        $this->assertCount(2, $user->organizations);
-        $this->assertTrue($user->organizations->contains($organization1));
-        $this->assertTrue($user->organizations->contains($organization2));
-    }
+it('has many emails sent', function (): void {
+    $user = User::factory()->create();
+    EmailSent::factory()->create([
+        'user_id' => $user->id,
+    ]);
 
-    #[Test]
-    public function it_has_many_emails_sent(): void
-    {
-        $user = User::factory()->create();
-        EmailSent::factory()->create([
-            'user_id' => $user->id,
-        ]);
+    expect($user->emailsSent()->exists())->toBeTrue();
+});
 
-        $this->assertTrue($user->emailsSent()->exists());
-    }
+it('gets the name', function (): void {
+    $user = User::factory()->create([
+        'first_name' => 'Dwight',
+        'last_name' => 'Schrute',
+        'nickname' => null,
+    ]);
 
-    #[Test]
-    public function it_gets_the_name(): void
-    {
-        $user = User::factory()->create([
-            'first_name' => 'Dwight',
-            'last_name' => 'Schrute',
-            'nickname' => null,
-        ]);
+    expect($user->name)->toEqual('Dwight Schrute');
 
-        $this->assertEquals(
-            'Dwight Schrute',
-            $user->name,
-        );
+    $user->nickname = 'The Beet Farmer';
+    $user->save();
+    expect($user->name)->toEqual('The Beet Farmer');
+});
 
-        $user->nickname = 'The Beet Farmer';
-        $user->save();
-        $this->assertEquals(
-            'The Beet Farmer',
-            $user->name,
-        );
-    }
+it('has initials', function (): void {
+    $dwight = User::factory()->create([
+        'first_name' => 'Dwight',
+        'last_name' => 'Schrute',
+    ]);
 
-    #[Test]
-    public function it_has_initials(): void
-    {
-        $dwight = User::factory()->create([
-            'first_name' => 'Dwight',
-            'last_name' => 'Schrute',
-        ]);
+    expect($dwight->initials())->toEqual('DS');
+});
 
-        $this->assertEquals('DS', $dwight->initials());
-    }
+it('checks organization membership', function (): void {
+    $user = User::factory()->create();
+    $organization = Organization::factory()->create();
 
-    #[Test]
-    public function it_checks_organization_membership(): void
-    {
-        $user = User::factory()->create();
-        $organization = Organization::factory()->create();
+    expect($user->isPartOfOrganization($organization))->toBeFalse();
 
-        $this->assertFalse($user->isPartOfOrganization($organization));
-
-        $user->organizations()->attach($organization->id, [
-            'joined_at' => now(),
-        ]);
-        $this->assertTrue($user->isPartOfOrganization($organization));
-    }
-}
+    $user->organizations()->attach($organization->id, [
+        'joined_at' => now(),
+    ]);
+    expect($user->isPartOfOrganization($organization))->toBeTrue();
+});

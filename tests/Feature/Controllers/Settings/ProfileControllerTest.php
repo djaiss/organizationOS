@@ -2,97 +2,79 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Controllers\Settings;
-
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use PHPUnit\Framework\Attributes\Test;
-use Tests\TestCase;
 
-class ProfileControllerTest extends TestCase
-{
-    use RefreshDatabase;
+it('shows the profile page', function (): void {
+    $this->actingAs(User::factory()->create());
 
-    #[Test]
-    public function it_shows_the_profile_page(): void
-    {
-        $this->actingAs(User::factory()->create());
+    $this->get('/settings/profile')->assertOk();
+});
 
-        $this->get('/settings/profile')->assertOk();
-    }
+it('updates the profile information', function (): void {
+    $user = User::factory()->create();
 
-    #[Test]
-    public function it_updates_the_profile_information(): void
-    {
-        $user = User::factory()->create();
+    $response = $this
+        ->actingAs($user)
+        ->put('/settings/profile', [
+            'first_name' => 'Michael',
+            'last_name' => 'Scott',
+            'nickname' => 'Michael',
+            'email' => 'michael.scott@dundermifflin.com',
+            'locale' => 'en',
+        ]);
 
-        $response = $this
-            ->actingAs($user)
-            ->put('/settings/profile', [
-                'first_name' => 'Michael',
-                'last_name' => 'Scott',
-                'nickname' => 'Michael',
-                'email' => 'michael.scott@dundermifflin.com',
-                'locale' => 'en',
-            ]);
+    $response
+        ->assertSessionHasNoErrors()
+        ->assertRedirect('/settings/profile');
 
-        $response
-            ->assertSessionHasNoErrors()
-            ->assertRedirect('/settings/profile');
+    $user->refresh();
 
-        $user->refresh();
+    expect($user->first_name)->toBe('Michael');
+    expect($user->last_name)->toBe('Scott');
+    expect($user->nickname)->toBe('Michael');
+    expect($user->email)->toBe('michael.scott@dundermifflin.com');
+    expect($user->locale)->toBe('en');
+    expect($user->email_verified_at)->toBeNull();
+});
 
-        $this->assertSame('Michael', $user->first_name);
-        $this->assertSame('Scott', $user->last_name);
-        $this->assertSame('Michael', $user->nickname);
-        $this->assertSame('michael.scott@dundermifflin.com', $user->email);
-        $this->assertSame('en', $user->locale);
-        $this->assertNull($user->email_verified_at);
-    }
+it('does not change the email verification status when email address is unchanged', function (): void {
+    $user = User::factory()->create();
 
-    #[Test]
-    public function it_does_not_change_the_email_verification_status_when_email_address_is_unchanged(): void
-    {
-        $user = User::factory()->create();
+    $response = $this
+        ->actingAs($user)
+        ->put('/settings/profile', [
+            'first_name' => 'Michael',
+            'last_name' => 'Scott',
+            'nickname' => 'Michael',
+            'email' => $user->email,
+            'locale' => 'en',
+        ]);
 
-        $response = $this
-            ->actingAs($user)
-            ->put('/settings/profile', [
-                'first_name' => 'Michael',
-                'last_name' => 'Scott',
-                'nickname' => 'Michael',
-                'email' => $user->email,
-                'locale' => 'en',
-            ]);
+    $response
+        ->assertSessionHasNoErrors()
+        ->assertRedirect('/settings/profile');
 
-        $response
-            ->assertSessionHasNoErrors()
-            ->assertRedirect('/settings/profile');
+    $response->assertSessionHas('status', 'Changes saved');
 
-        $response->assertSessionHas('status', 'Changes saved');
+    expect($user->refresh()->email_verified_at)->not->toBeNull();
+});
 
-        $this->assertNotNull($user->refresh()->email_verified_at);
-    }
+it('shows the latest logs', function (): void {
+    $user = User::factory()->create();
 
-    #[Test]
-    public function it_shows_the_latest_logs(): void
-    {
-        $user = User::factory()->create();
+    $response = $this
+        ->actingAs($user)
+        ->put('/settings/profile', [
+            'first_name' => 'Michael',
+            'last_name' => 'Scott',
+            'nickname' => 'Michael',
+            'email' => $user->email,
+            'locale' => 'en',
+        ]);
 
-        $response = $this
-            ->actingAs($user)
-            ->put('/settings/profile', [
-                'first_name' => 'Michael',
-                'last_name' => 'Scott',
-                'nickname' => 'Michael',
-                'email' => $user->email,
-                'locale' => 'en',
-            ]);
+    $response
+        ->assertSessionHasNoErrors()
+        ->assertRedirect('/settings/profile');
 
-        $response
-            ->assertSessionHasNoErrors()
-            ->assertRedirect('/settings/profile');
-
-        $this->assertNotNull($user->refresh()->email_verified_at);
-    }
-}
+    expect($user->refresh()->email_verified_at)->not->toBeNull();
+});
