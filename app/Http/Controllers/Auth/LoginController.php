@@ -60,7 +60,7 @@ final class LoginController extends Controller
         return redirect('/');
     }
 
-    protected function ensureIsNotRateLimited(Request $request): void
+    private function ensureIsNotRateLimited(Request $request): void
     {
         if (! RateLimiter::tooManyAttempts($this->throttleKey($request), 5)) {
             return;

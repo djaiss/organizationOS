@@ -109,7 +109,7 @@ final class User extends Authenticatable implements MustVerifyEmail
      *
      * @return Attribute<string, string>
      */
-    protected function name(): Attribute
+    private function name(): Attribute
     {
         return Attribute::make(
             get: function (mixed $value, array $attributes): string {

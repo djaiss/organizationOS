@@ -51,6 +51,7 @@ it('updates user information', function (): void {
 
 it('triggers email verification when email changes', function (): void {
     Event::fake();
+    Queue::fake();
 
     $user = User::factory()->create([
         'email' => 'michael.scott@dundermifflin.com',
@@ -72,6 +73,7 @@ it('triggers email verification when email changes', function (): void {
 
 it('does not trigger email verification when email stays same', function (): void {
     Event::fake();
+    Queue::fake();
 
     $user = User::factory()->create([
         'email' => 'michael.scott@dundermifflin.com',
