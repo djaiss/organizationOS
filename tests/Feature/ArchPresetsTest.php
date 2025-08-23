@@ -9,7 +9,6 @@ arch()->preset()->php();
 
 arch()->preset()->security();
 
-// Custom strict rules that work better with Laravel
 arch('app uses strict types')
     ->expect('App')
     ->toUseStrictTypes();
@@ -22,7 +21,7 @@ arch('actions should be final')
 arch('models should be final when appropriate')
     ->expect('App\Models')
     ->toBeClasses()
-    ->not->toBeAbstract(); // Models shouldn't be abstract, but we don't force final
+    ->not->toBeAbstract();
 
 arch('controllers do not have business logic')
     ->expect('App\Http\Controllers')

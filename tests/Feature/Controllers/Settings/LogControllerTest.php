@@ -29,6 +29,7 @@ it('shows all the logs', function (): void {
     $response->assertViewHas('logs');
 
     $logs = $response->viewData('logs');
+
     expect($logs)->toHaveCount(1);
     expect($logs[0]->id)->toEqual($log->id);
     expect($logs[0]->user->getFullName())->toEqual('Ross Geller');
@@ -39,7 +40,6 @@ it('shows all the logs', function (): void {
 it('shows a pagination', function (): void {
     $user = User::factory()->create();
 
-    // Create 15 logs (more than the per-page limit of 10)
     Log::factory()->count(15)->create([
         'organization_id' => null,
         'user_id' => $user->id,
@@ -50,6 +50,6 @@ it('shows a pagination', function (): void {
 
     $response->assertStatus(200);
     expect($response['logs'])->toHaveCount(10);
-    // First page should have 10 items
+
     expect($response['logs']->hasMorePages())->toBeTrue();
 });

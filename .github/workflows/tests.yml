@@ -61,6 +61,11 @@ jobs:
       - name: Check PHP Extensions
         run: php -m
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
       # Composer
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -80,6 +85,12 @@ jobs:
 
       - name: Install composer dependencies
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Install node dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
       # Prepare
       - name: Prepare environment

@@ -59,7 +59,7 @@
                 {{ __('Forgot your password?') }}
               </x-link>
 
-              <x-button dusk="login-button">{{ __('Continue') }}</x-button>
+              <x-button data-test="login-button">{{ __('Continue') }}</x-button>
             </div>
           </x-form>
         </x-box>
@@ -74,7 +74,7 @@
         <!-- magic link -->
         <x-box class="mb-8 text-center text-sm">
           {{ __('Wanna skip the password?') }}
-          <x-link :href="route('magic.link')" dusk="magic-link-link" class="ml-1">
+          <x-link :href="route('magic.link')" data-test="magic-link-link" class="ml-1">
             {{ __('Send me a link instead') }}
           </x-link>
         </x-box>
