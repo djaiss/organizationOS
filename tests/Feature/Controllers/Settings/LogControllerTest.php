@@ -31,7 +31,7 @@ it('shows all the logs', function (): void {
     $logs = $response->viewData('logs');
     expect($logs)->toHaveCount(1);
     expect($logs[0]->id)->toEqual($log->id);
-    expect($logs[0]->user->name)->toEqual('Ross Geller');
+    expect($logs[0]->user->getFullName())->toEqual('Ross Geller');
     expect($logs[0]->action)->toEqual('profile_update');
     expect($logs[0]->description)->toEqual('Updated their profile');
 });

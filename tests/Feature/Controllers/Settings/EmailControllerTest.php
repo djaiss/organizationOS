@@ -31,7 +31,7 @@ it('shows all the emails', function (): void {
     $emails = $response->viewData('emails');
     expect($emails)->toHaveCount(1);
     expect($emails[0]->id)->toEqual($email->id);
-    expect($emails[0]->user->name)->toEqual('Ross Geller');
+    expect($emails[0]->user->getFullName())->toEqual('Ross Geller');
     expect($emails[0]->subject)->toEqual('Test Subject');
     expect($emails[0]->body)->toEqual('Test Body');
     expect($emails[0]->sent_at)->toEqual(Carbon::now());

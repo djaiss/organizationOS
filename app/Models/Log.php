@@ -78,6 +78,6 @@ final class Log extends Model
      */
     public function getUserName(): string
     {
-        return $this->user ? $this->user->name : $this->user_name;
+        return $this->user ? $this->user->getFullName() : $this->user_name;
     }
 }

@@ -39,11 +39,11 @@ it('gets the name', function (): void {
         'nickname' => null,
     ]);
 
-    expect($user->name)->toEqual('Dwight Schrute');
+    expect($user->getFullName())->toEqual('Dwight Schrute');
 
     $user->nickname = 'The Beet Farmer';
     $user->save();
-    expect($user->name)->toEqual('The Beet Farmer');
+    expect($user->getFullName())->toEqual('The Beet Farmer');
 });
 
 it('has initials', function (): void {
