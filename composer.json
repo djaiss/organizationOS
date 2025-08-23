@@ -76,11 +76,11 @@
           "@organizationos:rector",
           "@test",
           "@organizationos:static",
-          "@organizationos:lint",
           "@organizationos:update-blacklist-domains",
           "@organizationos:prettier",
           "@organizationos:update",
           "@organizationos:locale",
+          "@organizationos:lint",
           "@organizationos:setup"
         ],
         "organizationos:lint": "./vendor/bin/pint",
