@@ -121,20 +121,20 @@ jobs:
       # Test
       - name: Run tests
         if: matrix.connection == 'sqlite'
-        run: vendor/bin/pest --coverage-clover=coverage.xml --parallel
+        run: vendor/bin/pest --ci --coverage-clover=coverage.xml --parallel
         continue-on-error: true
         env:
           DB_CONNECTION: ${{ matrix.connection }}
 
       - name: Run tests
         if: matrix.connection == 'mysql'
-        run: vendor/bin/pest --parallel
+        run: vendor/bin/pest --ci --parallel
         env:
           DB_CONNECTION: ${{ matrix.connection }}
 
       - name: Run tests
         if: matrix.connection == 'pgsql'
-        run: vendor/bin/pest
+        run: vendor/bin/pest --ci
         env:
           DB_CONNECTION: ${{ matrix.connection }}
 
