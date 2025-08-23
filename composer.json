@@ -29,11 +29,11 @@
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.18",
         "laravel/sail": "^1.41",
-        "laravel/telescope": "^5.9",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
         "pestphp/pest": "^4.0",
         "pestphp/pest-plugin-profanity": "^4.0",
+        "pestphp/pest-plugin-type-coverage": "^4.0",
         "rector/rector": "^2.0"
     },
     "autoload": {
@@ -82,6 +82,7 @@
           "@organizationos:update",
           "@organizationos:locale",
           "@organizationos:lint",
+          "@organizationos:type-coverage",
           "@organizationos:setup"
         ],
         "organizationos:lint": "./vendor/bin/pint",
@@ -90,15 +91,14 @@
         "organizationos:rector": "./vendor/bin/rector",
         "organizationos:setup": "php artisan migrate:fresh && php artisan db:seed",
         "organizationos:static": "./vendor/bin/phpstan analyse --memory-limit=256M",
+        "organizationos:type-coverage": "./vendor/bin/pest --type-coverage --min=100",
         "organizationos:update": "composer update && bun update",
         "organizationos:update-blacklist-domains": "php artisan erag:sync-disposable-email-list",
         "organizationos:unit": "rm -f database/test.sqlite_test* && php artisan migrate:fresh --database=testing && ./vendor/bin/pest --parallel"
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-              "laravel/telescope"
-            ]
+            "dont-discover": []
         }
     },
     "config": {
