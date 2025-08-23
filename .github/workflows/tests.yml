@@ -127,8 +127,14 @@ jobs:
           DB_CONNECTION: ${{ matrix.connection }}
 
       - name: Run tests
-        if: matrix.connection != 'sqlite'
+        if: matrix.connection == 'mysql'
         run: vendor/bin/pest --parallel
+        env:
+          DB_CONNECTION: ${{ matrix.connection }}
+
+      - name: Run tests
+        if: matrix.connection == 'pgsql'
+        run: vendor/bin/pest
         env:
           DB_CONNECTION: ${{ matrix.connection }}
 
