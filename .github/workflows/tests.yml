@@ -34,7 +34,6 @@ jobs:
         connection: [sqlite, mysql, pgsql]
         testsuite: [Unit]
         coverage: [true] # run test with coverage, if 'coverage-with' match with the connection
-        shard: [1, 2, 3, 4, 5]
 
     steps:
       - name: Checkout sources
@@ -120,16 +119,16 @@ jobs:
         run: php artisan migrate --no-interaction -vvv
 
       # Test
-      - name: Run tests (shard ${{ matrix.shard }}/5)
+      - name: Run tests
         if: matrix.connection == 'sqlite'
-        run: vendor/bin/pest --coverage-clover=coverage.xml --parallel --shard=${{ matrix.shard }}/5
+        run: vendor/bin/pest --coverage-clover=coverage.xml --parallel
         continue-on-error: true
         env:
           DB_CONNECTION: ${{ matrix.connection }}
 
       - name: Run tests
         if: matrix.connection != 'sqlite'
-        run: vendor/bin/pest --parallel --shard=${{ matrix.shard }}/5
+        run: vendor/bin/pest --parallel
         env:
           DB_CONNECTION: ${{ matrix.connection }}
 
