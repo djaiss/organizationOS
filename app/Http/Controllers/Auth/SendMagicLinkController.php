@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class SendMagicLinkController extends Controller
+final class SendMagicLinkController extends Controller
 {
     public function create(): View
     {

@@ -2,38 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Jobs;
-
 use App\Jobs\LogUserAction;
 use App\Models\Log;
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use PHPUnit\Framework\Attributes\Test;
-use Tests\TestCase;
 
-class LogUserActionTest extends TestCase
-{
-    use DatabaseTransactions;
+it('logs user action', function (): void {
+    $user = User::factory()->create([
+        'first_name' => 'Michael',
+        'last_name' => 'Scott',
+        'nickname' => null,
+    ]);
+    LogUserAction::dispatch(
+        organization: null,
+        user: $user,
+        action: 'personal_profile_update',
+        description: 'Updated their personal profile',
+    );
 
-    #[Test]
-    public function it_logs_user_action(): void
-    {
-        $user = User::factory()->create([
-            'first_name' => 'Ross',
-            'last_name' => 'Geller',
-            'nickname' => null,
-        ]);
-        LogUserAction::dispatch(
-            organization: null,
-            user: $user,
-            action: 'personal_profile_update',
-            description: 'Updated their personal profile',
-        );
+    $log = Log::first();
 
-        $log = Log::first();
-
-        $this->assertEquals('Ross Geller', $log->getUserName());
-        $this->assertEquals('personal_profile_update', $log->action);
-        $this->assertEquals('Updated their personal profile', $log->description);
-    }
-}
+    expect($log->getUserName())->toEqual('Michael Scott');
+    expect($log->action)->toEqual('personal_profile_update');
+    expect($log->description)->toEqual('Updated their personal profile');
+});

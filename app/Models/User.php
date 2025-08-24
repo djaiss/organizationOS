@@ -12,7 +12,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -29,7 +28,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $locale
  * @property Carbon|null $updated_at
  */
-class User extends Authenticatable implements MustVerifyEmail
+final class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -108,24 +107,18 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the user's full name by combining first and last name.
      * If a nickname is set, it will be used instead of the full name.
-     *
-     * @return Attribute<string, string>
      */
-    protected function name(): Attribute
+    public function getFullName(): string
     {
-        return Attribute::make(
-            get: function (mixed $value, array $attributes): string {
-                if ($attributes['nickname']) {
-                    return $attributes['nickname'];
-                }
+        if ($this->nickname) {
+            return $this->nickname;
+        }
 
-                $firstName = $attributes['first_name'];
-                $lastName = $attributes['last_name'];
-                $separator = $firstName && $lastName ? ' ' : '';
+        $firstName = $this->first_name;
+        $lastName = $this->last_name;
+        $separator = $firstName && $lastName ? ' ' : '';
 
-                return $firstName . $separator . $lastName;
-            },
-        );
+        return $firstName . $separator . $lastName;
     }
 
     /**

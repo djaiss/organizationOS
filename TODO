@@ -9,7 +9,7 @@
 - [x] Record sent emails in the database
 - [x] Display sent emails
 - [x] Test email templates
-- [ ] Check Resend to capture email delivery
+- [ ] Check Resend to capture email deliveryr
 - [ ] Manage API tokens
 - [ ] Basic docs microsite
 - [ ] API to check health

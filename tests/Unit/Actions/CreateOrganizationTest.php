@@ -2,95 +2,69 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Actions;
-
 use App\Actions\CreateOrganization;
 use App\Models\Organization;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Validation\ValidationException;
-use PHPUnit\Framework\Attributes\Test;
-use Tests\TestCase;
 
-class CreateOrganizationTest extends TestCase
-{
-    use DatabaseTransactions;
+it('creates an organization', function (): void {
+    Carbon::setTestNow(Carbon::parse('2025-03-17 10:00:00'));
 
-    #[Test]
-    public function it_creates_an_organization(): void
-    {
-        $this->executeService();
-    }
+    $user = User::factory()->create();
 
-    #[Test]
-    public function it_throws_an_exception_if_user_not_found(): void
-    {
-        $this->expectException(ModelNotFoundException::class);
+    $organization = (new CreateOrganization(
+        userId: $user->id,
+        organizationName: 'Dunder Mifflin',
+    ))->execute();
 
-        (new CreateOrganization(
-            userId: 999,
-            organizationName: 'Dunder Mifflin',
-        ))->execute();
-    }
+    $this->assertDatabaseHas('organizations', [
+        'id' => $organization->id,
+        'name' => 'Dunder Mifflin',
+        'slug' => 'dunder-mifflin',
+    ]);
 
-    #[Test]
-    public function it_throws_an_exception_if_organization_name_is_already_taken(): void
-    {
-        $this->expectException(ValidationException::class);
+    $this->assertDatabaseHas('organization_user', [
+        'organization_id' => $organization->id,
+        'user_id' => $user->id,
+        'joined_at' => '2025-03-17 10:00:00',
+    ]);
 
-        $user = User::factory()->create();
+    expect($organization)->toBeInstanceOf(Organization::class);
+});
 
-        Organization::factory()->create([
-            'name' => 'Dunder Mifflin',
-        ]);
+it('throws an exception if user not found', function (): void {
+    $this->expectException(ModelNotFoundException::class);
 
-        (new CreateOrganization(
-            userId: $user->id,
-            organizationName: 'Dunder Mifflin',
-        ))->execute();
-    }
+    (new CreateOrganization(
+        userId: 999,
+        organizationName: 'Dunder Mifflin',
+    ))->execute();
+});
 
-    #[Test]
-    public function it_throws_an_exception_if_organization_name_contains_special_characters(): void
-    {
-        $this->expectException(ValidationException::class);
+it('throws an exception if organization name is already taken', function (): void {
+    $this->expectException(ValidationException::class);
 
-        $user = User::factory()->create();
+    $user = User::factory()->create();
 
-        (new CreateOrganization(
-            userId: $user->id,
-            organizationName: 'Dunder@ / Mifflin!',
-        ))->execute();
-    }
+    Organization::factory()->create([
+        'name' => 'Dunder Mifflin',
+    ]);
 
-    private function executeService(): void
-    {
-        Carbon::setTestNow(Carbon::parse('2025-03-17 10:00:00'));
+    (new CreateOrganization(
+        userId: $user->id,
+        organizationName: 'Dunder Mifflin',
+    ))->execute();
+});
 
-        $user = User::factory()->create();
+it('throws an exception if organization name contains special characters', function (): void {
+    $this->expectException(ValidationException::class);
 
-        $organization = (new CreateOrganization(
-            userId: $user->id,
-            organizationName: 'Dunder Mifflin',
-        ))->execute();
+    $user = User::factory()->create();
 
-        $this->assertDatabaseHas('organizations', [
-            'id' => $organization->id,
-            'name' => 'Dunder Mifflin',
-            'slug' => 'dunder-mifflin',
-        ]);
-
-        $this->assertDatabaseHas('organization_user', [
-            'organization_id' => $organization->id,
-            'user_id' => $user->id,
-            'joined_at' => '2025-03-17 10:00:00',
-        ]);
-
-        $this->assertInstanceOf(
-            Organization::class,
-            $organization,
-        );
-    }
-}
+    (new CreateOrganization(
+        userId: $user->id,
+        organizationName: 'Dunder@ / Mifflin!',
+    ))->execute();
+});

@@ -23,7 +23,7 @@ use Carbon\Carbon;
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
-class Log extends Model
+final class Log extends Model
 {
     /** @use HasFactory<\Database\Factories\LogFactory> */
     use HasFactory;
@@ -78,6 +78,6 @@ class Log extends Model
      */
     public function getUserName(): string
     {
-        return $this->user ? $this->user->name : $this->user_name;
+        return $this->user ? $this->user->getFullName() : $this->user_name;
     }
 }

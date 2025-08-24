@@ -2,33 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Controllers\Settings;
-
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use PHPUnit\Framework\Attributes\Test;
-use Tests\TestCase;
 
-class PasswordControllerTest extends TestCase
-{
-    use RefreshDatabase;
+it('allows the user to update their password', function (): void {
+    $user = User::factory()->create();
 
-    #[Test]
-    public function it_allows_the_user_to_update_their_password(): void
-    {
-        $user = User::factory()->create();
+    $response = $this->actingAs($user)
+        ->from('/settings/security')
+        ->put('/settings/password', [
+            'current_password' => 'password',
+            'new_password' => 'new-password',
+            'new_password_confirmation' => 'new-password',
+        ]);
 
-        $response = $this->actingAs($user)
-            ->from('/settings/security')
-            ->put('/settings/password', [
-                'current_password' => 'password',
-                'new_password' => 'new-password',
-                'new_password_confirmation' => 'new-password',
-            ]);
+    $response->assertRedirect('/settings/security');
+    $response->assertSessionHas('status', 'Changes saved');
 
-        $response->assertRedirect('/settings/security');
-        $response->assertSessionHas('status', 'Changes saved');
-
-        $this->assertTrue(password_verify('new-password', $user->fresh()->password));
-    }
-}
+    expect(password_verify('new-password', $user->fresh()->password))->toBeTrue();
+});

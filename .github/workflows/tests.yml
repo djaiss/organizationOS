@@ -61,6 +61,19 @@ jobs:
       - name: Check PHP Extensions
         run: php -m
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       # Composer
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -80,6 +93,12 @@ jobs:
 
       - name: Install composer dependencies
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Install node dependencies
+        run: npm install
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
       # Prepare
       - name: Prepare environment
@@ -121,14 +140,20 @@ jobs:
       # Test
       - name: Run tests
         if: matrix.connection == 'sqlite'
-        run: vendor/bin/phpunit --coverage-clover=coverage.xml
+        run: vendor/bin/pest --ci --coverage-clover=coverage.xml --parallel
         continue-on-error: true
         env:
           DB_CONNECTION: ${{ matrix.connection }}
 
       - name: Run tests
-        if: matrix.connection != 'sqlite'
-        run: vendor/bin/phpunit
+        if: matrix.connection == 'mysql'
+        run: vendor/bin/pest --ci --parallel
+        env:
+          DB_CONNECTION: ${{ matrix.connection }}
+
+      - name: Run tests
+        if: matrix.connection == 'pgsql'
+        run: vendor/bin/pest --ci
         env:
           DB_CONNECTION: ${{ matrix.connection }}
 

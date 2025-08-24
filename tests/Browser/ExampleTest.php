@@ -1,22 +1,12 @@
 <?php
 
 declare(strict_types=1);
-
-namespace Tests\Browser;
-
+uses(Tests\DuskTestCase::class);
 use Laravel\Dusk\Browser;
-use Tests\DuskTestCase;
 
-class ExampleTest extends DuskTestCase
-{
-    /**
-     * A basic browser test example.
-     */
-    public function testBasicExample(): void
-    {
-        $this->browse(function (Browser $browser): void {
-            $browser->visit('/')
-                ->assertSee('test');
-        });
-    }
-}
+test('basic example', function (): void {
+    $this->browse(function (Browser $browser): void {
+        $browser->visit('/')
+            ->assertSee('test');
+    });
+});

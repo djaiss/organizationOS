@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
-class Organization extends Model
+final class Organization extends Model
 {
     /** @use HasFactory<\Database\Factories\OrganizationFactory> */
     use HasFactory;

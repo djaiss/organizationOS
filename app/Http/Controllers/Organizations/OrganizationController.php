@@ -13,7 +13,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 
-class OrganizationController extends Controller
+final class OrganizationController extends Controller
 {
     public function index(): View
     {

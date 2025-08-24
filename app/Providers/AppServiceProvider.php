@@ -6,20 +6,14 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Laravel\Telescope\TelescopeServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+final class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
-    public function register(): void
-    {
-        if ($this->app->environment('local') && class_exists(TelescopeServiceProvider::class)) {
-            $this->app->register(TelescopeServiceProvider::class);
-        }
-    }
+    public function register(): void {}
 
     /**
      * Bootstrap any application services.

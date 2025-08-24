@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
 
-class CreateEmailSent
+final class CreateEmailSent
 {
     private EmailSent $emailSent;
 

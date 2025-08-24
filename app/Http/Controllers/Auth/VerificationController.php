@@ -11,7 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class VerificationController extends Controller
+final class VerificationController extends Controller
 {
     public function notice(Request $request): RedirectResponse|View
     {

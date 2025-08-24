@@ -7,7 +7,7 @@ namespace Tests\Browser\Pages\Settings;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\Page;
 
-class ProfilePage extends Page
+final class ProfilePage extends Page
 {
     /**
      * Get the URL for the page.

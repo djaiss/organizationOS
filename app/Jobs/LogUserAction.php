@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 
-class LogUserAction implements ShouldQueue
+final class LogUserAction implements ShouldQueue
 {
     use Queueable;
 
@@ -29,7 +29,7 @@ class LogUserAction implements ShouldQueue
         Log::create([
             'organization_id' => $this->organization?->id,
             'user_id' => $this->user->id,
-            'user_name' => $this->user->name,
+            'user_name' => $this->user->getFullName(),
             'action' => $this->action,
             'description' => $this->description,
         ]);

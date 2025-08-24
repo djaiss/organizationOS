@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
-class LoginController extends Controller
+final class LoginController extends Controller
 {
     public function create(): View
     {
@@ -60,7 +60,7 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-    protected function ensureIsNotRateLimited(Request $request): void
+    private function ensureIsNotRateLimited(Request $request): void
     {
         if (! RateLimiter::tooManyAttempts($this->throttleKey($request), 5)) {
             return;
@@ -78,7 +78,7 @@ class LoginController extends Controller
         ]);
     }
 
-    public function throttleKey(Request $request): string
+    private function throttleKey(Request $request): string
     {
         return Str::transliterate(Str::lower((string) $request->string('email')) . '|' . $request->ip());
     }

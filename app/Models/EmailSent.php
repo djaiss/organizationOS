@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Illuminate\Support\Carbon|null $delivered_at
  * @property \Illuminate\Support\Carbon|null $bounced_at
  */
-class EmailSent extends Model
+final class EmailSent extends Model
 {
     /** @use HasFactory<\Database\Factories\EmailSentFactory> */
     use HasFactory;

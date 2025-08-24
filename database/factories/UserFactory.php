@@ -11,12 +11,12 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class UserFactory extends Factory
+final class UserFactory extends Factory
 {
     /**
      * The current password being used by the factory.
      */
-    protected static ?string $password = null;
+    private static ?string $password = null;
 
     /**
      * Define the model's default state.
@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'nickname' => fake()->firstName(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => self::$password ??= Hash::make('password'),
             'locale' => 'en',
             'remember_token' => Str::random(10),
         ];

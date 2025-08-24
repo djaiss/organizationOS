@@ -9,7 +9,7 @@ use App\Models\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
-class LogController extends Controller
+final class LogController extends Controller
 {
     public function index(): View
     {

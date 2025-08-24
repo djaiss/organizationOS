@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use InvalidArgumentException;
 
-class UpdateUserPassword
+final class UpdateUserPassword
 {
     public function __construct(
         public User $user,

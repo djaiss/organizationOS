@@ -9,8 +9,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class MagicLinkCreated extends Mailable
+final class MagicLinkCreated extends Mailable implements ShouldQueue
 {
     use Queueable;
     use SerializesModels;
