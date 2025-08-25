@@ -10,8 +10,8 @@
       {{ __('Cancel') }}
     </x-button.secondary>
 
-    <x-button class="mr-2">
-      {{ __('Save') }}
+    <x-button class="mr-2" data-test="create-api-key-button">
+      {{ __('Create') }}
     </x-button>
   </div>
 </form>

@@ -7926,16 +7926,16 @@
         },
         {
             "name": "amphp/websocket-client",
-            "version": "v2.0.1",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/websocket-client.git",
-                "reference": "c388f19ebb70233489df5f0c995506d45001a026"
+                "reference": "dc033fdce0af56295a23f63ac4f579b34d470d6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/websocket-client/zipball/c388f19ebb70233489df5f0c995506d45001a026",
-                "reference": "c388f19ebb70233489df5f0c995506d45001a026",
+                "url": "https://api.github.com/repos/amphp/websocket-client/zipball/dc033fdce0af56295a23f63ac4f579b34d470d6c",
+                "reference": "dc033fdce0af56295a23f63ac4f579b34d470d6c",
                 "shasum": ""
             },
             "require": {
@@ -7945,7 +7945,7 @@
                 "amphp/http-client": "^5",
                 "amphp/socket": "^2.2",
                 "amphp/websocket": "^2",
-                "league/uri": "^6.8|^7.1",
+                "league/uri": "^7.1",
                 "php": ">=8.1",
                 "psr/http-message": "^1|^2",
                 "revolt/event-loop": "^1"
@@ -7998,7 +7998,7 @@
             ],
             "support": {
                 "issues": "https://github.com/amphp/websocket-client/issues",
-                "source": "https://github.com/amphp/websocket-client/tree/v2.0.1"
+                "source": "https://github.com/amphp/websocket-client/tree/v2.0.2"
             },
             "funding": [
                 {
@@ -8006,7 +8006,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-07T01:07:56+00:00"
+            "time": "2025-08-24T17:25:34+00:00"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -9580,16 +9580,16 @@
         },
         {
             "name": "pestphp/pest",
-            "version": "v4.0.2",
+            "version": "v4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "7f11ace329581ca168f99d9d7f70556c191d2be8"
+                "reference": "e54e4a0178889209a928f7bee63286149d4eb707"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/7f11ace329581ca168f99d9d7f70556c191d2be8",
-                "reference": "7f11ace329581ca168f99d9d7f70556c191d2be8",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/e54e4a0178889209a928f7bee63286149d4eb707",
+                "reference": "e54e4a0178889209a928f7bee63286149d4eb707",
                 "shasum": ""
             },
             "require": {
@@ -9601,12 +9601,12 @@
                 "pestphp/pest-plugin-mutate": "^4.0.1",
                 "pestphp/pest-plugin-profanity": "^4.0.1",
                 "php": "^8.3.0",
-                "phpunit/phpunit": "^12.3.5",
+                "phpunit/phpunit": "^12.3.6",
                 "symfony/process": "^7.3.0"
             },
             "conflict": {
                 "filp/whoops": "<2.18.3",
-                "phpunit/phpunit": ">12.3.5",
+                "phpunit/phpunit": ">12.3.6",
                 "sebastian/exporter": "<7.0.0",
                 "webmozart/assert": "<1.11.0"
             },
@@ -9680,7 +9680,7 @@
             ],
             "support": {
                 "issues": "https://github.com/pestphp/pest/issues",
-                "source": "https://github.com/pestphp/pest/tree/v4.0.2"
+                "source": "https://github.com/pestphp/pest/tree/v4.0.3"
             },
             "funding": [
                 {
@@ -9692,7 +9692,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-08-22T10:34:24+00:00"
+            "time": "2025-08-24T14:17:23+00:00"
         },
         {
             "name": "pestphp/pest-plugin",
@@ -10991,16 +10991,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "12.3.5",
+            "version": "12.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "f10ba5f12a256026ad3c7ee4894ffe47f60d7dc7"
+                "reference": "a2cab3224f687150ac2f3cc13d99b64ba1e1d088"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f10ba5f12a256026ad3c7ee4894ffe47f60d7dc7",
-                "reference": "f10ba5f12a256026ad3c7ee4894ffe47f60d7dc7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a2cab3224f687150ac2f3cc13d99b64ba1e1d088",
+                "reference": "a2cab3224f687150ac2f3cc13d99b64ba1e1d088",
                 "shasum": ""
             },
             "require": {
@@ -11020,7 +11020,7 @@
                 "phpunit/php-text-template": "^5.0.0",
                 "phpunit/php-timer": "^8.0.0",
                 "sebastian/cli-parser": "^4.0.0",
-                "sebastian/comparator": "^7.1.2",
+                "sebastian/comparator": "^7.1.3",
                 "sebastian/diff": "^7.0.0",
                 "sebastian/environment": "^8.0.3",
                 "sebastian/exporter": "^7.0.0",
@@ -11068,7 +11068,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.3.5"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.3.6"
             },
             "funding": [
                 {
@@ -11092,7 +11092,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-08-16T05:20:09+00:00"
+            "time": "2025-08-20T14:43:23+00:00"
         },
         {
             "name": "rector/rector",

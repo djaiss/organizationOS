@@ -8,7 +8,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\SendAPICreatedEmail;
 use App\Models\User;
 
-final class CreateApiKey
+final class DestroyApiKey
 {
     public function __construct(
         public User $user,

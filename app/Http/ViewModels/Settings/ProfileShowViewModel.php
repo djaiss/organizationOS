@@ -9,10 +9,10 @@ use App\Models\Log;
 use App\Models\User;
 use Illuminate\Support\Collection;
 
-final class ProfileShowViewModel
+final readonly class ProfileShowViewModel
 {
     public function __construct(
-        private readonly User $user,
+        private User $user,
     ) {}
 
     public function hasMoreLogs(): bool
