@@ -46,6 +46,7 @@ jobs:
           php-version: ${{ matrix.php-version }}
           extensions: mbstring, dom, fileinfo, ${{ matrix.connection }}
           coverage: none
+
       - name: Setup PHP ${{ matrix.php-version }}
         if: matrix.connection == env.coverage-with && matrix.php-version == env.default-php-version && matrix.coverage
         uses: shivammathur/setup-php@v2
@@ -54,10 +55,13 @@ jobs:
           extensions: mbstring, dom, fileinfo, ${{ matrix.connection }}
           coverage: pcov
           ini-values: pcov.directory=., pcov.exclude="~vendor~"
+
       - name: Check PHP Version
         run: php -v
+
       - name: Check Composer Version
         run: composer -V
+
       - name: Check PHP Extensions
         run: php -m
 
@@ -74,6 +78,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: Read Playwright version
+        id: pw-ver
+        run: |
+          echo "version=$(node -p "require('./package.json').devDependencies?.playwright || require('./package.json').dependencies?.playwright || ''")" >> $GITHUB_OUTPUT
+
+      - name: Cache Playwright browsers
+        id: pw-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.pw-ver.outputs.version }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
       # Composer
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -81,6 +99,7 @@ jobs:
       - name: Get Composer Cache Directory
         id: composer-cache
         run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
       - name: Cache composer files
         uses: actions/cache@v4
         with:
@@ -98,7 +117,8 @@ jobs:
         run: npm install
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        if: steps.pw-cache.outputs.cache-hit != 'true' && matrix.connection == 'sqlite'
+        run: npx playwright install --with-deps --only=chromium
 
       # Prepare
       - name: Prepare environment
@@ -115,14 +135,17 @@ jobs:
             done; \
             echo "}"; \
           } | tee public/build/manifest.json
+
       - name: Create sqlite database
         if: matrix.connection == 'sqlite'
         run: touch database/database.sqlite
+
       - name: Create mysql database
         if: matrix.connection == 'mysql'
         run: |
           sudo systemctl start mysql.service
           mysql --protocol=tcp -u root -proot -e "CREATE DATABASE IF NOT EXISTS organizationos CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+
       - name: Create pgsql database
         if: matrix.connection == 'pgsql'
         run: |
