@@ -80,17 +80,18 @@
             </div>
           </div>
 
-          <form x-target="api-key-list" action="{{ route('settings.api-keys.destroy', $apiKey->id) }}" method="POST" x-on:ajax:before="
+          <x-form
+            x-target="api-key-list"
+            action="{{ route('settings.api-keys.destroy', $apiKey->id) }}"
+            method="delete"
+            x-on:ajax:before="
             confirm('Are you sure you want to proceed? This can not be undone.') ||
               $event.preventDefault()
           ">
-            @csrf
-            @method('DELETE')
-
-            <x-button x-target="api-key-list" class="hidden text-sm group-hover:block">
+            <x-button x-target="api-key-list" class="text-sm" data-test="delete-api-key-{{ $apiKey->id }}">
               {{ __('Delete') }}
             </x-button>
-          </form>
+          </x-form>
         </div>
       @endforeach
     </div>

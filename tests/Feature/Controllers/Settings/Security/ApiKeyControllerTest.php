@@ -21,3 +21,18 @@ it('it can create a new api token', function (): void {
         'tokenable_id' => $user->id,
     ]);
 });
+
+it('it can delete an api token', function (): void {
+    $user = User::factory()->create();
+    $token = $user->createToken('Test API Token');
+
+    $response = $this->actingAs($user)
+        ->delete('/settings/api-keys/' . $token->accessToken->id);
+
+    $response->assertRedirect('/settings/security');
+    $response->assertSessionHas('status', 'API key deleted');
+
+    $this->assertDatabaseMissing('personal_access_tokens', [
+        'id' => $token->accessToken->id,
+    ]);
+});

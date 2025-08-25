@@ -2,40 +2,41 @@
 
 declare(strict_types=1);
 
-use App\Actions\CreateApiKey;
 use App\Jobs\LogUserAction;
-use App\Jobs\SendAPICreatedEmail;
+use App\Jobs\SendAPIDestroyedEmail;
 use App\Models\User;
+use App\Actions\DestroyApiKey;
 use Illuminate\Support\Facades\Queue;
 
-it('creates an api key', function (): void {
+it('deletes an api key', function (): void {
     Queue::fake();
 
     $user = User::factory()->create();
+    $user->createToken('Test API Key');
 
-    (new CreateApiKey(
+    $tokenId = $user->tokens()->first()->id;
+
+    (new DestroyApiKey(
         user: $user,
-        label: 'Test API Key',
+        tokenId: $tokenId,
     ))->execute();
 
-    $this->assertDatabaseHas('personal_access_tokens', [
-        'name' => 'Test API Key',
-        'tokenable_id' => $user->id,
-        'tokenable_type' => User::class,
+    $this->assertDatabaseMissing('personal_access_tokens', [
+        'id' => $tokenId,
     ]);
 
     Queue::assertPushedOn(
         queue: 'low',
         job: LogUserAction::class,
         callback: function (LogUserAction $job) use ($user): bool {
-            return $job->action === 'api_key_creation' && $job->user->id === $user->id;
+            return $job->action === 'api_key_deletion' && $job->user->id === $user->id;
         },
     );
 
     Queue::assertPushedOn(
         queue: 'high',
-        job: SendAPICreatedEmail::class,
-        callback: function (SendAPICreatedEmail $job) use ($user): bool {
+        job: SendAPIDestroyedEmail::class,
+        callback: function (SendAPIDestroyedEmail $job) use ($user): bool {
             return $job->email === $user->email && $job->label === 'Test API Key';
         },
     );

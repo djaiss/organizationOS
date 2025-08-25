@@ -5,23 +5,29 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Jobs\LogUserAction;
-use App\Jobs\SendAPICreatedEmail;
+use App\Jobs\SendAPIDestroyedEmail;
 use App\Models\User;
 
 final class DestroyApiKey
 {
+    private string $label;
+
     public function __construct(
         public User $user,
-        public string $label,
+        public int $tokenId,
     ) {}
 
-    public function execute(): string
+    /**
+     * Destroy an API key.
+     */
+    public function execute(): void
     {
-        $token = $this->user->createToken($this->label)->plainTextToken;
+        $token = $this->user->tokens()->where('id', $this->tokenId)->first();
+        $this->label = $token->name;
+        $token->delete();
+
         $this->log();
         $this->sendEmail();
-
-        return $token;
     }
 
     private function log(): void
@@ -29,14 +35,14 @@ final class DestroyApiKey
         LogUserAction::dispatch(
             organization: null,
             user: $this->user,
-            action: 'api_key_creation',
-            description: 'Created an API key',
+            action: 'api_key_deletion',
+            description: 'Deleted an API key',
         )->onQueue('low');
     }
 
     private function sendEmail(): void
     {
-        SendAPICreatedEmail::dispatch(
+        SendAPIDestroyedEmail::dispatch(
             email: $this->user->email,
             label: $this->label,
         )->onQueue('high');

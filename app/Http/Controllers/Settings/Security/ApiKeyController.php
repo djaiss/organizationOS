@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Settings\Security;
 
 use App\Actions\CreateApiKey;
+use App\Actions\DestroyApiKey;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -32,5 +33,18 @@ final class ApiKeyController extends Controller
         return redirect()->route('settings.security.index')
             ->with('apiKey', $apiKey)
             ->with('status', trans('API key created'));
+    }
+
+    public function destroy(Request $request, int $apiKeyId): RedirectResponse
+    {
+        $apiKey = Auth::user()->tokens()->where('id', $apiKeyId)->first();
+
+        new DestroyApiKey(
+            user: Auth::user(),
+            tokenId: $apiKey->id,
+        )->execute();
+
+        return redirect()->route('settings.security.index')
+            ->with('status', trans('API key deleted'));
     }
 }
