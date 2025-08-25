@@ -39,8 +39,8 @@ Route::middleware(['auth', 'verified', 'set.locale'])->group(function (): void {
     Route::get('settings/appearance', [Settings\Security\AppearanceController::class, 'edit'])->name('settings.appearance.edit');
 
     // api keys
-    Route::get('settings/api-keys/new', [Settings\Security\ApiKeyController::class, 'new'])->name('settings.api-keys.new');
-    Route::post('settings/api-keys', [Settings\Security\ApiKeyController::class, 'create'])->name('settings.api-keys.create');
+    Route::get('settings/api-keys/create', [Settings\Security\ApiKeyController::class, 'create'])->name('settings.api-keys.create');
+    Route::post('settings/api-keys', [Settings\Security\ApiKeyController::class, 'store'])->name('settings.api-keys.store');
     Route::delete('settings/api-keys/{apiKey}', [Settings\Security\ApiKeyController::class, 'destroy'])->name('settings.api-keys.destroy');
 });
 

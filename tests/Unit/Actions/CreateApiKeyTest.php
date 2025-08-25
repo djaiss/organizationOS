@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Queue;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class CreateApiKeyTest extends TestCase
+final class CreateApiKeyTest extends TestCase
 {
     use DatabaseTransactions;
 

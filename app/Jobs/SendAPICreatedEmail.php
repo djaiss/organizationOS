@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Mail;
 
-class SendAPICreatedEmail implements ShouldQueue
+final class SendAPICreatedEmail implements ShouldQueue
 {
     use Queueable;
 

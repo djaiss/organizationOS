@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Laravel\Sanctum\PersonalAccessToken;
 
-class SecurityController extends Controller
+final class SecurityController extends Controller
 {
     public function index(Request $request): View
     {

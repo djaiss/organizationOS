@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class SendAPICreatedEmailTest extends TestCase
+final class SendAPICreatedEmailTest extends TestCase
 {
     use DatabaseTransactions;
 

@@ -5,8 +5,8 @@ layout {
             plugin location="zellij:tab-bar"
         }
     }
-    tab name="Code" focus=true {
-        pane command="nvim"
+    tab name="Git" focus=true {
+        pane command="lazygit"
     }
     tab name="Tests queues etc..." {
         pane size="60%"
