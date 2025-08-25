@@ -78,13 +78,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install Playwright browsers
-        if: steps.pw-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps chromium
-
-      - name: Verify Playwright installation
-        run: npx playwright --version
-
       # Composer
       - name: Validate composer.json and composer.lock
         run: composer validate
