@@ -78,20 +78,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Read Playwright version
-        id: pw-ver
-        run: |
-          echo "version=$(node -p "require('./package.json').devDependencies?.playwright || require('./package.json').dependencies?.playwright || ''")" >> $GITHUB_OUTPUT
-
-      - name: Cache Playwright browsers
-        id: pw-cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ steps.pw-ver.outputs.version }}
-          restore-keys: |
-            ${{ runner.os }}-playwright-
-
       # Composer
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -117,7 +103,6 @@ jobs:
         run: npm install
 
       - name: Install Playwright Browsers
-        if: steps.pw-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps
 
       # Prepare
