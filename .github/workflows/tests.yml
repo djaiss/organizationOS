@@ -117,7 +117,7 @@ jobs:
         run: npm install
 
       - name: Install Playwright Browsers
-        if: steps.pw-cache.outputs.cache-hit != 'true' && matrix.connection == 'sqlite'
+        if: steps.pw-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps --only=chromium
 
       # Prepare
