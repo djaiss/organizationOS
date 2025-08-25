@@ -78,19 +78,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Read Playwright version
-        id: pw-ver
-        run: |
-          echo "version=$(node -p "require('./package.json').devDependencies?.playwright || require('./package.json').dependencies?.playwright || ''")" >> $GITHUB_OUTPUT
+      - name: Install Playwright browsers
+        if: steps.pw-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
 
-      - name: Cache Playwright browsers
-        id: pw-cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ steps.pw-ver.outputs.version }}
-          restore-keys: |
-            ${{ runner.os }}-playwright-
+      - name: Verify Playwright installation
+        run: npx playwright --version
 
       # Composer
       - name: Validate composer.json and composer.lock
@@ -117,8 +110,9 @@ jobs:
         run: npm install
 
       - name: Install Playwright Browsers
-        if: steps.pw-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
+        uses: microsoft/playwright-github-action@v1
+        with:
+          browsers: chromium
 
       # Prepare
       - name: Prepare environment
