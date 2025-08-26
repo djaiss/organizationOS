@@ -1,76 +1,69 @@
-<?php
-/*
- * @var MarketingPage $marketingPage
- * @var string $view
- */
-?>
-
 <footer class="border-t border-gray-200 bg-white pt-12 pb-8">
   <div class="mx-auto max-w-7xl px-6 lg:px-0">
     <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
       <!-- Products Column -->
       <div>
-        <h3 class="text-sm font-semibold text-gray-900">{{ __('Products') }}</h3>
+        <h3 class="text-sm font-semibold text-gray-900">Products</h3>
         <ul class="mt-6 space-y-4">
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('All products') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">All products</a>
           </li>
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('Features') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Features</a>
           </li>
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('Security') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Security</a>
           </li>
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('Team') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Team</a>
           </li>
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('Enterprise') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Enterprise</a>
           </li>
         </ul>
       </div>
 
       <!-- Resources Column -->
       <div>
-        <h3 class="text-sm font-semibold text-gray-900">{{ __('Resources') }}</h3>
+        <h3 class="text-sm font-semibold text-gray-900">Resources</h3>
         <ul class="mt-6 space-y-4">
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('Documentation') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Documentation</a>
           </li>
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('API Reference') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">API Reference</a>
           </li>
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('Guides') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Guides</a>
           </li>
         </ul>
       </div>
 
       <!-- Company Column -->
       <div>
-        <h3 class="text-sm font-semibold text-gray-900">{{ __('Company') }}</h3>
+        <h3 class="text-sm font-semibold text-gray-900">Company</h3>
         <ul class="mt-6 space-y-4">
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('About') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">About</a>
           </li>
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('Blog') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Blog</a>
           </li>
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('Careers') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Careers</a>
           </li>
         </ul>
       </div>
 
       <!-- Support Column -->
       <div>
-        <h3 class="text-sm font-semibold text-gray-900">{{ __('Support') }}</h3>
+        <h3 class="text-sm font-semibold text-gray-900">Support</h3>
         <ul class="mt-6 space-y-4">
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('Help Center') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Help Center</a>
           </li>
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('Community') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Community</a>
           </li>
           <li>
             <a href="https://status.peopleos.cloud/" target="_blank" class="flex items-center gap-x-2 text-sm text-gray-600 hover:text-gray-900" aria-label="View system status">
@@ -78,7 +71,7 @@
                 <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75 duration-1000"></span>
                 <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
               </span>
-              {{ __('Status') }}
+              Status
             </a>
           </li>
         </ul>
@@ -86,16 +79,16 @@
 
       <!-- Social Column -->
       <div>
-        <h3 class="text-sm font-semibold text-gray-900">{{ __('Social') }}</h3>
+        <h3 class="text-sm font-semibold text-gray-900">Social</h3>
         <ul class="mt-6 space-y-4">
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('GitHub') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">GitHub</a>
           </li>
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('Twitter') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Twitter</a>
           </li>
           <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{ __('LinkedIn') }}</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900">LinkedIn</a>
           </li>
         </ul>
       </div>
@@ -113,7 +106,7 @@
                 <x-image src="{{ asset('logo.webp') }}" alt="PeopleOS logo" width="25" height="25" srcset="{{ asset('logo.webp') }} 1x, {{ asset('logo@2x.webp') }} 2x" />
               </div>
             </a>
-            <p class="text-xs text-gray-600">&copy; {{ date('Y') }} {{ config('app.name') }}. {{ __('All rights reserved. Actually, our trademark is not registered, but we probably should write that to do like the big boys.') }}</p>
+            <p class="text-xs text-gray-600">&copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved. Actually, our trademark is not registered, but we probably should write that to do like the big boys.</p>
           </div>
 
           <p class="text-xs text-gray-600">
@@ -125,8 +118,8 @@
 
         <div class="mt-6 sm:mt-0">
           <div class="mb-2 flex gap-x-4">
-            <a href="" class="text-sm text-gray-600 hover:text-gray-900">{{ __('Privacy') }}</a>
-            <a href="" class="text-sm text-gray-600 hover:text-gray-900">{{ __('Terms') }}</a>
+            <a href="" class="text-sm text-gray-600 hover:text-gray-900">Privacy</a>
+            <a href="" class="text-sm text-gray-600 hover:text-gray-900">Terms</a>
           </div>
 
           <p class="flex gap-x-2 text-xs text-gray-500">
@@ -135,7 +128,7 @@
               <path fill="#f00" d="m0 0h2400l99 99h4602l99-99h2400v4800h-2400l-99-99h-4602l-99 99H0z" />
               <path fill="#fff" d="m2400 0h4800v4800h-4800zm2490 4430-45-863a95 95 0 0 1 111-98l859 151-116-320a65 65 0 0 1 20-73l941-762-212-99a65 65 0 0 1-34-79l186-572-542 115a65 65 0 0 1-73-38l-105-247-423 454a65 65 0 0 1-111-57l204-1052-327 189a65 65 0 0 1-91-27l-332-652-332 652a65 65 0 0 1-91 27l-327-189 204 1052a65 65 0 0 1-111 57l-423-454-105 247a65 65 0 0 1-73 38l-542-115 186 572a65 65 0 0 1-34 79l-212 99 941 762a65 65 0 0 1 20 73l-116 320 859-151a95 95 0 0 1 111 98l-45 863z" />
             </svg>
-            {{ __('Proudly Canadian') }}
+            Proudly Canadian
           </p>
         </div>
       </div>
