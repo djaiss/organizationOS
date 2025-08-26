@@ -98,3 +98,45 @@ it('user can delete their api key', function (): void {
         'id' => $tokenId,
     ]);
 });
+
+it('can get a single api key', function () use ($singleJsonStructure): void {
+    Carbon::setTestNow('2025-07-01 00:00:00');
+    $user = User::factory()->create();
+    $token = $user->createToken('Test API Key');
+    $tokenId = $token->accessToken->id;
+
+    Sanctum::actingAs($user);
+
+    $response = $this->json('GET', "/api/settings/api/{$tokenId}");
+
+    $response->assertStatus(200);
+    $response->assertJsonStructure($singleJsonStructure);
+
+    $response->assertJson([
+        'data' => [
+            'type' => 'api_key',
+            'id' => (string) $tokenId,
+            'attributes' => [
+                'name' => 'Test API Key',
+                'token' => null,
+                'last_used_at' => null,
+                'created_at' => Carbon::now()->timestamp,
+                'updated_at' => Carbon::now()->timestamp,
+            ],
+        ],
+    ]);
+});
+
+it('returns 404 when api key not found', function (): void {
+    $user = User::factory()->create();
+
+    Sanctum::actingAs($user);
+
+    $response = $this->json('GET', '/api/settings/api/999');
+
+    $response->assertStatus(404);
+    $response->assertJson([
+        'message' => 'API key not found',
+        'status' => 404,
+    ]);
+});
