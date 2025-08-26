@@ -6,7 +6,11 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Laravel\Sanctum\PersonalAccessToken;
 
+/**
+ * @mixin PersonalAccessToken
+ */
 final class ApiResource extends JsonResource
 {
     /**
