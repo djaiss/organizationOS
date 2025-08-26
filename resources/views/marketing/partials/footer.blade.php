@@ -121,7 +121,6 @@
             <a href="https://posthog.com" target="_blank" class="text-blue-500 hover:text-blue-700">Posthog website</a>
             .
           </p>
-
         </div>
 
         <div class="mt-6 sm:mt-0">

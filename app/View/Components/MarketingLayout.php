@@ -7,7 +7,7 @@ namespace App\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class MarketingLayout extends Component
+final class MarketingLayout extends Component
 {
     public function render(): View
     {

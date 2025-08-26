@@ -79,9 +79,7 @@
 
         <x-dropdown align="right" width="48">
           <x-slot name="trigger">
-            <button class="flex rounded-full border-2 border-transparent text-sm transition focus:border-gray-300 focus:outline-hidden">
-              <x-image class="h-8 w-8 rounded-full object-cover p-[0.1875rem] shadow-sm ring-1 ring-slate-900/10" width="64" height="64" src="{{ Auth::user()->getAvatar(64) }}" alt="{{ Auth::user()->name }}" />
-            </button>
+            <button class="flex rounded-full border-2 border-transparent text-sm transition focus:border-gray-300 focus:outline-hidden"></button>
           </x-slot>
 
           <x-slot name="content">
@@ -93,12 +91,6 @@
             <x-dropdown-link href="">
               {{ __('Administration') }}
             </x-dropdown-link>
-
-            @if (Auth::user()->is_instance_admin)
-              <x-dropdown-link href="">
-                {{ __('Instance administration') }}
-              </x-dropdown-link>
-            @endif
 
             <div class="border-t border-gray-200 dark:border-gray-600"></div>
 
