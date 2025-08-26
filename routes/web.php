@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [Marketing\MarketingController::class, 'index'])->name('marketing.index');
 Route::get('/docs', [Marketing\Docs\MarketingDocController::class, 'index'])->name('marketing.docs.index');
 Route::get('/docs/api/authentication', [Marketing\Docs\AuthenticationController::class, 'index'])->name('marketing.docs.api.authentication');
+Route::get('/docs/api/api-management', [Marketing\Docs\ApiManagementController::class, 'index'])->name('marketing.docs.api.api-management');
 
 Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update');
 

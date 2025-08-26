@@ -9,7 +9,7 @@
       <p class="mb-2">You must use the API key in the Authorization header. The value must be Bearer followed by a space and then the API key.</p>
       <p class="mb-2">
         On our instance, the API calls are rate limited to 60 requests per minute. On your instance, you can change that settings in the
-        <a href="https://github.com/djaiss/organizationOS/blob/main/routes/api.php" target="_blank" class="text-blue-500 hover:underline">api.php</a>
+        <x-link href="https://github.com/djaiss/organizationOS/blob/main/routes/api.php" target="_blank">api.php</x-link>
         configuration file.
       </p>
       <p class="mb-2">There are two ways to get an API key:</p>
@@ -27,6 +27,19 @@
         <x-marketing.code>curl -X GET "{{ config('app.url') }}/api/organizations" \ -H "Authorization: Bearer YOUR_API_KEY"</x-marketing.code>
       </p>
     </div>
+  </div>
+
+  <div class="mb-8 rounded-lg border border-gray-200 p-4">
+    <p class="mb-2 text-xs">Table of contents</p>
+
+    <ul>
+      <li>
+        <x-link href="#login">Login</x-link>
+      </li>
+      <li>
+        <x-link href="#logout">Logout</x-link>
+      </li>
+    </ul>
   </div>
 
   <!-- POST /api/login -->
