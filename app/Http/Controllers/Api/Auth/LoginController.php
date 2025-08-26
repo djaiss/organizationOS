@@ -26,7 +26,7 @@ final class LoginController extends Controller
             return $this->error('Invalid credentials', 401);
         }
 
-        $user = User::where('email', $validated['email'])->first();
+        $user = Auth::user();
 
         $tokenName = 'API token for ' . $user->email;
 
