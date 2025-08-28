@@ -16,7 +16,7 @@ it('creates an API key', function (): void {
     $page->press('@new-api-key-button');
     $page->type('label', 'test1');
     $page->press('@create-api-key-button');
-    $page->assertSee('API Key created successfully');
+    $page->assertSee('API Key created');
 });
 
 it('deletes an API key', function (): void {

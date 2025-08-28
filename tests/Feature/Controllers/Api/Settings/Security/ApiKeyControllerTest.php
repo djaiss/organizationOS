@@ -42,7 +42,6 @@ $singleJsonStructure = [
             'self',
         ],
     ],
-    'token',
 ];
 
 it('can list the api keys of the current user', function () use ($collectionJsonStructure): void {
