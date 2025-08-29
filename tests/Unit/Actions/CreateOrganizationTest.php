@@ -43,21 +43,6 @@ it('throws an exception if user not found', function (): void {
     ))->execute();
 });
 
-it('throws an exception if organization name is already taken', function (): void {
-    $this->expectException(ValidationException::class);
-
-    $user = User::factory()->create();
-
-    Organization::factory()->create([
-        'name' => 'Dunder Mifflin',
-    ]);
-
-    (new CreateOrganization(
-        userId: $user->id,
-        organizationName: 'Dunder Mifflin',
-    ))->execute();
-});
-
 it('throws an exception if organization name contains special characters', function (): void {
     $this->expectException(ValidationException::class);
 

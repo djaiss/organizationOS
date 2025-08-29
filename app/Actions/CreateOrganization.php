@@ -40,13 +40,6 @@ final class CreateOrganization
             throw new ModelNotFoundException('User not found');
         }
 
-        // make sure the organization name is not already taken
-        if (Organization::where('name', $this->organizationName)->exists()) {
-            throw ValidationException::withMessages([
-                'organization_name' => 'Organization name already taken',
-            ]);
-        }
-
         // make sure the organization name doesn't contain any special characters
         if (in_array(preg_match('/^[a-zA-Z0-9\s\-_]+$/', $this->organizationName), [0, false], true)) {
             throw ValidationException::withMessages([

@@ -29,9 +29,12 @@ Route::middleware(['auth', 'verified', 'set.locale'])->group(function (): void {
     Route::get('organizations', [Organizations\OrganizationController::class, 'index'])->name('organizations.index');
     Route::get('organizations/{organization}', [Organizations\OrganizationController::class, 'show'])->name('organizations.show');
     Route::get('organizations/create', [Organizations\OrganizationController::class, 'create'])->name('organizations.create');
-    Route::get('organizations/{organization}', [Organizations\OrganizationController::class, 'show'])->name('organizations.show');
     Route::post('organizations', [Organizations\OrganizationController::class, 'store'])->name('organizations.store');
 
+    // organization
+    Route::get('organizations/{organization}', [Organizations\OrganizationController::class, 'show'])->name('organizations.show');
+
+    // settings redirect
     Route::redirect('settings', 'settings/profile');
 
     // settings
