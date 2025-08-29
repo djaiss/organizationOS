@@ -10,10 +10,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Marketing\MarketingController::class, 'index'])->name('marketing.index');
 Route::get('/docs', [Marketing\Docs\MarketingDocController::class, 'index'])->name('marketing.docs.index');
-Route::get('/docs/api/authentication', [Marketing\Docs\AuthenticationController::class, 'index'])->name('marketing.docs.api.authentication');
-Route::get('/docs/api/profile', [Marketing\Docs\ProfileController::class, 'index'])->name('marketing.docs.api.profile');
-Route::get('/docs/api/api-management', [Marketing\Docs\ApiManagementController::class, 'index'])->name('marketing.docs.api.api-management');
-Route::get('/docs/api/logs', [Marketing\Docs\LogsController::class, 'index'])->name('marketing.docs.api.logs');
+
+// api docs
+Route::get('/docs/api', [Marketing\Docs\Api\ApiIntroductionController::class, 'index'])->name('marketing.docs.api.index');
+Route::get('/docs/api/authentication', [Marketing\Docs\Api\AuthenticationController::class, 'index'])->name('marketing.docs.api.authentication');
+
+// concepts docs
+Route::get('/docs/concepts/hierarchical-structure', [Marketing\Docs\Concepts\HierarchicalStructureController::class, 'index'])->name('marketing.docs.concepts.hierarchical-structure');
+
+// account management
+Route::get('/docs/api/profile', [Marketing\Docs\Api\ProfileController::class, 'index'])->name('marketing.docs.api.account.profile');
+Route::get('/docs/api/api-management', [Marketing\Docs\Api\ApiManagementController::class, 'index'])->name('marketing.docs.api.account.api-management');
+Route::get('/docs/api/logs', [Marketing\Docs\Api\LogsController::class, 'index'])->name('marketing.docs.api.account.logs');
 
 Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update');
 
