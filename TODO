@@ -15,71 +15,13 @@
 - [x] API to check health
 - [x] API to get user info (name, email, locale)
 - [x] API to update user info
-- [ ] API to read logs
+- [x] API to read logs
 
-## 🔐 Phase 2: Organizations & Roles
-- [ ] Define roles: owner, admin, member
-- [ ] Create `organization_user` pivot table with `role`
-- [ ] Middleware or policies to enforce role-based access
-- [ ] Ability to switch between organizations (if user belongs to several)
-- [ ] UI to manage organization members and roles
+## Core structural layers
 
-## 📩 Phase 3: Invitations & Onboarding
-- [ ] Invite members via email to organization
-- [ ] Accept invitation flow (with account creation if needed)
-- [ ] Show pending invitations
-- [ ] Assign role at invitation time (default: member)
-
-## 📁 Phase 4: Projects & Permissions
-- [ ] List projects within organization
-- [ ] Show project detail page (name, description, members)
-- [ ] Role-based permissions on project actions
-- [ ] Project member management (if different from org-wide access)
-
-## 📋 Phase 5: Issues & Task Management
-- [ ] Create issues/tickets within a project
-- [ ] Basic fields: title, description, priority, status, assignee
-- [ ] Comment system on issues
-- [ ] Activity log for changes (status, assignee, etc.)
-- [ ] Issue filters (by status, assignee, priority)
-
-## 🗂️ Phase 6: Boards (Kanban View)
-- [ ] Default board with statuses: Todo, In Progress, Done
-- [ ] Drag & drop issue between columns
-- [ ] Real-time updates (optional: Laravel Echo + Pusher)
-- [ ] Customizable columns (later)
-
-## 📆 Phase 7: Agile Features
-- [ ] Sprints (with start/end dates)
-- [ ] Backlog (unscheduled issues)
-- [ ] Assign issues to sprints
-- [ ] Sprint burndown chart (basic)
-
-## 📊 Phase 8: Reporting & Dashboard
-- [ ] Dashboard per project: issue stats, recent activity
-- [ ] Charts (open/closed issues, per user, per priority)
-- [ ] Overdue issues list
-
-## 🔌 Phase 9: Integrations
-- [ ] GitHub / GitLab / Bitbucket issue linking
-- [ ] Slack / Email notifications
-- [ ] Webhooks
-- [ ] Public REST API with Laravel Sanctum or Passport
-
-## 🧭 Phase 10: UX & Quality of Life
-- [ ] Search across issues/projects
-- [ ] Keyboard shortcuts
-- [ ] Notifications system
-- [ ] Markdown support for comments/descriptions
-- [ ] Light/dark theme toggle
-
-## 💳 Phase 11: Billing (Optional / Later)
-- [ ] Stripe integration (Laravel Cashier)
-- [ ] Free trial & paid plans
-- [ ] Role-based usage limits (per plan)
-- [ ] Billing portal (change card, invoices, etc.)
-
-## ⚙️ Phase 12: Admin & Settings
-- [ ] App admin panel (see users, orgs, projects)
-- [ ] Organization settings (rename, delete, etc.)
-- [ ] User profile settings (name, avatar, password)
+- [ ] Manage countries
+- [ ] Manage offices
+- [ ] Manage divisions
+- [ ] Manage departments
+- [ ] Manage teams
+- [ ] Manage guilds
