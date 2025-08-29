@@ -105,10 +105,6 @@
       <p class="mb-2">Branch/Satellite offices are regular offices where divisions, departments, and teams operate locally. They can have their own leaders, but they report up through the organization to HQ.</p>
 
       <p class="mb-2">
-        <strong>Branch/Satellite offices</strong>
-        are regular offices where divisions, departments, and teams operate locally. They can have their own leaders, but they report up through the organization to HQ.
-      </p>
-      <p class="mb-2">
         <strong>Remote-first organizations</strong>
         can set a single “Remote (Global)” office and mark it as HQ, or designate a small physical office as HQ while most employees work remotely.
       </p>
