@@ -10,13 +10,12 @@
 - [x] Display sent emails
 - [x] Test email templates
 - [ ] Check Resend to capture email deliveryr
-- [ ] Manage API tokens
-- [ ] Basic docs microsite
-- [ ] API to check health
-- [ ] API to get user info (name, email, locale)
-- [ ] API to update user info
-- [ ] API documentation
-- [ ] Display emails sent to user
+- [x] Manage API tokens
+- [x] Basic docs microsite
+- [x] API to check health
+- [x] API to get user info (name, email, locale)
+- [x] API to update user info
+- [ ] API to read logs
 
 ## 🔐 Phase 2: Organizations & Roles
 - [ ] Define roles: owner, admin, member

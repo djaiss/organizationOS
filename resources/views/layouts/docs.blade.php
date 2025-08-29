@@ -44,7 +44,7 @@
             </div>
             <div x-show="accountManagementDocumentation" class="mb-3 flex flex-col gap-y-2">
               <div>
-                <a href="" class="{{ request()->routeIs('marketing.docs.api.profile') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Profile</a>
+                <a href="{{ route('marketing.docs.api.profile') }}" class="{{ request()->routeIs('marketing.docs.api.profile') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Profile</a>
               </div>
               <div>
                 <a href="" class="{{ request()->routeIs('marketing.docs.api.logs') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Logs</a>
