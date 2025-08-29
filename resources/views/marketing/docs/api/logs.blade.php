@@ -60,7 +60,7 @@
         <x-marketing.attribute name="type" type="string" description="The type of the resource." />
         <x-marketing.attribute name="id" type="string" description="The ID of the log." />
         <x-marketing.attribute name="attributes" type="object" description="The attributes of the log." />
-        <x-marketing.attribute name="attributes.name" type="string" description="The name of the Person the action was performed on." />
+        <x-marketing.attribute name="attributes.user_name" type="string" description="The name of the Person the action was performed on." />
         <x-marketing.attribute name="attributes.action" type="string" description="The action that was performed. There are many actions." />
         <x-marketing.attribute name="attributes.description" type="string" description="The description of the action." />
         <x-marketing.attribute name="attributes.created_at" type="integer" description="The date and time the object was created, in Unix timestamp format." />
