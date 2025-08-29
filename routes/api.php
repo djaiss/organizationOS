@@ -21,6 +21,10 @@ Route::name('api.')->group(function (): void {
         Route::get('me', [Settings\Profile\ProfileController::class, 'show'])->name('me');
         Route::put('me', [Settings\Profile\ProfileController::class, 'update'])->name('me.update');
 
+        // logs
+        Route::get('settings/logs', [Settings\Profile\LogController::class, 'index'])->name('settings.logs');
+        Route::get('settings/logs/{id}', [Settings\Profile\LogController::class, 'show'])->name('settings.logs.show');
+
         // api keys
         Route::get('settings/api', [Settings\Security\ApiKeyController::class, 'index'])->name('settings.api');
         Route::get('settings/api/{id}', [Settings\Security\ApiKeyController::class, 'show'])->name('settings.api.show');

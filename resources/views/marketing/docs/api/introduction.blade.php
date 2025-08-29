@@ -42,11 +42,134 @@
     </p>
   </div>
 
-  <!-- GET /api/health -->
   <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
     <div>
+      <h3 id="pagination" class="mb-2 text-lg font-bold">Pagination</h3>
+      <p class="mb-2">All endpoints that return a collection of resources support pagination.</p>
+      <p class="mb-2">The default value for <code>per_page</code> is 10. This can not be changed at the moment.</p>
+      <p class="mb-2">All responses will include links to navigate to the next and previous pages.</p>
+    </div>
+    <div>
+      <x-marketing.code title="Example of pagination" verb="GET" verbClass="text-green-700">
+        <div>{</div>
+        <div class="pl-4">
+          "meta":
+          <span class="text-rose-800">{
+        </div>
+        <div class="pl-8">
+          "current_page":
+          <span class="text-lime-700">1</span>,
+        </div>
+        <div class="pl-8">
+          "from":
+          <span class="text-lime-700">1</span>,
+        </div>
+        <div class="pl-8">
+          "last_page":
+          <span class="text-lime-700">1</span>,
+        </div>
+        <div class="pl-8">
+          "links":
+          <span class="text-rose-800">[
+        </div>
+        <div class="pl-12">
+          {
+        </div>
+        <div class="pl-16">
+          "url":
+          <span class="text-rose-800">null</span>,
+        </div>
+        <div class="pl-16">
+          "label":
+          <span class="text-rose-800">"&laquo; Previous"</span>,
+        </div>
+        <div class="pl-16">
+          "page":
+          <span class="text-rose-800">null</span>,
+        </div>
+        <div class="pl-16">
+          "active":
+          <span class="text-rose-800">false</span>
+        </div>
+        <div class="pl-12">
+          },
+        </div>
+        <div class="pl-12">
+          {
+        </div>
+        <div class="pl-16">
+          "url":
+          <span class="text-rose-800">"{{ config('app.url') }}/api/settings/logs?page=1"</span>,
+        </div>
+        <div class="pl-16">
+          "label":
+          <span class="text-rose-800">"1"</span>,
+        </div>
+        <div class="pl-16">
+          "page":
+          <span class="text-lime-700">1</span>,
+        </div>
+        <div class="pl-16">
+          "active":
+          <span class="text-rose-800">true</span>
+        </div>
+        <div class="pl-12">
+          },
+        </div>
+        <div class="pl-12">
+          {
+        </div>
+        <div class="pl-16">
+          "url":
+          <span class="text-rose-800">null</span>,
+        </div>
+        <div class="pl-16">
+          "label":
+          <span class="text-rose-800">"Next &raquo;"</span>,
+        </div>
+        <div class="pl-16">
+          "page":
+          <span class="text-rose-800">null</span>,
+        </div>
+        <div class="pl-16">
+          "active":
+          <span class="text-rose-800">false</span>
+        </div>
+        <div class="pl-12">
+          ]
+        </div>
+        <div class="pl-8">
+          },
+        </div>
+        <div class="pl-8">
+          "path":
+          <span class="text-rose-800">"{{ config('app.url') }}/api/settings/logs"</span>,
+        </div>
+        <div class="pl-8">
+          "per_page":
+          <span class="text-lime-700">10</span>,
+        </div>
+        <div class="pl-8">
+          "to":
+          <span class="text-lime-700">1</span>,
+        </div>
+        <div class="pl-8">
+          "total":
+          <span class="text-lime-700">1</span>
+        </div>
+        <div class="pl-4">
+          }
+        </div>
+        <div>}</div>
+      </x-marketing.code>
+    </div>
+  </div>
+
+  <!-- GET /api/health -->
+  <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <div>
       <h3 id="health" class="mb-2 text-lg font-bold">Health</h3>
-      <p class="mb-10">This endpoint checks the health of the application and returns a simple "ok" message.</p>
+      <p class="mb-10">This endpoint checks the health of the application and returns a simple "ok" message. It lets you know if the application is running and if the database is connected.</p>
 
       <!-- url parameters -->
       <x-marketing.url-parameters>

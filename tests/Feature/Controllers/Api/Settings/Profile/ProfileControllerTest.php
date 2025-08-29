@@ -6,8 +6,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Laravel\Sanctum\Sanctum;
 
-uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
-
 $userJsonStructure = [
     'data' => [
         'type',
