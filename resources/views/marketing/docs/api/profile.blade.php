@@ -6,10 +6,10 @@
 
     <ul>
       <li>
-        <a href="#get-the-information-about-the-logged-user" class="text-blue-500 hover:underline">Get the information about the logged user</a>
+        <x-link href="#get-the-information-about-the-logged-user">Get the information about the logged user</x-link>
       </li>
       <li>
-        <a href="#update-the-information-about-the-logged-user" class="text-blue-500 hover:underline">Update the information about the logged user</a>
+        <x-link href="#update-the-information-about-the-logged-user">Update the information about the logged user</x-link>
       </li>
     </ul>
   </div>
@@ -73,7 +73,7 @@
   </div>
 
   <!-- PUT /api/me -->
-  <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
+  <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
     <div>
       <h3 id="update-the-information-about-the-logged-user" class="mb-2 text-lg font-bold">Update the information about the logged user</h3>
       <p class="mb-2">This endpoint updates the information about the logged user.</p>

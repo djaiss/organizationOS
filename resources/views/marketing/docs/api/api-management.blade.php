@@ -32,6 +32,10 @@
             <span class="text-blue-700">GET</span>
             /api/settings/api
           </x-link>
+          <x-link href="#get-an-api-key">
+            <span class="text-blue-700">GET</span>
+            /api/settings/api/{id}
+          </x-link>
           <x-link href="#create-a-new-api-key">
             <span class="text-green-700">POST</span>
             /api/settings/api
@@ -159,7 +163,7 @@
   </div>
 
   <!-- DELETE /api/settings/api/{id} -->
-  <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
+  <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
     <div>
       <h3 id="delete-an-api-key" class="mb-2 text-lg font-bold">Delete an API key</h3>
       <p class="mb-10">This endpoint deletes an API key. It will return a success message in the response.</p>

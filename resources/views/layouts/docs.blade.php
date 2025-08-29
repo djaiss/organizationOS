@@ -47,42 +47,10 @@
                 <a href="{{ route('marketing.docs.api.profile') }}" class="{{ request()->routeIs('marketing.docs.api.profile') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Profile</a>
               </div>
               <div>
-                <a href="" class="{{ request()->routeIs('marketing.docs.api.logs') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Logs</a>
+                <a href="{{ route('marketing.docs.api.logs') }}" class="{{ request()->routeIs('marketing.docs.api.logs') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Logs</a>
               </div>
               <div>
                 <a href="{{ route('marketing.docs.api.api-management') }}" class="{{ request()->routeIs('marketing.docs.api.api-management') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">API management</a>
-              </div>
-              <div>
-                <a href="" class="{{ request()->routeIs('marketing.docs.api.genders') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Genders</a>
-              </div>
-              <div>
-                <a href="" class="{{ request()->routeIs('marketing.docs.api.task-categories') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Task categories</a>
-              </div>
-            </div>
-
-            <!-- persons -->
-            <div @click="personsDocumentation = !personsDocumentation" class="mb-3 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 pl-3 text-xs text-gray-500 uppercase hover:border-gray-200 hover:bg-blue-50">
-              <h3>Persons</h3>
-              <x-phosphor-caret-right x-bind:class="personsDocumentation ? 'rotate-90' : ''" class="h-4 w-4 text-gray-500 transition-transform duration-300" />
-            </div>
-            <div x-show="personsDocumentation" class="mb-3 flex flex-col gap-y-2">
-              <div>
-                <a href="" class="{{ request()->routeIs('marketing.docs.api.gifts') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Gifts</a>
-              </div>
-              <div>
-                <a href="" class="{{ request()->routeIs('marketing.docs.api.tasks') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Tasks for persons</a>
-              </div>
-              <div>
-                <a href="" class="{{ request()->routeIs('marketing.docs.api.notes') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Notes</a>
-              </div>
-              <div>
-                <a href="" class="{{ request()->routeIs('marketing.docs.api.update-age') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Update a person's age</a>
-              </div>
-              <div>
-                <a href="" class="{{ request()->routeIs('marketing.docs.api.update-physical-appearance') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Update physical appearance</a>
-              </div>
-              <div>
-                <a href="" class="{{ request()->routeIs('marketing.docs.api.life-events') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Life events</a>
               </div>
             </div>
           </div>
