@@ -13,7 +13,9 @@
       </ul>
 
       <p class="mb-8">
-        To illustrate the concepts, we'll use examples from the fictional Dunder Mifflin Paper Company from <em>The Office</em>. The same structure works for remote-first companies and multi-country organizations.
+        To illustrate the concepts, we'll use examples from the fictional Dunder Mifflin Paper Company from
+        <em>The Office</em>
+        . The same structure works for remote-first companies and multi-country organizations.
       </p>
 
       <h2 class="mb-2 text-lg font-bold" id="entities-overview">Entities overview</h2>
@@ -86,27 +88,21 @@
 
       <h2 class="mb-2 text-lg font-bold" id="key-principles">Key principles</h2>
 
-      <p class="mb-2">
-        There are some basic rules to follow:
+      <p class="mb-2">There are some basic rules to follow:</p>
 
-        <ul class="mb-2 list-disc pl-6">
-          <li>Every unit should have a clear name, a parent (except at the top), and a designated leader/owner.</li>
-          <li>Employees primarily belong to teams, and can optionally join guilds for cross-functional collaboration.</li>
-          <li>Offices are linked to countries, and any organizational unit can optionally be tied to an office when location matters.</li>
-          <li>An organization can be entirely remote. In that case, you can replace physical offices with a single "Remote (global)" office and still designate it as HQ if appropriate.</li>
-          <li>Departments can contain sub-departments. Keep things flat if you’re small; nest when you need the flexibility.</li>
-        </ul>
-      </p>
+      <ul class="mb-10 list-disc pl-6">
+        <li>Every unit should have a clear name, a parent (except at the top), and a designated leader/owner.</li>
+        <li>Employees primarily belong to teams, and can optionally join guilds for cross-functional collaboration.</li>
+        <li>Offices are linked to countries, and any organizational unit can optionally be tied to an office when location matters.</li>
+        <li>An organization can be entirely remote. In that case, you can replace physical offices with a single "Remote (global)" office and still designate it as HQ if appropriate.</li>
+        <li>Departments can contain sub-departments. Keep things flat if you’re small; nest when you need the flexibility.</li>
+      </ul>
 
       <h3 class="mb-2 text-base font-bold" id="headquarters-vs-branch-offices">Headquarters vs. branch offices</h3>
 
-      <p class="mb-2">
-        Headquarters (HQ) is the primary office of the organization. It typically houses executive leadership and is tied to legal registration, tax, and compliance. Your data model should allow exactly one office per organization to be flagged as HQ.
-      </p>
+      <p class="mb-2">Headquarters (HQ) is the primary office of the organization. It typically houses executive leadership and is tied to legal registration, tax, and compliance. Your data model should allow exactly one office per organization to be flagged as HQ.</p>
 
-      <p class="mb-2">
-        Branch/Satellite offices are regular offices where divisions, departments, and teams operate locally. They can have their own leaders, but they report up through the organization to HQ.
-      </p>
+      <p class="mb-2">Branch/Satellite offices are regular offices where divisions, departments, and teams operate locally. They can have their own leaders, but they report up through the organization to HQ.</p>
 
       <p class="mb-2">
         <strong>Branch/Satellite offices</strong>
