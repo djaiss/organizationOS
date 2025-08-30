@@ -1,6 +1,6 @@
 <?php
 /*
- * @var OrganizationIndexViewModel $viewModel
+ * @var App\ViewModels\Organizations\OrganizationIndexViewModel $viewModel
  */
 ?>
 

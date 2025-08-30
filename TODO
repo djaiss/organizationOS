@@ -19,6 +19,10 @@
 
 ## Core structural layers
 
+- [ ] Create organization
+- [ ] Create organization API
+- [ ] Add create organization to user logs
+- [ ] Create organizations logs
 - [ ] Manage countries
 - [ ] Manage offices
 - [ ] Manage divisions
