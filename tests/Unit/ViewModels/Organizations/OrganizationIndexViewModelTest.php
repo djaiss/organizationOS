@@ -39,5 +39,4 @@ it('returns the correct organizations', function (): void {
 
     expect($firstOrganization->id)->toEqual($organization1->id);
     expect('Dunder Mifflin')->toEqual($organization1->name);
-    expect('dunder-mifflin')->toEqual($organization1->slug);
 });

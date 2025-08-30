@@ -28,8 +28,8 @@
       <!-- locale -->
       <x-select id="locale" :label="__('Language')" :options="['en' => __('English'), 'fr' => __('French')]" selected="{{ $user->locale }}" required :error="$errors->get('locale')" />
 
-      <div class="flex items-center justify-start">
-        <x-button dusk="save-profile-button">{{ __('Save') }}</x-button>
+      <div class="flex items-center justify-end">
+        <x-button>{{ __('Save') }}</x-button>
       </div>
     </x-form>
   </div>

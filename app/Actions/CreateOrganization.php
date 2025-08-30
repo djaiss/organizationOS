@@ -6,7 +6,6 @@ namespace App\Actions;
 
 use App\Models\Organization;
 use App\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -18,10 +17,8 @@ final class CreateOrganization
 {
     private Organization $organization;
 
-    private User $user;
-
     public function __construct(
-        public int $userId,
+        public User $user,
         public string $organizationName,
     ) {}
 
@@ -29,6 +26,7 @@ final class CreateOrganization
     {
         $this->validate();
         $this->create();
+        $this->generateSlug();
         $this->addFirstUser();
 
         return $this->organization;
@@ -36,10 +34,6 @@ final class CreateOrganization
 
     private function validate(): void
     {
-        if (User::find($this->userId) === null) {
-            throw new ModelNotFoundException('User not found');
-        }
-
         // make sure the organization name doesn't contain any special characters
         if (in_array(preg_match('/^[a-zA-Z0-9\s\-_]+$/', $this->organizationName), [0, false], true)) {
             throw ValidationException::withMessages([
@@ -52,13 +46,19 @@ final class CreateOrganization
     {
         $this->organization = Organization::create([
             'name' => $this->organizationName,
-            'slug' => Str::slug($this->organizationName),
         ]);
+    }
+
+    private function generateSlug(): void
+    {
+        $slug = $this->organization->id . '-' . Str::of($this->organizationName)->slug('-');
+
+        $this->organization->slug = $slug;
+        $this->organization->save();
     }
 
     private function addFirstUser(): void
     {
-        $this->user = User::find($this->userId);
         $this->user->organizations()->attach($this->organization->id, [
             'joined_at' => now(),
         ]);

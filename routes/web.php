@@ -25,14 +25,15 @@ Route::get('/docs/api/logs', [Marketing\Docs\Api\LogsController::class, 'index']
 
 Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update');
 
-Route::middleware(['auth', 'verified', 'set.locale'])->group(function (): void {
+Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(function (): void {
     Route::get('organizations', [Organizations\OrganizationController::class, 'index'])->name('organizations.index');
-    Route::get('organizations/{organization}', [Organizations\OrganizationController::class, 'show'])->name('organizations.show');
     Route::get('organizations/create', [Organizations\OrganizationController::class, 'create'])->name('organizations.create');
     Route::post('organizations', [Organizations\OrganizationController::class, 'store'])->name('organizations.store');
 
     // organization
-    Route::get('organizations/{organization}', [Organizations\OrganizationController::class, 'show'])->name('organizations.show');
+    Route::middleware(['organization'])->group(function (): void {
+        Route::get('organizations/{slug}', [Organizations\OrganizationController::class, 'show'])->name('organizations.show');
+    });
 
     // settings redirect
     Route::redirect('settings', 'settings/profile');
