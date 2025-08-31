@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\HealthController;
 use App\Http\Controllers\Api\Settings;
+use App\Http\Controllers\Api\Organizations;
 use Illuminate\Support\Facades\Route;
 
 Route::name('api.')->group(function (): void {
@@ -21,6 +22,11 @@ Route::name('api.')->group(function (): void {
         Route::get('me', [Settings\Profile\ProfileController::class, 'show'])->name('me');
         Route::put('me', [Settings\Profile\ProfileController::class, 'update'])->name('me.update');
 
+        // organizations
+        Route::post('organizations', [Organizations\OrganizationController::class, 'create'])->name('organizations.create');
+        Route::get('organizations', [Organizations\OrganizationController::class, 'index'])->name('organizations.index');
+
+        // settings
         // logs
         Route::get('settings/logs', [Settings\Profile\LogController::class, 'index'])->name('settings.logs');
         Route::get('settings/logs/{id}', [Settings\Profile\LogController::class, 'show'])->name('settings.logs.show');
