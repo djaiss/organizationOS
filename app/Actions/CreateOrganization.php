@@ -72,7 +72,7 @@ final class CreateOrganization
             organization: $this->organization,
             user: $this->user,
             action: 'organization_creation',
-            description: 'Created an organization called ' . $this->organizationName,
+            description: sprintf('Created an organization called %s', $this->organizationName),
         )->onQueue('low');
     }
 }
