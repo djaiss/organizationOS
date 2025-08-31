@@ -26,6 +26,8 @@
 - [x] Display organization links in log
 - [ ] Create organizations logs
 - [x] Add fake organization in seeder
+- [x] Add notion of marketing page
+- [x] Add pageviews for marketing page
 - [ ] Join organization
 - [ ] Remove dusk
 - [ ] Manage countries
