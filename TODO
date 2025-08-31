@@ -26,6 +26,7 @@
 - [x] Display organization links in log
 - [ ] Create organizations logs
 - [x] Add fake organization in seeder
+- [ ] Join organization
 - [ ] Remove dusk
 - [ ] Manage countries
 - [ ] Manage offices
