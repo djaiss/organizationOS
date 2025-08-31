@@ -33,7 +33,12 @@
                   <p class="flex items-center gap-2">
                     <span class="">{{ $log->getUserName() }}</span>
                     |
-                    <span class="font-mono">{{ $log->action }}</span>
+                    @if ($log->organization)
+                      <x-link href="{{ route('organizations.show', $log->organization->id) }}">{{ $log->organization->name }}</x-link>
+                      |
+                    @endif
+
+                    <span class="font-mono text-xs">{{ $log->action }}</span>
                   </p>
                   <p class="">{{ $log->description }}</p>
                 </div>

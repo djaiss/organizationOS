@@ -23,7 +23,7 @@
 - [x] Generate avatar library
 - [x] Create organization API
 - [x] Add create organization to user logs
-- [ ] Display organization links in log
+- [x] Display organization links in log
 - [ ] Create organizations logs
 - [ ] Add fake organization in seeder
 - [ ] Manage countries

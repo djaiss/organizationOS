@@ -36,6 +36,8 @@ final readonly class ProfileShowViewModel
             ->map(fn(Log $log) => (object) [
                 'username' => $log->getUserName(),
                 'action' => $log->action,
+                'organization_name' => $log->organization?->name,
+                'organization_id' => $log->organization?->id,
                 'description' => $log->description,
                 'created_at' => $log->created_at->format('Y-m-d H:i:s'),
                 'created_at_diff_for_humans' => $log->created_at->diffForHumans(),
