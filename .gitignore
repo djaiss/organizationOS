@@ -29,3 +29,5 @@ public/vendor/telescope/favicon.ico
 public/vendor/telescope/mix-manifest.json
 phpstan-baseline.neon
 /.github/prompts
+/.cursor
+CLAUDE.md

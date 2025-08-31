@@ -3,22 +3,39 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\LocaleController;
-use App\Http\Controllers\Marketing\MarketingController;
+use App\Http\Controllers\Marketing;
 use App\Http\Controllers\Organizations;
 use App\Http\Controllers\Settings;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [MarketingController::class, 'index'])->name('marketing.index');
+Route::get('/', [Marketing\MarketingController::class, 'index'])->name('marketing.index');
+Route::get('/docs', [Marketing\Docs\MarketingDocController::class, 'index'])->name('marketing.docs.index');
+
+// api docs
+Route::get('/docs/api', [Marketing\Docs\Api\ApiIntroductionController::class, 'index'])->name('marketing.docs.api.index');
+Route::get('/docs/api/authentication', [Marketing\Docs\Api\AuthenticationController::class, 'index'])->name('marketing.docs.api.authentication');
+
+// concepts docs
+Route::get('/docs/concepts/hierarchical-structure', [Marketing\Docs\Concepts\HierarchicalStructureController::class, 'index'])->name('marketing.docs.concepts.hierarchical-structure');
+
+// account management
+Route::get('/docs/api/profile', [Marketing\Docs\Api\ProfileController::class, 'index'])->name('marketing.docs.api.account.profile');
+Route::get('/docs/api/api-management', [Marketing\Docs\Api\ApiManagementController::class, 'index'])->name('marketing.docs.api.account.api-management');
+Route::get('/docs/api/logs', [Marketing\Docs\Api\LogsController::class, 'index'])->name('marketing.docs.api.account.logs');
 
 Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update');
 
-Route::middleware(['auth', 'verified', 'set.locale'])->group(function (): void {
+Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(function (): void {
     Route::get('organizations', [Organizations\OrganizationController::class, 'index'])->name('organizations.index');
-    Route::get('organizations/{organization}', [Organizations\OrganizationController::class, 'show'])->name('organizations.show');
     Route::get('organizations/create', [Organizations\OrganizationController::class, 'create'])->name('organizations.create');
-    Route::get('organizations/{organization}', [Organizations\OrganizationController::class, 'show'])->name('organizations.show');
     Route::post('organizations', [Organizations\OrganizationController::class, 'store'])->name('organizations.store');
 
+    // organization
+    Route::middleware(['organization'])->group(function (): void {
+        Route::get('organizations/{slug}', [Organizations\OrganizationController::class, 'show'])->name('organizations.show');
+    });
+
+    // settings redirect
     Route::redirect('settings', 'settings/profile');
 
     // settings
