@@ -1,22 +1,21 @@
 <x-marketing-docs-layout>
   <div class="py-16">
-    <h1 class="mb-6 text-2xl font-bold">Organizations</h1>
+    <x-marketing.h1 title="Organizations" />
 
-    <div class="mb-8 rounded-lg border border-gray-200 p-4">
-      <p class="mb-2 text-xs">Table of contents</p>
-
-      <ul>
-        <li>
-          <x-link href="#get-the-organizations-of-the-current-user">Get the organizations of the current user</x-link>
-        </li>
-        <li>
-          <x-link href="#get-a-organization">Get a specific organization</x-link>
-        </li>
-        <li>
-          <x-link href="#create-an-organization">Create an organization</x-link>
-        </li>
-      </ul>
-    </div>
+    <x-marketing.table-of-content :items="[
+      [
+        'id' => 'get-the-organizations-of-the-current-user',
+        'title' => 'Get the organizations of the current user',
+      ],
+      [
+        'id' => 'get-a-organization',
+        'title' => 'Get a specific organization',
+      ],
+      [
+        'id' => 'create-an-organization',
+        'title' => 'Create an organization',
+      ],
+    ]" />
 
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
@@ -49,7 +48,7 @@
     <!-- GET /api/organizations -->
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
-        <h3 id="get-the-organizations-of-the-current-user" class="mb-2 text-lg font-bold">Get the organizations of the current user</h3>
+        <x-marketing.h2 id="get-the-organizations-of-the-current-user" title="Get the organizations of the current user" />
         <p class="mb-2">This endpoint gets the organizations the current user belongs to.</p>
         <p class="mb-10">
           This call is not
@@ -90,7 +89,7 @@
     <!-- GET /api/organizations/{id} -->
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
-        <h3 id="get-a-organization" class="mb-2 text-lg font-bold">Get a specific organization</h3>
+        <x-marketing.h2 id="get-a-organization" title="Get a specific organization" />
         <p class="mb-10">This endpoint gets a specific organization.</p>
 
         <!-- url parameters -->
@@ -126,7 +125,7 @@
     <!-- POST /api/organizations -->
     <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
       <div>
-        <h3 id="create-an-organization" class="mb-2 text-lg font-bold">Create an organization</h3>
+        <x-marketing.h2 id="create-an-organization" title="Create an organization" />
         <p class="mb-10">This endpoint creates a new organization. It will return the organization in the response. The avatar is automatically generated.</p>
 
         <!-- url parameters -->

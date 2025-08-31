@@ -1,19 +1,17 @@
 <x-marketing-docs-layout>
   <div class="py-16">
-    <h1 class="mb-6 text-2xl font-bold">Logs</h1>
+    <x-marketing.h1 title="Logs" />
 
-    <div class="mb-8 rounded-lg border border-gray-200 p-4">
-      <p class="mb-2 text-xs">Table of contents</p>
-
-      <ul>
-        <li>
-          <x-link href="#get-the-logs-of-the-current-user">Get the logs of the current user</x-link>
-        </li>
-        <li>
-          <x-link href="#get-a-log">Get a specific log</x-link>
-        </li>
-      </ul>
-    </div>
+    <x-marketing.table-of-content :items="[
+      [
+        'id' => 'get-the-logs-of-the-current-user',
+        'title' => 'Get the logs of the current user',
+      ],
+      [
+        'id' => 'get-a-log',
+        'title' => 'Get a specific log',
+      ],
+    ]" />
 
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
@@ -38,7 +36,7 @@
     <!-- GET /api/settings/logs -->
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
-        <h3 id="get-the-logs-of-the-current-user" class="mb-2 text-lg font-bold">Get the logs of the current user</h3>
+        <x-marketing.h2 id="get-the-logs-of-the-current-user" title="Get the logs of the current user" />
         <p class="mb-2">This endpoint gets the logs of the current user. This is useful to understand what the user has done in the account.</p>
         <p class="mb-10">
           This call is
@@ -79,7 +77,7 @@
     <!-- GET /api/settings/logs/{log} -->
     <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
       <div>
-        <h3 id="get-a-log" class="mb-2 text-lg font-bold">Get a specific log</h3>
+        <x-marketing.h2 id="get-a-log" title="Get a specific log" />
         <p class="mb-10">This endpoint gets a specific log.</p>
 
         <!-- url parameters -->

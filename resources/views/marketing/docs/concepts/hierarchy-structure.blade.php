@@ -1,7 +1,8 @@
 <x-marketing-docs-layout>
   <div class="grid grid-cols-1 gap-x-16 lg:grid-cols-[1fr_250px]">
     <div class="py-16 sm:border-r sm:border-gray-200 sm:pr-10">
-      <h1 class="mb-6 text-2xl font-bold">Hierarchical structure</h1>
+      <x-marketing.h1 title="Hierarchical structure" />
+
       <p class="mb-2">OrganizationOS models real-world structure in a simple, flexible way. The goal is not to capture every HR detail, but to provide the essential building blocks:</p>
       <ul class="mb-2 list-disc pl-6">
         <li>Countries</li>
@@ -18,9 +19,7 @@
         . The same structure works for remote-first companies and multi-country organizations.
       </p>
 
-      <h2 class="mb-2 text-lg font-bold" id="entities-overview">Entities overview</h2>
-
-      <h3 class="mb-2 text-base font-bold" id="countries">Countries</h3>
+      <x-marketing.h2 id="countries" title="Countries" />
 
       <p class="mb-2">Countries are the geographic foundation. They provide context for offices and employees and help with reporting and grouping.</p>
 
@@ -34,7 +33,7 @@
         Fully remote organizations may still define a “home country” for legal or tax reasons, or skip countries if not relevant.
       </p>
 
-      <h3 class="mb-2 text-base font-bold" id="offices">Offices</h3>
+      <x-marketing.h2 id="offices" title="Offices" />
 
       <p class="mb-2">Offices represent physical or virtual hubs where people work. They can be headquarters, branches, satellites, or a single "Remote (global)" placeholder for remote-only setups.</p>
 
@@ -43,7 +42,7 @@
         Dunder Mifflin’s corporate HQ is in New York. The Scranton location is a branch office. A remote-first startup could designate a single office named Remote (global) and mark it as HQ if appropriate.
       </p>
 
-      <h3 class="mb-2 text-base font-bold" id="divisions">Divisions</h3>
+      <x-marketing.h2 id="divisions" title="Divisions" />
 
       <p class="mb-2">Divisions are the highest-level business areas, such as Sales, Operations, or Corporate Management. They give broad direction and accountability.</p>
 
@@ -52,7 +51,7 @@
         Corporate-level management (e.g., Jan Levinson for Sales, David Wallace for Finance/Corporate) sits at the division layer.
       </p>
 
-      <h3 class="mb-2 text-base font-bold" id="departments">Departments</h3>
+      <x-marketing.h2 id="departments" title="Departments" />
 
       <p class="mb-2">Departments are functional groupings inside divisions (e.g., Sales Department, Accounting, Customer Service). They are the backbone of day-to-day work.</p>
 
@@ -68,7 +67,7 @@
         In Scranton, the Accounting Department (Angela, Oscar, Kevin) and Customer Service (Kelly) are departments under different divisions.
       </p>
 
-      <h3 class="mb-2 text-base font-bold" id="teams">Teams</h3>
+      <x-marketing.h2 id="teams" title="Teams" />
 
       <p class="mb-2">Teams are the smallest operational units and live inside departments. They represent the working group people identify with day-to-day.</p>
 
@@ -77,7 +76,7 @@
         The Scranton Sales Team includes Jim, Dwight, Phyllis, and Stanley, with Michael as the office’s manager.
       </p>
 
-      <h3 class="mb-2 text-base font-bold" id="guilds">Guilds</h3>
+      <x-marketing.h2 id="guilds" title="Guilds" />
 
       <p class="mb-2">Guilds are cross-functional communities of practice that cut across departments and divisions. They’re great for knowledge sharing and standards.</p>
 
@@ -86,7 +85,7 @@
         The Party Planning Committee (Angela, Pam, Phyllis) and the Safety Committee (Dwight, Toby, Michael) are guilds that operate across the Scranton office; a Global Sales Guild can connect sales reps across countries.
       </p>
 
-      <h2 class="mb-2 text-lg font-bold" id="key-principles">Key principles</h2>
+      <x-marketing.h2 id="key-principles" title="Key principles" />
 
       <p class="mb-2">There are some basic rules to follow:</p>
 
@@ -98,7 +97,7 @@
         <li>Departments can contain sub-departments. Keep things flat if you’re small; nest when you need the flexibility.</li>
       </ul>
 
-      <h3 class="mb-2 text-base font-bold" id="headquarters-vs-branch-offices">Headquarters vs. branch offices</h3>
+      <x-marketing.h2 id="headquarters-vs-branch-offices" title="Headquarters vs. branch offices" />
 
       <p class="mb-2">Headquarters (HQ) is the primary office of the organization. It typically houses executive leadership and is tied to legal registration, tax, and compliance. Your data model should allow exactly one office per organization to be flagged as HQ.</p>
 
@@ -134,7 +133,12 @@
           <div class="mb-4">
             <h4 class="mb-2 text-xs font-semibold text-gray-500 uppercase">Jump to</h4>
             <nav class="space-y-1 text-sm">
-              <a href="#entities-overview" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Entities overview</a>
+              <a href="#countries" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Countries</a>
+              <a href="#offices" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Offices</a>
+              <a href="#divisions" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Divisions</a>
+              <a href="#departments" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Departments</a>
+              <a href="#teams" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Teams</a>
+              <a href="#guilds" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Guilds</a>
               <a href="#key-principles" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Key principles</a>
               <a href="#headquarters-vs-branch-offices" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Headquarters vs. branch offices</a>
             </nav>

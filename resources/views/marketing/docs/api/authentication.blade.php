@@ -1,6 +1,17 @@
 <x-marketing-docs-layout>
   <div class="py-16">
-    <h1 class="mb-6 text-2xl font-bold">Authentication</h1>
+    <x-marketing.h1 title="Authentication" />
+
+    <x-marketing.table-of-content :items="[
+      [
+        'id' => 'login',
+        'title' => 'Login',
+      ],
+      [
+        'id' => 'logout',
+        'title' => 'Logout',
+      ],
+    ]" />
 
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
@@ -30,23 +41,10 @@
       </div>
     </div>
 
-    <div class="mb-8 rounded-lg border border-gray-200 p-4">
-      <p class="mb-2 text-xs">Table of contents</p>
-
-      <ul>
-        <li>
-          <x-link href="#login">Login</x-link>
-        </li>
-        <li>
-          <x-link href="#logout">Logout</x-link>
-        </li>
-      </ul>
-    </div>
-
     <!-- POST /api/login -->
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
-        <h3 id="login" class="mb-2 text-lg font-bold">Login</h3>
+        <x-marketing.h2 id="login" title="Login" />
         <p class="mb-10">This endpoint logs in a user and returns an API key. This is the only endpoint that lets you use your email and password to authenticate your requests.</p>
 
         <!-- url parameters -->
@@ -94,9 +92,9 @@
     </div>
 
     <!-- DELETE /api/logout -->
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
       <div>
-        <h3 id="logout" class="mb-2 text-lg font-bold">Logout</h3>
+        <x-marketing.h2 id="logout" title="Logout" />
         <p class="mb-10">
           This endpoint logs out a user and
           <strong>deletes the API key that was used to authenticate the request</strong>

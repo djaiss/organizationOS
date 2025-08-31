@@ -1,19 +1,17 @@
 <x-marketing-docs-layout>
   <div class="py-16">
-    <h1 class="mb-6 text-2xl font-bold">Profile</h1>
+    <x-marketing.h1 title="Profile" />
 
-    <div class="mb-8 rounded-lg border border-gray-200 p-4">
-      <p class="mb-2 text-xs">Table of contents</p>
-
-      <ul>
-        <li>
-          <x-link href="#get-the-information-about-the-logged-user">Get the information about the logged user</x-link>
-        </li>
-        <li>
-          <x-link href="#update-the-information-about-the-logged-user">Update the information about the logged user</x-link>
-        </li>
-      </ul>
-    </div>
+    <x-marketing.table-of-content :items="[
+      [
+        'id' => 'get-the-information-about-the-logged-user',
+        'title' => 'Get the information about the logged user',
+      ],
+      [
+        'id' => 'update-the-information-about-the-logged-user',
+        'title' => 'Update the information about the logged user',
+      ],
+    ]" />
 
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
@@ -39,7 +37,7 @@
     <!-- GET /api/me -->
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
-        <h3 id="get-the-information-about-the-logged-user" class="mb-2 text-lg font-bold">Get the information about the logged user</h3>
+        <x-marketing.h2 id="get-the-information-about-the-logged-user" title="Get the information about the logged user" />
         <p class="mb-10">This endpoint gets the information about the logged user. This endpoint is there to make sure that the API works.</p>
 
         <!-- url parameters -->
@@ -76,7 +74,7 @@
     <!-- PUT /api/me -->
     <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
       <div>
-        <h3 id="update-the-information-about-the-logged-user" class="mb-2 text-lg font-bold">Update the information about the logged user</h3>
+        <x-marketing.h2 id="update-the-information-about-the-logged-user" title="Update the information about the logged user" />
         <p class="mb-2">This endpoint updates the information about the logged user.</p>
         <p class="mb-2">Only the logged user can update these fields.</p>
         <p class="mb-2">If the email is changed, the system will send a new verification email to verify the new email address, and unless the user verifies the new email address, he/she will not be able to access the account.</p>

@@ -1,25 +1,25 @@
 <x-marketing-docs-layout>
   <div class="py-16">
-    <h1 class="mb-6 text-2xl font-bold">API management</h1>
+    <x-marketing.h1 title="API management" />
 
-    <div class="mb-8 rounded-lg border border-gray-200 p-4">
-      <p class="mb-2 text-xs">Table of contents</p>
-
-      <ul>
-        <li>
-          <x-link href="#get-the-list-of-api-keys-in-the-account">Get the list of API keys in the account</x-link>
-        </li>
-        <li>
-          <x-link href="#get-an-api-key">Get an API key</x-link>
-        </li>
-        <li>
-          <x-link href="#create-a-new-api-key">Create a new API key</x-link>
-        </li>
-        <li>
-          <x-link href="#delete-an-api-key">Delete an API key</x-link>
-        </li>
-      </ul>
-    </div>
+    <x-marketing.table-of-content :items="[
+      [
+        'id' => 'get-the-list-of-api-keys-in-the-account',
+        'title' => 'Get the list of API keys in the account',
+      ],
+      [
+        'id' => 'get-an-api-key',
+        'title' => 'Get an API key',
+      ],
+      [
+        'id' => 'create-a-new-api-key',
+        'title' => 'Create a new API key',
+      ],
+      [
+        'id' => 'delete-an-api-key',
+        'title' => 'Delete an API key',
+      ],
+    ]" />
 
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
@@ -53,7 +53,7 @@
     <!-- GET /api/settings/api -->
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
-        <h3 id="get-the-list-of-api-keys-in-the-account" class="mb-2 text-lg font-bold">Get the list of API keys in the account</h3>
+        <x-marketing.h2 id="get-the-list-of-api-keys-in-the-account" title="Get the list of API keys in the account" />
         <p class="mb-2">This endpoint gets the list of API keys in the account.</p>
         <p class="mb-2">The API key is not returned in the response, since it's only returned when creating a new API key.</p>
         <p class="mb-10">This call is not paginated, since there should not be too many API keys in the account.</p>
@@ -92,7 +92,7 @@
     <!-- GET /api/settings/api/{id} -->
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
-        <h3 id="get-an-api-key" class="mb-2 text-lg font-bold">Get an API key</h3>
+        <x-marketing.h2 id="get-an-api-key" title="Get an API key" />
         <p class="mb-10">This endpoint gets an API key. It will return the API key in the response.</p>
 
         <!-- url parameters -->
@@ -129,7 +129,7 @@
     <!-- POST /api/settings/api -->
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
-        <h3 id="create-a-new-api-key" class="mb-2 text-lg font-bold">Create a new API key</h3>
+        <x-marketing.h2 id="create-a-new-api-key" title="Create a new API key" />
         <p class="mb-10">This endpoint creates a new API key. It will return the API key in the response. This will be the only time you will see the API key, so please save it in a secure location.</p>
 
         <!-- url parameters -->
@@ -166,7 +166,7 @@
     <!-- DELETE /api/settings/api/{id} -->
     <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
       <div>
-        <h3 id="delete-an-api-key" class="mb-2 text-lg font-bold">Delete an API key</h3>
+        <x-marketing.h2 id="delete-an-api-key" title="Delete an API key" />
         <p class="mb-10">This endpoint deletes an API key. It will return a success message in the response.</p>
 
         <!-- url parameters -->

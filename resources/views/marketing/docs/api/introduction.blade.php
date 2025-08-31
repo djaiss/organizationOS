@@ -1,6 +1,25 @@
 <x-marketing-docs-layout>
   <div class="py-16">
-    <h1 class="mb-6 text-2xl font-bold">API reference</h1>
+    <x-marketing.h1 title="API reference" />
+
+    <x-marketing.table-of-content :items="[
+      [
+        'id' => 'test-the-api-yourself',
+        'title' => 'Test the API yourself',
+      ],
+      [
+        'id' => 'conventions-of-the-api',
+        'title' => 'Conventions of the API',
+      ],
+      [
+        'id' => 'pagination',
+        'title' => 'Pagination',
+      ],
+      [
+        'id' => 'health',
+        'title' => 'Health',
+      ],
+    ]" />
 
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
@@ -20,7 +39,7 @@
     </div>
 
     <div class="mb-10 border-b border-gray-200 pb-10 sm:grid-cols-2">
-      <h3 id="test-the-api-yourself" class="mb-2 text-lg font-bold">Test the API yourself</h3>
+      <x-marketing.h2 id="test-the-api-yourself" title="Test the API yourself" />
       <p class="mb-2">
         If you want to test the API yourself, we provide two convenient tools for you to use:
         <x-link href="https://www.usebruno.com/" target="_blank">Bruno</x-link>
@@ -35,7 +54,7 @@
     </div>
 
     <div class="mb-10 border-b border-gray-200 pb-10 sm:grid-cols-2">
-      <h3 id="test-the-api-yourself" class="mb-2 text-lg font-bold">Conventions of the API</h3>
+      <x-marketing.h2 id="conventions-of-the-api" title="Conventions of the API" />
       <p class="mb-2">
         There is no strict standard for JSON payloads, but we do try to follow
         <x-link href="https://jsonapi.org/" target="_blank">the JSON:API specification</x-link>
@@ -45,7 +64,7 @@
 
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
-        <h3 id="pagination" class="mb-2 text-lg font-bold">Pagination</h3>
+        <x-marketing.h2 id="pagination" title="Pagination" />
         <p class="mb-2">All endpoints that return a collection of resources support pagination.</p>
         <p class="mb-2">
           The default value for
@@ -178,7 +197,7 @@
     <!-- GET /api/health -->
     <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
       <div>
-        <h3 id="health" class="mb-2 text-lg font-bold">Health</h3>
+        <x-marketing.h2 id="health" title="Health" />
         <p class="mb-10">This endpoint checks the health of the application and returns a simple "ok" message. It lets you know if the application is running and if the database is connected.</p>
 
         <!-- url parameters -->
