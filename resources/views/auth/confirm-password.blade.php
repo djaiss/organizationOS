@@ -33,7 +33,7 @@
             <!-- Password -->
             <x-input id="password" type="password" :label="__('Password')" required autocomplete="current-password" />
 
-            <x-button class="w-full" dusk="confirm-password-button">{{ __('Confirm') }}</x-button>
+            <x-button class="w-full">{{ __('Confirm') }}</x-button>
           </x-form>
         </x-box>
 

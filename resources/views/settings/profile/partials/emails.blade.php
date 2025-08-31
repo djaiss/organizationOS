@@ -4,7 +4,7 @@
  */
 ?>
 
-<x-box :title="__('Emails sent')" padding="p-0" dusk="emails-sent-box">
+<x-box :title="__('Emails sent')" padding="p-0">
   @forelse ($viewModel->emailsSent() as $emailSent)
     <div x-data="{ open: false, isLast: {{ $loop->last ? 'true' : 'false' }} }">
       <div @click="open = !open" class="group flex cursor-pointer items-center justify-between border-b border-gray-200 p-3 text-sm first:rounded-t-lg hover:bg-blue-50" :class="{'border-b-0 rounded-b-lg': !open && isLast}">

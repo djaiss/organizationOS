@@ -23,7 +23,7 @@
     <!-- Main content -->
     <section class="p-4 sm:p-8">
       <div class="mx-auto max-w-4xl sm:px-0">
-        <x-box :title="__('Emails sent')" id="emails-sent-container" x-merge="append" padding="p-0" dusk="emails-sent-box">
+        <x-box :title="__('Emails sent')" id="emails-sent-container" x-merge="append" padding="p-0">
           <!-- last actions -->
           @foreach ($emails as $email)
             <div x-data="{ open: false, isLast: {{ $loop->last ? 'true' : 'false' }} }">

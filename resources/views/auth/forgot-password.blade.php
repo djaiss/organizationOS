@@ -36,7 +36,7 @@
                 {{ __('Back to login') }}
               </x-link>
 
-              <x-button dusk="forgot-password-button">{{ __('Email password reset link') }}</x-button>
+              <x-button>{{ __('Email password reset link') }}</x-button>
             </div>
           </x-form>
         </x-box>

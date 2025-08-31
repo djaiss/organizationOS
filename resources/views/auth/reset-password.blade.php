@@ -42,7 +42,7 @@
             <!-- Confirm Password -->
             <x-input id="password_confirmation" type="password" :label="__('Confirm password')" required autocomplete="new-password" />
 
-            <x-button class="w-full" dusk="reset-password-button">{{ __('Reset password') }}</x-button>
+            <x-button class="w-full">{{ __('Reset password') }}</x-button>
           </x-form>
         </x-box>
 

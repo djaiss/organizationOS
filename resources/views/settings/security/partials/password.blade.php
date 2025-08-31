@@ -31,7 +31,7 @@
     </div>
 
     <div class="flex items-center justify-end p-3">
-      <x-button dusk="change-password-button">{{ __('Save') }}</x-button>
+      <x-button>{{ __('Save') }}</x-button>
     </div>
   </x-form>
 </x-box>
