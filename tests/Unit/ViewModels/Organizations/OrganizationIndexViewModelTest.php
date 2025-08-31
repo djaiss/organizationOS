@@ -36,6 +36,7 @@ it('returns the correct organizations', function (): void {
     expect(property_exists($firstOrganization, 'id'))->toBeTrue();
     expect(property_exists($firstOrganization, 'name'))->toBeTrue();
     expect(property_exists($firstOrganization, 'slug'))->toBeTrue();
+    expect(property_exists($firstOrganization, 'avatar'))->toBeTrue();
 
     expect($firstOrganization->id)->toEqual($organization1->id);
     expect('Dunder Mifflin')->toEqual($organization1->name);

@@ -31,3 +31,9 @@ it('has many emails sent', function (): void {
 
     expect($organization->emailsSent()->exists())->toBeTrue();
 });
+
+it('gets the avatar', function (): void {
+    $organization = Organization::factory()->create();
+
+    expect($organization->getAvatar())->toBeString();
+});

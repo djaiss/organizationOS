@@ -22,6 +22,7 @@ final readonly class OrganizationIndexViewModel
                 'id' => $organization->id,
                 'name' => $organization->name,
                 'slug' => $organization->slug,
+                'avatar' => $organization->getAvatar(),
             ]);
     }
 }

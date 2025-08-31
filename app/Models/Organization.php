@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Actions\GenerateOrganizationAvatar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -71,5 +72,10 @@ final class Organization extends Model
     public function emailsSent(): HasMany
     {
         return $this->hasMany(EmailSent::class, 'organization_id');
+    }
+
+    public function getAvatar(): string
+    {
+        return new GenerateOrganizationAvatar($this->id . '-' . $this->name)->execute();
     }
 }

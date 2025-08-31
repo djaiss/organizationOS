@@ -9,7 +9,7 @@
 - [x] Record sent emails in the database
 - [x] Display sent emails
 - [x] Test email templates
-- [ ] Check Resend to capture email deliveryr
+- [ ] Check Resend to capture email delivery
 - [x] Manage API tokens
 - [x] Basic docs microsite
 - [x] API to check health
@@ -19,7 +19,8 @@
 
 ## Core structural layers
 
-- [ ] Create organization
+- [x] Create organization
+- [x] Generate avatar library
 - [ ] Create organization API
 - [ ] Add create organization to user logs
 - [ ] Create organizations logs
