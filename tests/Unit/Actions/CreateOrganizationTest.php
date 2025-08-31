@@ -6,9 +6,12 @@ use App\Actions\CreateOrganization;
 use App\Models\Organization;
 use App\Models\User;
 use Carbon\Carbon;
+use App\Jobs\LogUserAction;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Validation\ValidationException;
 
 it('creates an organization', function (): void {
+    Queue::fake();
     Carbon::setTestNow(Carbon::parse('2025-03-17 10:00:00'));
 
     $user = User::factory()->create();
@@ -31,6 +34,14 @@ it('creates an organization', function (): void {
     ]);
 
     expect($organization)->toBeInstanceOf(Organization::class);
+
+    Queue::assertPushedOn(
+        queue: 'low',
+        job: LogUserAction::class,
+        callback: function (LogUserAction $job) use ($user): bool {
+            return $job->action === 'organization_creation' && $job->user->id === $user->id;
+        },
+    );
 });
 
 it('throws an exception if organization name contains special characters', function (): void {

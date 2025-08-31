@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
+use App\Jobs\LogUserAction;
 use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -28,6 +29,7 @@ final class CreateOrganization
         $this->create();
         $this->generateSlug();
         $this->addFirstUser();
+        $this->log();
 
         return $this->organization;
     }
@@ -62,5 +64,15 @@ final class CreateOrganization
         $this->user->organizations()->attach($this->organization->id, [
             'joined_at' => now(),
         ]);
+    }
+
+    private function log(): void
+    {
+        LogUserAction::dispatch(
+            organization: $this->organization,
+            user: $this->user,
+            action: 'organization_creation',
+            description: 'Created an organization called ' . $this->organizationName,
+        )->onQueue('low');
     }
 }

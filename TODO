@@ -21,9 +21,11 @@
 
 - [x] Create organization
 - [x] Generate avatar library
-- [ ] Create organization API
-- [ ] Add create organization to user logs
+- [x] Create organization API
+- [x] Add create organization to user logs
+- [ ] Display organization links in log
 - [ ] Create organizations logs
+- [ ] Add fake organization in seeder
 - [ ] Manage countries
 - [ ] Manage offices
 - [ ] Manage divisions
