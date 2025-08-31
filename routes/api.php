@@ -26,6 +26,10 @@ Route::name('api.')->group(function (): void {
         Route::post('organizations', [Organizations\OrganizationController::class, 'create'])->name('organizations.create');
         Route::get('organizations', [Organizations\OrganizationController::class, 'index'])->name('organizations.index');
 
+        Route::middleware(['organization.api'])->group(function (): void {
+            Route::get('organizations/{id}', [Organizations\OrganizationController::class, 'show'])->name('organizations.show');
+        });
+
         // settings
         // logs
         Route::get('settings/logs', [Settings\Profile\LogController::class, 'index'])->name('settings.logs');

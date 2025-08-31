@@ -1,0 +1,15 @@
+meta {
+  name: Create organization
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{URL}}/organizations?name=Dunder Mifflin
+  body: none
+  auth: inherit
+}
+
+params:query {
+  name: Dunder Mifflin
+}

@@ -28,16 +28,25 @@ final class OrganizationController extends Controller
     public function create(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'organization_name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
         ]);
 
         $organization = new CreateOrganization(
             user: Auth::user(),
-            organizationName: $validated['organization_name'],
+            organizationName: $validated['name'],
         )->execute();
 
         return new OrganizationResource($organization)
             ->response()
             ->setStatusCode(201);
+    }
+
+    public function show(Request $request): JsonResponse
+    {
+        $organization = $request->attributes->get('organization');
+
+        return new OrganizationResource($organization)
+            ->response()
+            ->setStatusCode(200);
     }
 }
