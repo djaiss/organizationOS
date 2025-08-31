@@ -22,6 +22,7 @@ Route::get('/docs/concepts/hierarchical-structure', [Marketing\Docs\Concepts\Hie
 Route::get('/docs/api/profile', [Marketing\Docs\Api\ProfileController::class, 'index'])->name('marketing.docs.api.account.profile');
 Route::get('/docs/api/api-management', [Marketing\Docs\Api\ApiManagementController::class, 'index'])->name('marketing.docs.api.account.api-management');
 Route::get('/docs/api/logs', [Marketing\Docs\Api\LogsController::class, 'index'])->name('marketing.docs.api.account.logs');
+Route::get('/docs/api/organizations', [Marketing\Docs\Api\OrganizationsController::class, 'index'])->name('marketing.docs.api.organizations');
 
 Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update');
 

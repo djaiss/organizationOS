@@ -2,7 +2,7 @@
 <div class="pl-4">"data": {</div>
 <div class="pl-8">
   "type":
-  <span class="text-lime-700">"log"</span>
+  <span class="text-lime-700">"organization"</span>
   ,
 </div>
 <div class="pl-8">
@@ -12,18 +12,18 @@
 </div>
 <div class="pl-8">"attributes": {</div>
 <div class="pl-12">
-  "user_name":
-  <span class="text-lime-700">"Dwight Schrute"</span>
+  "name":
+  <span class="text-lime-700">"Dunder Mifflin"</span>
   ,
 </div>
 <div class="pl-12">
-  "action":
-  <span class="text-lime-700">"timezone_update"</span>
+  "slug":
+  <span class="text-lime-700">"dunder-mifflin"</span>
   ,
 </div>
 <div class="pl-12">
-  "description":
-  <span class="text-lime-700">"Updated their timezone"</span>
+  "avatar":
+  <span class="text-lime-700">"data:image/svg+xml;base64,..."</span>
   ,
 </div>
 <div class="pl-12">
@@ -39,7 +39,7 @@
 <div class="pl-8">"links": {</div>
 <div class="pl-12">
   "self":
-  <span class="text-lime-700">"{{ config('app.url') }}/api/settings/logs/663"</span>
+  <span class="text-lime-700">"{{ config('app.url') }}/api/organizations/663"</span>
 </div>
 <div class="pl-8">}</div>
 <div class="pl-4">}</div>

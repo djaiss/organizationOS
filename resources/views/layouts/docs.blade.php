@@ -22,6 +22,9 @@
           accountManagementDocumentation:
             '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.account.',) ? 'true' : 'false' }}' ===
             'true',
+          organizationsDocumentation:
+            '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.organizations',) ? 'true' : 'false' }}' ===
+            'true',
         }" class="bg-light dark:bg-dark z-10 pt-16">
           <!-- concepts -->
           <div @click="conceptsDocumentation = !conceptsDocumentation" class="mb-2 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 hover:border-gray-200 hover:bg-blue-50">
@@ -72,6 +75,17 @@
               </div>
               <div>
                 <a href="{{ route('marketing.docs.api.account.api-management') }}" class="{{ request()->routeIs('marketing.docs.api.account.api-management') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">API management</a>
+              </div>
+            </div>
+
+            <!-- organizations -->
+            <div @click="organizationsDocumentation = !organizationsDocumentation" class="mb-3 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 pl-3 text-xs text-gray-500 uppercase hover:border-gray-200 hover:bg-blue-50">
+              <h3>Organizations</h3>
+              <x-phosphor-caret-right x-bind:class="organizationsDocumentation ? 'rotate-90' : ''" class="h-4 w-4 text-gray-500 transition-transform duration-300" />
+            </div>
+            <div x-show="organizationsDocumentation" class="mb-3 flex flex-col gap-y-2">
+              <div>
+                <a href="{{ route('marketing.docs.api.organizations') }}" class="{{ request()->routeIs('marketing.docs.api.organizations') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Organizations</a>
               </div>
             </div>
           </div>
