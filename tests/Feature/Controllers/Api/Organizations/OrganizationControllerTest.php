@@ -47,10 +47,10 @@ it('can list the organizations of the current user', function () use ($collectio
     $user = User::factory()->create();
 
     $dunderMifflin = Organization::factory()->create(['name' => 'Dunder Mifflin']);
-    $vanceRefrigiration = Organization::factory()->create(['name' => 'Vance refrigiration']);
+    $vancerefrigeration = Organization::factory()->create(['name' => 'Vance refrigeration']);
 
     $user->organizations()->attach($dunderMifflin->id, ['joined_at' => now()]);
-    $user->organizations()->attach($vanceRefrigiration->id, ['joined_at' => now()]);
+    $user->organizations()->attach($vancerefrigeration->id, ['joined_at' => now()]);
 
     Sanctum::actingAs($user);
 
@@ -72,10 +72,10 @@ it('can list the organizations of the current user', function () use ($collectio
             ],
             [
                 'type' => 'organization',
-                'id' => (string) $vanceRefrigiration->id,
+                'id' => (string) $vancerefrigeration->id,
                 'attributes' => [
-                    'name' => 'Vance refrigiration',
-                    'slug' => $vanceRefrigiration->slug,
+                    'name' => 'Vance refrigeration',
+                    'slug' => $vancerefrigeration->slug,
                 ],
             ],
         ],
