@@ -12,7 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 final class CheckMarketingPage
 {
     /**
-     * Check if the user is a member of the organization.
+     * Track and increment page views for marketing pages.
+     * Attaches the marketing page record to the request attributes.
      *
      * @param  Closure(Request): (Response)  $next
      */

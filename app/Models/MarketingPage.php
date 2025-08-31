@@ -14,8 +14,8 @@ use Carbon\Carbon;
  * @property int $id
  * @property string $url
  * @property int $pageviews
- * @property bool $marked_helpful
- * @property bool $marked_not_helpful
+ * @property int $marked_helpful
+ * @property int $marked_not_helpful
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
