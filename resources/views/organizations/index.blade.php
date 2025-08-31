@@ -26,7 +26,7 @@
               <img src="{{ $organization->avatar }}" class="h-8 w-8" alt="Avatar" />
             </div>
 
-            <a href="{{ route('organizations.show', $organization->slug) }}">{{ $organization->name }}</a>
+            <x-link href="{{ route('organizations.show', $organization->slug) }}">{{ $organization->name }}</x-link>
           </div>
         @empty
           <div class="flex flex-col items-center gap-2 p-4 text-center text-gray-500">

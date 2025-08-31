@@ -6,8 +6,8 @@ namespace Database\Seeders;
 
 use App\Actions\CreateAccount;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Actions\CreateOrganization;
 
 final class DatabaseSeeder extends Seeder
 {
@@ -20,6 +20,7 @@ final class DatabaseSeeder extends Seeder
     {
         $this->createDunderMifflin();
         $this->validateEmail();
+        $this->createOrganization();
     }
 
     private function createDunderMifflin(): void
@@ -36,5 +37,13 @@ final class DatabaseSeeder extends Seeder
     {
         $this->michael->email_verified_at = now();
         $this->michael->save();
+    }
+
+    private function createOrganization(): void
+    {
+        new CreateOrganization(
+            user: $this->michael,
+            organizationName: 'Dunder Mifflin',
+        )->execute();
     }
 }
