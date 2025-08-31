@@ -121,7 +121,7 @@
           </a>
         @endif
 
-        <a href="" class="flex items-center gap-x-2 py-2 text-base leading-7 font-semibold text-gray-900">Why PeopleOS</a>
+        <a href="" class="flex items-center gap-x-2 py-2 text-base leading-7 font-semibold text-gray-900">Why {{ config('app.name') }}</a>
         <a href="" class="flex items-center gap-x-2 py-2 text-base leading-7 font-semibold text-gray-900">Features</a>
         <a href="" class="flex items-center gap-x-2 py-2 text-base leading-7 font-semibold text-gray-900">Pricing</a>
         <a href="" class="flex items-center gap-x-2 py-2 text-base leading-7 font-semibold text-gray-900">Docs</a>

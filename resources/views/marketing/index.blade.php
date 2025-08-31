@@ -1,1 +1,1 @@
-<x-marketing-layout>test test test test</x-marketing-layout>
+<x-marketing-layout :marketingPage="$marketingPage">test test test test</x-marketing-layout>

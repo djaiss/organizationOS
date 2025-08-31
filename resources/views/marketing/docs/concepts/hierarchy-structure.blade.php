@@ -1,4 +1,4 @@
-<x-marketing-docs-layout>
+<x-marketing-docs-layout :marketingPage="$marketingPage">
   <div class="grid grid-cols-1 gap-x-16 lg:grid-cols-[1fr_250px]">
     <div class="py-16 sm:border-r sm:border-gray-200 sm:pr-10">
       <x-marketing.h1 title="Hierarchical structure" />

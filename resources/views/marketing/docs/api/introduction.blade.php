@@ -1,4 +1,4 @@
-<x-marketing-docs-layout>
+<x-marketing-docs-layout :marketingPage="$marketingPage">
   <div class="py-16">
     <x-marketing.h1 title="API reference" />
 

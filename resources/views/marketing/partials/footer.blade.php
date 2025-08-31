@@ -103,7 +103,7 @@
           <div class="flex flex-col items-center gap-x-4 sm:flex-row sm:gap-x-2">
             <a href="{{ route('marketing.index') }}" class="group flex items-center gap-x-2 transition-transform ease-in-out">
               <div class="mb-4 flex h-7 w-7 items-center justify-center transition-all duration-400 group-hover:-translate-y-0.5 group-hover:-rotate-3 sm:mb-0">
-                <x-image src="{{ asset('logo.webp') }}" alt="PeopleOS logo" width="25" height="25" srcset="{{ asset('logo.webp') }} 1x, {{ asset('logo@2x.webp') }} 2x" />
+                <x-image src="{{ asset('logo.webp') }}" alt="{{ config('app.name') }} logo" width="25" height="25" srcset="{{ asset('logo.webp') }} 1x, {{ asset('logo@2x.webp') }} 2x" />
               </div>
             </a>
             <p class="text-xs text-gray-600">&copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved. Actually, our trademark is not registered, but we probably should write that to do like the big boys.</p>
@@ -111,9 +111,11 @@
 
           <p class="text-xs text-gray-600">
             This site is inspired by the magnificent and funny
-            <a href="https://posthog.com" target="_blank" class="text-blue-500 hover:text-blue-700">Posthog website</a>
+            <x-link href="https://posthog.com" target="_blank">Posthog website</x-link>
             .
           </p>
+
+          <x-marketing-footer-data :marketing-page="$marketingPage" />
         </div>
 
         <div class="mt-6 sm:mt-0">
