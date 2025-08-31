@@ -7,7 +7,7 @@
 <div>
   @if ($pageviews)
     <p class="text-xs text-gray-600">
-      {{ __('This page has been viewed :views times since its creation.', ['views' => $pageviews]) }}
+      This page has been viewed {{ $pageviews }} times since its creation.
     </p>
   @endif
 </div>

@@ -34,6 +34,8 @@ final class EmailSent extends Model
 
     /**
      * The attributes that are mass assignable.
+     *
+     * @var list<string>
      */
     protected $fillable = [
         'organization_id',

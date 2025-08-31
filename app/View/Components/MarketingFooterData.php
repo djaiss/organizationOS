@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\View\Components;
 
-use App\Helpers\MarketingHelper;
 use App\Models\MarketingPage;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class MarketingFooterData extends Component
+final class MarketingFooterData extends Component
 {
     public ?string $pageviews = null;
 
