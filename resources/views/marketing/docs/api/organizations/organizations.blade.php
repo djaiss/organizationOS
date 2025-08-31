@@ -71,7 +71,7 @@
         <x-marketing.response-attributes>
           <x-marketing.attribute name="type" type="string" description="The type of the resource." />
           <x-marketing.attribute name="id" type="string" description="The ID of the organization." />
-          <x-marketing.attribute name="attributes" type="object" description="The attributes of the log." />
+          <x-marketing.attribute name="attributes" type="object" description="The attributes of the organization." />
           <x-marketing.attribute name="attributes.name" type="string" description="The name of the organization." />
           <x-marketing.attribute name="attributes.slug" type="string" description="The slug of the organization." />
           <x-marketing.attribute name="attributes.avatar" type="string" description="The avatar of the organization." />
