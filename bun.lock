@@ -5,7 +5,7 @@
       "dependencies": {
         "@imacrayon/alpine-ajax": "^0.12.4",
         "@tailwindcss/vite": "^4.1.12",
-        "alpinejs": "^3.14.9",
+        "alpinejs": "^3.15.0",
         "autoprefixer": "^10.4.21",
         "concurrently": "^9.2.1",
         "instant.page": "^5.2.0",
@@ -167,7 +167,7 @@
 
     "@vue/shared": ["@vue/shared@3.1.5", "", {}, "sha512-oJ4F3TnvpXaQwZJNF3ZK+kLPHKarDmJjJ6jyzVNDKH9md1dptjC7lWR//jrGuLdek/U6iltWxqAnYOu8gCiOvA=="],
 
-    "alpinejs": ["alpinejs@3.14.9", "", { "dependencies": { "@vue/reactivity": "~3.1.1" } }, "sha512-gqSOhTEyryU9FhviNqiHBHzgjkvtukq9tevew29fTj+ofZtfsYriw4zPirHHOAy9bw8QoL3WGhyk7QqCh5AYlw=="],
+    "alpinejs": ["alpinejs@3.15.0", "", { "dependencies": { "@vue/reactivity": "~3.1.1" } }, "sha512-lpokA5okCF1BKh10LG8YjqhfpxyHBk4gE7boIgVHltJzYoM7O9nK3M7VlntLEJGsVmu7U/RzUWajmHREGT38Eg=="],
 
     "ansi-regex": ["ansi-regex@5.0.1", "", {}, "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ=="],
 
